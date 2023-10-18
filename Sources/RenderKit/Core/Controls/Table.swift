@@ -4,7 +4,7 @@ import SwiftUI
 //import Heap_SwiftUI
 //import Heap
 @available(iOS 16.0, *)
-struct RENDERTable<T: Identifiable>: View {
+public struct RENDERTable<T: Identifiable>: View {
     @State var myStyle: TableListStyle = TableListStyle.plain
     @State var workflows: [T] = []
     @ObservedObject var sampleData: SampleData
