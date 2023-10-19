@@ -21,6 +21,7 @@ public enum ModuleComponents: StringLiteralType, CaseIterable, Identifiable {
 
 @available(iOS 16, *)
 public struct ModuleWorkFlow: Equatable, Hashable, Identifiable {
+    typealias name = Workflow
     public var id = UUID()
     public var featureName: String = "ThisFeature"
     public var component: ModuleComponents = .welcome

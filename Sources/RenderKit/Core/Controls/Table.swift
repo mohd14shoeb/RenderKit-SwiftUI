@@ -3,6 +3,14 @@ import Foundation
 import SwiftUI
 //import Heap_SwiftUI
 //import Heap
+
+
+@available(iOS 16.0, *)
+public protocol TableView{
+    var view: any View { get set }
+    var component: Components { get set }
+}
+
 @available(iOS 16.0, *)
 public struct RENDERTable<T: Identifiable>: View {
     @State var myStyle: TableListStyle = TableListStyle.plain
@@ -38,8 +46,9 @@ public struct RENDERTable<T: Identifiable>: View {
                 }
             }
         }.padding(.top, 60)
-        
     }
+    
+  
     
 }
 
