@@ -25,6 +25,11 @@ public struct ModuleWorkFlow: Equatable, Hashable, Identifiable {
     public var id = UUID()
     public var featureName: String = "ThisFeature"
     public var component: ModuleComponents = .welcome
+    
+    init(component: ModuleComponents) {
+        self.component = component
+    }
+    
     @ViewBuilder
     public func view(for destination: ModuleComponents?, data: SampleData) -> some View {
         switch destination {

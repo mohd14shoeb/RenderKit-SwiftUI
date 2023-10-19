@@ -25,7 +25,7 @@ public struct RENDERKit {
         return RENDERToolBar(view: view)
     }
     
-    public func getModuleWorkFlow() -> ModuleWorkFlow {
-        return ModuleWorkFlow()
+    public func getModuleWorkFlow(component: ModuleComponents) -> ModuleWorkFlow {
+        return ModuleWorkFlow(component: component)
     }
 }
