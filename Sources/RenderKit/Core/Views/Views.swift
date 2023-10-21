@@ -39,8 +39,8 @@ struct View3: View {
     public var body: some View {
         VStack {
             let workflow = [
-                Workflow(.component2),
-                Workflow(.menuItem)]
+                ModuleWorkFlow(.header),
+                ModuleWorkFlow(.login)]
             RENDERTable(myStyle: .inset, workflows: workflow, sampleData: sampleData, sectionSeperator: .hidden)
         }
     }

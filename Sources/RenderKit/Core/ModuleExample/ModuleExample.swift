@@ -25,8 +25,8 @@ public struct ModuleWorkFlow: Equatable, Hashable, Identifiable {
     public var id = UUID()
     public var featureName: String = "ThisFeature"
     public var component: ModuleComponents = .welcome
-    
-    init(component: ModuleComponents) {
+   
+    init(_ component: ModuleComponents) {
         self.component = component
     }
     
@@ -39,6 +39,7 @@ public struct ModuleWorkFlow: Equatable, Hashable, Identifiable {
             RENDERForm()
         case .some(.header):
             VStack {
+                Image("mo", bundle: Bundle.module).resizable()
                 Text("Thanks for checking out this generated composable tableview and section builder render kit. It's a work in progress")
             }
         default:
@@ -66,7 +67,7 @@ extension ModuleWorkFlow {
 @available(iOS 16.0, *)
 struct previewComponent: PreviewProvider {
     static var previews: some View {
-        let moduleWorkflow = [ModuleWorkFlow(component: .header), ModuleWorkFlow(component: .login)]
+        let moduleWorkflow = [ModuleWorkFlow(.header), ModuleWorkFlow(.welcome)]
         VStack {
             RENDERTable( myStyle: TableListStyle.grouped, workflows: moduleWorkflow, sampleData: SampleData(), sectionSeperator: Visibility.hidden)
         }

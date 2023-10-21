@@ -17,8 +17,8 @@ final class ModuleExampleTests: XCTestCase {
         // Given
         // I request a tableView with Section config
         let workflow: [ModuleWorkFlow] = [
-            ModuleWorkFlow(component: .welcome),
-            ModuleWorkFlow(component: .login)
+            ModuleWorkFlow(.welcome),
+            ModuleWorkFlow(.login)
             ]
         let tableView =  RENDERTable(myStyle: .plain, workflows: workflow, sampleData: SampleData(), sectionSeperator: .hidden)
         XCTAssertNotNil(tableView)

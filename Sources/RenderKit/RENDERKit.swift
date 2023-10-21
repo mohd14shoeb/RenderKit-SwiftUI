@@ -26,6 +26,6 @@ public struct RENDERKit {
     }
     
     public func getModuleWorkFlow(component: ModuleComponents) -> ModuleWorkFlow {
-        return ModuleWorkFlow(component: component)
+        return ModuleWorkFlow(component)
     }
 }

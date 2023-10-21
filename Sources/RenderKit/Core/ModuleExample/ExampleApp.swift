@@ -27,12 +27,13 @@ struct RENDERToolBarNav: Identifiable, View {
         switch selectedRoute {
         case .some(.home):
             let workflow = [
+                Workflow(.welcome),
                 Workflow(.menuItem),
                 Workflow(.component2)
             ]
             RENDERTable( myStyle: .grouped, workflows: workflow, sampleData: sampleData, sectionSeperator: .visible)
         case .some(.orders):
-            let moduleWorkflow = [ModuleWorkFlow(component: .login)]
+            let moduleWorkflow = [ModuleWorkFlow(.login)]
          
             RENDERTable( myStyle: .grouped, workflows: moduleWorkflow, sampleData: sampleData, sectionSeperator: .hidden)
         case .some(.accounts):

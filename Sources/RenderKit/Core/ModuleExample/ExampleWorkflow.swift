@@ -44,6 +44,7 @@ public struct Workflow : View, Identifiable {
            
         case .some(.menuItem):
             PatronBasket()
+            RENDERNavigationLink(ModuleWorkFlow(.welcome), data: data)
             //RENDERButton(action: {
               //  data.name = "Darren Hurst"
            // })

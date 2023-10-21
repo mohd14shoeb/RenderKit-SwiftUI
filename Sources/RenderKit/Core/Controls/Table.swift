@@ -24,7 +24,6 @@ public struct RENDERTable<T: Identifiable>: View {
                 GeometryReader { r in
                     List($workflows.wrappedValue) { flow in
                         Section(
-                            //header: //Text(flow.component.rawValue).padding(-10),
                             content: {
                                 LazyVStack {
                                     if let flow = flow as? Workflow {
@@ -32,6 +31,9 @@ public struct RENDERTable<T: Identifiable>: View {
                                     }
                                     else if let flow = flow as? ModuleWorkFlow {
                                         RENDERSectionBodyView(view: flow.view(for: flow.component, data: sampleData))
+                                    }
+                                    else if let flow = flow as? any View {
+                                        RENDERSectionBodyView(view: flow)
                                     }
                                 }})
                         .padding(20)
