@@ -1,6 +1,31 @@
-# Components
+# RENDERKit SPM Workflow sample
 
 A description of this package.
+
+
+Examples of Internal View builder creation in Core/ModuleExample
+
+1.  app in a spm, rendering a toolbar and seperate flows
+2.  tableView creation of spm module flows by exposing in spm interface.
+
+Load package in xcode, swift tools are xcode 14 swift-tools-version: 5.7
+
+just add the package. 
+https://github.com/DarrenHurst/RenderKit
+
+import RENDERKit
+
+        let render = RENDERKit()
+        let moduleWorkflow = [render.getModuleWorkFlow(component: .header), render.getModuleWorkFlow(component: .login)]
+     
+        VStack {
+            //Currently working on local table generation
+          AnyView(render.tableViewForWorkflow(flows: moduleWorkflow))
+          // Run a toolbar nav
+          // AnyView(RENDERKit().toolBarForNavigation(view: self))
+        }
+        .padding()
+
 
 Creating Workflow and describing composeable components
 
