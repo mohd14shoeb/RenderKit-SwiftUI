@@ -15,7 +15,7 @@ let package = Package(
             targets: ["RENDERKit"]),
     ],
     dependencies: [
-       // .package(url: "https://github.com/heap/heap-swiftui-sdk", branch: "0.0.0-alpha.4"),
+       // .package(url: "https://github.com/DarrenHurst/Community", branch: "main")
         //.package(url: "https://github.com/heap/heap-ios-sdk.git", .upToNextMajor(from: "9.0.0")),
         // Dependencies declare other packages that this package depends on.
         //  .package(url: /* package url */, from: "1.0.0"),
@@ -25,7 +25,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "RENDERKit",
-            dependencies: [ 
+            dependencies: [//"Community"
             ] ,
             resources: [.process("Core/Resources")]),
         .testTarget(

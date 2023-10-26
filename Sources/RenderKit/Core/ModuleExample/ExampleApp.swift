@@ -4,7 +4,7 @@ import SwiftUI
 enum Routes: StringLiteralType, CaseIterable {
     case home = "Home"
     case orders = "Orders"
-    case accounts = "Account"
+    case burgers = "Burgers"
     
 }
 
@@ -27,20 +27,25 @@ struct RENDERToolBarNav: Identifiable, View {
         switch selectedRoute {
         case .some(.home):
             let workflow = [
+                Workflow(.empty),
+                Workflow(.empty),
                 Workflow(.welcome),
-                Workflow(.menuItem),
+                Workflow(.empty),
+                Workflow(.empty),
                 Workflow(.component2)
             ]
             RENDERTable( myStyle: .grouped, workflows: workflow, sampleData: sampleData, sectionSeperator: .visible)
         case .some(.orders):
-            let moduleWorkflow = [ModuleWorkFlow(.login)]
+            let moduleWorkflow = [
+                ModuleWorkFlow(.empty),
+                ModuleWorkFlow(.empty),
+                ModuleWorkFlow(.empty),
+                ModuleWorkFlow(.empty),
+                ModuleWorkFlow(.login)]
          
             RENDERTable( myStyle: .grouped, workflows: moduleWorkflow, sampleData: sampleData, sectionSeperator: .hidden)
-        case .some(.accounts):
-            let workflow = [
-                Workflow(.menuItem)
-            ]
-            RENDERTable( myStyle: .plain, workflows: workflow, sampleData: sampleData, sectionSeperator: .automatic)
+        case .some(.burgers):
+             CartView().padding(.top, 50)
         default:
            EmptyView()
         }
@@ -58,7 +63,7 @@ struct RENDERToolBar: View {
         VStack {
             GeometryReader { reader in
                 VStack {
-                    view.view(for: view.selectedRoute)
+                    view.view(for: view.selectedRoute).allowsHitTesting(true)
                         .frame(height: reader.size.height,alignment: .top).offset(y:-50)
                     HStack {
                         ForEach(Routes.allCases) { route in
@@ -77,8 +82,8 @@ struct RENDERToolBar: View {
                                             view = RENDERToolBarNav(selectedRoute: route)
                                         }
                                         .foregroundColor(route == view.selectedRoute ? .black : .blue)
-                                    case .accounts:
-                                        Image(systemName: view.selectedRoute == route ? "person.fill" : "person").onTapGesture {
+                                    case .burgers:
+                                        Image(systemName: view.selectedRoute == route ? "burst.fill" : "burst").onTapGesture {
                                             view = RENDERToolBarNav(selectedRoute: route)
                                         }
                                         .foregroundColor(route == view.selectedRoute ? .black : .blue)

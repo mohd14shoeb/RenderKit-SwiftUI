@@ -6,6 +6,7 @@ public enum Components: StringLiteralType {
     case welcome = "Welcome Text"
     case component2 = "Lets get started"
     case menuItem = "Best Burgers "
+    case empty = "nil"
 }
 
 public class SampleData: ObservableObject {
@@ -36,19 +37,10 @@ public struct Workflow : View, Identifiable {
         switch destination {
         case .some(.welcome):
             WelcomeText(data: data)
-            .onTapGesture {
-                data.name = "Frank"
-            }.padding(.bottom, 20)
-        case .some(.component2):
+         case .some(.component2):
             ReOrder()
-           
         case .some(.menuItem):
-            PatronBasket()
-            RENDERNavigationLink(ModuleWorkFlow(.welcome), data: data)
-            //RENDERButton(action: {
-              //  data.name = "Darren Hurst"
-           // })
-            
+           CartView().allowsHitTesting(true)
         default:
           EmptyView()
         }
@@ -71,7 +63,8 @@ public struct Workflow : View, Identifiable {
                 data.name = "Frank"
             })
         case .some(.menuItem):
-            View3(sampleData: data)
+            let myBurger: Burger = Burger(burger: BaconburgerBuilder())
+            CartView()
         default:
             EmptyView()
         }

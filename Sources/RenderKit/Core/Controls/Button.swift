@@ -3,6 +3,8 @@ import Foundation
 import SwiftUI
  
 struct RENDERButton: View {
+   
+    var text: String = "Click Here"
     var action: () -> Void
     
     var body: some View {

@@ -19,35 +19,32 @@ public struct RENDERTable<T: Identifiable>: View {
     var sectionSeperator: Visibility
     
     public var body: some View {
-        VStack {
-            NavigationStack {
+     
+           
                 GeometryReader { r in
                     List($workflows.wrappedValue) { flow in
                         Section(
-                            content: {
-                                LazyVStack {
+                           content: {
+                            
                                     if let flow = flow as? Workflow {
-                                        RENDERSectionBodyView(view: flow.view(for: flow.component, data: sampleData))
+                                        flow.view(for: flow.component, data: sampleData).allowsHitTesting(true)
                                     }
                                     else if let flow = flow as? ModuleWorkFlow {
-                                        RENDERSectionBodyView(view: flow.view(for: flow.component, data: sampleData))
+                                       flow.view(for: flow.component, data: sampleData)
                                     }
-                                    else if let flow = flow as? any View {
-                                        RENDERSectionBodyView(view: flow)
-                                    }
-                                }})
-                        .padding(20)
+                                   
+                               })
+                       
                         .listRowSeparator(sectionSeperator)
                     }
+                  
                     .listStyle(myStyle.style)
-                    .anyView 
                     .listSectionSeparator(sectionSeperator)
-                    .frame(height: r.size.height, alignment:.top)
-                    .padding(.top, 10)
+                    .anyView
                    
-                }
+                
             }
-        }.padding(.top, 60)
+    
     }
     
   

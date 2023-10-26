@@ -59,7 +59,7 @@ struct ReOrder: View {
 struct HeaderView: View {
     var body: some View {
         VStack {
-            Text("Welcome to Compass Digital").font(.largeTitle).fontWeight(.bold)
+            Text("Welcome to SPM Workflow").font(.largeTitle).fontWeight(.bold)
         }
     }
 }
@@ -72,7 +72,7 @@ struct PreviewWelcomeText: PreviewProvider {
     }
 }
 
-struct PatronBasket: View { 
+struct Hero: View {
     var body: some View {
         VStack {
             Image("mo", bundle: Bundle.module).resizable()
@@ -81,7 +81,7 @@ struct PatronBasket: View {
 }
 struct PreviewBasketBrandView: PreviewProvider {
     static var previews: some View {
-        PatronBasket()
+        Hero()
     }
 }
 

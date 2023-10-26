@@ -16,6 +16,7 @@ public enum ModuleComponents: StringLiteralType, CaseIterable, Identifiable {
     case welcome = "Welcome Text"
     case login = ""
     case header = "THIS IS A HERO"
+    case empty = "empty"
    
 }
 
@@ -69,7 +70,7 @@ struct previewComponent: PreviewProvider {
     static var previews: some View {
         let moduleWorkflow = [ModuleWorkFlow(.header), ModuleWorkFlow(.welcome)]
         VStack {
-            RENDERTable( myStyle: TableListStyle.grouped, workflows: moduleWorkflow, sampleData: SampleData(), sectionSeperator: Visibility.hidden)
+            RENDERTable( myStyle: TableListStyle.grouped, workflows: moduleWorkflow, sampleData: SampleData(), sectionSeperator: Visibility.visible)
         }
     }
 }
