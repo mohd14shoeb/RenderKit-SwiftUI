@@ -12,7 +12,9 @@ struct LoadingPage : View {
     var body: some View {
         VStack {
             GeometryReader { r in
-                VStack {
+                
+                
+                ZStack {
                     logo()
                     
                     progressInd()
@@ -22,20 +24,19 @@ struct LoadingPage : View {
          
                
                 if startGame {
-                    VStack {
-                        let view: RENDERToolBar = RENDERToolBar()
-                     
-                        view.anyView
+              
+                           RENDERToolBar()
                             .opacity(showGame ? 1 : 0)
                             .animation(.easeInOut.delay(2.0).speed(0.7), value: showGame)
-                            .offset(y:40)
-                    }  .frame(width: r.size.width, height: r.size.height)
+                            .offset(y:70)
+                     .frame(width: r.size.width, height: r.size.height - 80)
                 }
+                
             }
-        }
+
+            
+        }.padding()
       
-            .background(.green.opacity(0.2))
-            .background(.brown.opacity(0.3))
         .ignoresSafeArea()
         .onAppear() {
             pathAnimation = true

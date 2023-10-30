@@ -9,6 +9,7 @@ struct CartView: View {
  
     var body: some View {
       AnyView( self.showBurgerOptions() )
+            .offset(y:-30)
             .onAppear() {
                 burger.tomatoes = false
             }
