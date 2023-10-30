@@ -20,12 +20,13 @@ public struct RENDERKit {
         )
     }
     
-    public func toolBarForNavigation(view: any View) -> any View {
-        let view = RENDERToolBarNav(selectedRoute: .home)
-        return RENDERToolBar(view: view)
+    public func appContext(view: any View) -> any View {
+        let view = LoadingPage()
+        return view
     }
     
     public func getModuleWorkFlow(component: ModuleComponents) -> ModuleWorkFlow {
         return ModuleWorkFlow(component)
     }
 }
+

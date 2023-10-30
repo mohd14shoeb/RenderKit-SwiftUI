@@ -9,11 +9,6 @@ public enum Components: StringLiteralType {
     case empty = "nil"
 }
 
-public class SampleData: ObservableObject {
-    @Published var name: String = "Darren"
-    @Published var loginID: String = ""
-    
-}
 
 public struct ID<T>: Equatable {
     private let value = UUID()

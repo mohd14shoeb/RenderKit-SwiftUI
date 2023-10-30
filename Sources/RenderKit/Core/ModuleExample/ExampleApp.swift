@@ -28,19 +28,23 @@ struct RENDERToolBarNav: Identifiable, View {
         case .some(.home):
             let workflow = [
                 Workflow(.empty),
+                Workflow(.empty),
+                Workflow(.empty),
+                Workflow(.empty),
                 Workflow(.headerView),
                 Workflow(.welcome),
                 Workflow(.empty),
                 Workflow(.empty),
             ]
-            RENDERTable( myStyle: .grouped, workflows: workflow, sampleData: sampleData, sectionSeperator: .hidden)
+            RENDERTable( myStyle: .plain, workflows: workflow, sampleData: sampleData, sectionSeperator: .hidden)
         case .some(.orders):
             let moduleWorkflow = [
                 ModuleWorkFlow(.empty),
                 ModuleWorkFlow(.empty),
+                ModuleWorkFlow(.header),
                 ModuleWorkFlow(.empty),
-                ModuleWorkFlow(.empty),
-                ModuleWorkFlow(.login)]
+               // ModuleWorkFlow(.login)
+            ]
          
             RENDERTable( myStyle: .grouped, workflows: moduleWorkflow, sampleData: sampleData, sectionSeperator: .hidden)
         case .some(.burgers):

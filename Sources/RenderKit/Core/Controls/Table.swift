@@ -17,17 +17,20 @@ public struct RENDERTable<T: Identifiable>: View {
                                 content: {
                                     
                                     if let flow = flow as? Workflow {
-                                        flow.view(for: flow.component, data: sampleData).allowsHitTesting(true)
+                                        flow.view(for: flow.component, data: sampleData).allowsHitTesting(true)     .background(.clear)
                                     }
                                     else if let flow = flow as? ModuleWorkFlow {
                                         flow.view(for: flow.component, data: sampleData)
+                                            .background(.clear)
                                     }
                                     
                                 })
+                            .background(.clear)
                             .listRowSeparator(sectionSeperator)
-                        }
+                        }       .background(.clear)
                         .listStyle(myStyle.style)
                         .listSectionSeparator(sectionSeperator)
+                        .background(.clear)
                         .anyView
                     }
             }
