@@ -16,12 +16,12 @@ extension Routes: Identifiable {
 struct RENDERToolBarNav: Identifiable, View {
     var id = UUID()
     @State var selectedRoute: Routes = .home
-
+    @ObservedObject var sampleData: SampleData = SampleData()
+    
     var body: some View {
         view(for: selectedRoute)
     }
    
-    @ObservedObject var sampleData: SampleData = SampleData()
     @ViewBuilder
     public func view(for selectedRoute: Routes?) -> some View {
         switch selectedRoute {

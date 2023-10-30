@@ -37,7 +37,7 @@ public struct ModuleWorkFlow: Equatable, Hashable, Identifiable {
         case .some(.welcome):
             WelcomeText(data: data)
         case .some(.login):
-            RENDERForm()
+            RENDERForm(data: data)
         case .some(.header):
             VStack {
                 Image("mo", bundle: Bundle.module).resizable()
@@ -90,7 +90,7 @@ struct RENDERForm: View {
     @AppStorage("password") private var password: String = ""
     
     @State  var authenticated: Bool = false
-
+    @ObservedObject var data: SampleData
     var body: some View {
         VStack {
             GeometryReader() { reader in
@@ -114,7 +114,7 @@ struct RENDERForm: View {
                     }
                     
                 } else {
-                    WelcomeText(data: SampleData()).onTapGesture {
+                    WelcomeText(data: data).onTapGesture {
                         self.authenticated.toggle()
                     }
                 }
