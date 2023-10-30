@@ -18,17 +18,16 @@ struct RENDERNavigationLink <T> : View {
         self.data = data
     }
     var body: some View {
-        if let flow = flow as? Workflow {
-            NavigationLink(destination: flow.componentLanding(view: flow.component, data: data)) {
-             Text(flow.component.rawValue)
+            if let flow = flow as? Workflow {
+                NavigationLink(destination: flow.componentLanding(view: flow.component, data: data)) {
+                    Text(flow.component.rawValue)
+                }
             }
-        }
-        if let flow = flow as? ModuleWorkFlow {
-            NavigationLink(destination: flow.componentLanding(view: flow.component, data: data)) {
-              Text(flow.component.rawValue)
+            if let flow = flow as? ModuleWorkFlow {
+                NavigationLink(destination: flow.componentLanding(view: flow.component, data: data)) {
+                    Text(flow.component.rawValue)
+                }
             }
-        }
-     
     }
 }
 

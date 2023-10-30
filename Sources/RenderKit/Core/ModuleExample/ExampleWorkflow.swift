@@ -4,7 +4,7 @@ import SwiftUI
 @available(iOS 16.0, *)
 public enum Components: StringLiteralType {
     case welcome = "Welcome Text"
-    case component2 = "Lets get started"
+    case headerView = "Lets get started"
     case menuItem = "Best Burgers "
     case empty = "nil"
 }
@@ -37,8 +37,12 @@ public struct Workflow : View, Identifiable {
         switch destination {
         case .some(.welcome):
             WelcomeText(data: data)
-         case .some(.component2):
-            ReOrder()
+            RENDERButton(text: "Change Name", image: nil, action: {
+                data.name = data.name == "Darren" ? "Frankie Bananas" : "Darren"
+            })
+         case .some(.headerView):
+            RENDERNavigationLink(ModuleWorkFlow(.header), data: data)
+            HeaderView()
         case .some(.menuItem):
            CartView().allowsHitTesting(true)
         default:
@@ -56,12 +60,8 @@ public struct Workflow : View, Identifiable {
     @ViewBuilder
     public func componentLanding(view: Components?, data: SampleData) -> some View {
         switch view {
-        case .some(.component2):
-            View2(sampleData: data)
-                
-            RENDERButton(action: {
-                data.name = "Frank"
-            })
+        case .some(.headerView):
+           CartView()
         case .some(.menuItem):
             let myBurger: Burger = Burger(burger: BaconburgerBuilder())
             CartView()

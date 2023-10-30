@@ -15,7 +15,7 @@ public enum ModuleComponents: StringLiteralType, CaseIterable, Identifiable {
     }
     case welcome = "Welcome Text"
     case login = ""
-    case header = "THIS IS A HERO"
+    case header = "Navigation Links"
     case empty = "empty"
    
 }
@@ -59,6 +59,15 @@ extension ModuleWorkFlow {
             View2(sampleData: data)
         case .some(.welcome):
             View3(sampleData: data)
+        case .some(.header):
+            let moduleWorkflow = [
+                ModuleWorkFlow(.empty),
+                ModuleWorkFlow(.empty),
+                ModuleWorkFlow(.empty),
+                ModuleWorkFlow(.empty),
+                ModuleWorkFlow(.login)]
+         
+            RENDERTable( myStyle: .grouped, workflows: moduleWorkflow, sampleData: data, sectionSeperator: .hidden).anyView
         default:
             EmptyView()
         }

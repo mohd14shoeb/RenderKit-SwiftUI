@@ -10,7 +10,7 @@ final class RENDERKitTests: XCTestCase {
         // I request a tableView with Section config 
         let workflow: [Workflow] = [
             Workflow(.welcome),
-            Workflow(.component2),
+            Workflow(.headerView),
             Workflow(.menuItem)
             ]
         let tableView =  RENDERTable(myStyle: .plain, workflows: workflow, sampleData: SampleData(), sectionSeperator: .hidden)

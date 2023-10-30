@@ -1,21 +1,32 @@
 
 import Foundation
 import SwiftUI
- 
-struct RENDERButton: View {
-   
+
+
+private struct Config {
+ let background = Color.blue.opacity(0.1)
+ let textColor = Color.blue
+}
+
+struct RENDERButton: View, Identifiable {
+    var id : UUID = UUID()
     var text: String = "Click Here"
+    var image: Image?
+    
+  
     var action: () -> Void
     
     var body: some View {
         GeometryReader { reader in
             Button(action: action) {
                 HStack {
-                    Text("click here")
-                    Image(systemName: "house")
+                    Text(text).foregroundColor(Config().textColor)
+                   image
                 }
-            }.frame(width: reader.size.width)
-                .contentShape(Rectangle())
+                .padding(10)
+            }
+            .frame(width: reader.size.width, height: reader.size.height)
+            .contentShape(Rectangle()).background(Config().background)
         }
     }
 }
