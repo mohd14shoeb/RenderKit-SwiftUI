@@ -55,8 +55,6 @@ public struct Workflow : View, Identifiable {
     @ViewBuilder
     public func componentLanding(view: Components?, data: SampleData) -> some View {
         switch view {
-        case .some(.headerView):
-           CartView()
         case .some(.menuItem):
             let myBurger: Burger = Burger(burger: BaconburgerBuilder())
             CartView()
