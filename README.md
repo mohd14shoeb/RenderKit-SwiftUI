@@ -3,6 +3,10 @@
 A description of this package.
 
 
+https://github.com/DarrenHurst/RenderKit/assets/1024006/5ea1f734-7235-4a46-979f-1f5acca24615
+
+
+
 Examples of Internal View builder creation in Core/ModuleExample
 
 1.  app in a spm, rendering a toolbar and seperate flows
