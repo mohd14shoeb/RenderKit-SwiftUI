@@ -14,7 +14,7 @@ public enum ModuleComponents: StringLiteralType, CaseIterable, Identifiable {
         return self
     }
     case welcome = "Welcome Text"
-    case login = ""
+    case login = "Login"
     case header = "Navigation Links"
     case empty = "empty"
    
@@ -22,7 +22,6 @@ public enum ModuleComponents: StringLiteralType, CaseIterable, Identifiable {
 
 @available(iOS 16, *)
 public struct ModuleWorkFlow: Equatable, Hashable, Identifiable {
-    typealias name = Workflow
     public var id = UUID()
     public var featureName: String = "ThisFeature"
     public var component: ModuleComponents = .welcome

@@ -73,6 +73,7 @@ struct RENDERToolBar: View {
                             Button(action: {
                                 toolbar = RENDERToolBarNav(selectedRoute: route)
                             }) {
+                                
                                 VStack {
                                     switch route {
                                     case .home:
@@ -94,7 +95,6 @@ struct RENDERToolBar: View {
                                     Text(route.rawValue)
                                         .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
                                 }
-                         
                                 .frame(width:reader.size.width / CGFloat(Routes.allCases.count))
                                 
                                 

@@ -17,19 +17,25 @@ Load package in xcode, swift tools are xcode 14 swift-tools-version: 5.7
 just add the package. 
 https://github.com/DarrenHurst/RenderKit
 
+import SwiftUI
 import RENDERKit
 
+struct ContentView: View {
+    let render = RENDERKit()
+   
+    var body: some View {
+       
         let render = RENDERKit()
-        let moduleWorkflow = [render.getModuleWorkFlow(component: .header), render.getModuleWorkFlow(component: .login)]
-     
         VStack {
-            //Currently working on local table generation
-          AnyView(render.tableViewForWorkflow(flows: moduleWorkflow))
-          // Run a toolbar nav
-          // AnyView(RENDERKit().toolBarForNavigation(view: self))
+            GeometryReader { reader in
+                VStack {
+                    AnyView(render.appContext(view: self))
+                }.ignoresSafeArea()
+            }
         }
-        .padding()
-
+         
+    }
+}
 
 Creating Workflow and describing composeable components
 
