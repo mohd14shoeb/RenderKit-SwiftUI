@@ -9,7 +9,7 @@ https://github.com/DarrenHurst/RenderKit/assets/1024006/5ea1f734-7235-4a46-979f-
 
 Examples of Internal View builder creation in Core/ModuleExample
 
-1.  app in a spm, rendering a toolbar and seperate flows
+1.  app in a Swift Package, rendering a toolbar and seperate flows
 2.  tableView creation of spm module flows by exposing in spm interface.
 
 Load package in xcode, swift tools are xcode 14 swift-tools-version: 5.7
@@ -49,11 +49,11 @@ Creating Workflow and describing composeable components
         )
     }
     
-    public func toolBarForNavigation(view: any View) -> any View {
-        let view = RENDERToolBarNav(selectedRoute: .home)
-        return RENDERToolBar(view: view)
+    #Loads the app Context from package
+    public func appContext(view: any View) -> any View {
+        let view = LoadingPage()
+        return view
     }
-
 This package currently generates the Toolbar and it's view inside the SPM Dependency
 
 ### TODO
