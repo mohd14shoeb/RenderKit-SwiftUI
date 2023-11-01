@@ -6,7 +6,7 @@ import SwiftUI
 public struct RENDERTable<T: Identifiable>: View {
     @State var myStyle: TableListStyle = TableListStyle.plain
     @State var workflows: [T] = []
-    @ObservedObject var sampleData: SampleData
+    @ObservedObject var data: SampleData
     var sectionSeperator: Visibility
     
     public var body: some View {
@@ -17,10 +17,10 @@ public struct RENDERTable<T: Identifiable>: View {
                                 content: {
                                     
                                     if let flow = flow as? Workflow {
-                                        flow.view(for: flow.component, data: sampleData).allowsHitTesting(true)     .background(.clear)
+                                        flow.view(for: flow.component, data: data).allowsHitTesting(true)     .background(.clear)
                                     }
                                     else if let flow = flow as? ModuleWorkFlow {
-                                        flow.view(for: flow.component, data: sampleData)
+                                        flow.view(for: flow.component, data: data)
                                             .background(.clear)
                                     }
                                     

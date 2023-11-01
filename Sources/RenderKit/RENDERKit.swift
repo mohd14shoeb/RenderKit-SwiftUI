@@ -6,15 +6,17 @@ public struct RENDERKit {
     }
     // let table = Table(Components: [Workflow]
     // returns Table view as Any
-   
-    public func tableViewForWorkflow<T: Identifiable>(flows: [T]) -> any View {
+    
+    public func tableViewForWorkflow<T: Identifiable, D: SampleData>(flows: [T], data: D) -> any View {
    
         return AnyView(
             GeometryReader { r in
                 ScrollView(.vertical) {
-                    NavigationView {
-                      RENDERTable( myStyle: .plain, workflows: flows, sampleData: SampleData(), sectionSeperator: .hidden)
-                    }.frame(height: r.size.height)
+                    ViewThatFits {
+                        NavigationStack {
+                            RENDERTable( myStyle: .plain, workflows: flows, data: data, sectionSeperator: .hidden)
+                        }.frame(height: r.size.height)
+                    }
                 }
             }
         )

@@ -8,11 +8,11 @@ struct CartView: View {
     
  
     var body: some View {
-      AnyView( self.showBurgerOptions() )
-            .offset(y:-30)
+        AnyView( self.showBurgerOptions())
             .onAppear() {
                 burger.tomatoes = false
             }
+             
      
     }
     
@@ -87,7 +87,8 @@ struct CartView: View {
                                     .stroke(Color.DarkGray, lineWidth: 2)
                             ).padding(10).shadow(radius: 3)
                     }
-                }   .background(.black.opacity(0.3))
+                }.frame(height: reader.size.height)
+                .background(.black.opacity(0.3))
                     .background(.green.opacity(0.3))
         }
     }

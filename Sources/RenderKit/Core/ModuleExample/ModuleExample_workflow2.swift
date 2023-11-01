@@ -63,7 +63,7 @@ extension ModuleWorkFlow {
                 ModuleWorkFlow(.empty),
                 ModuleWorkFlow(.login)]
          
-            RENDERTable( myStyle: .grouped, workflows: moduleWorkflow, sampleData: data, sectionSeperator: .hidden).anyView
+            RENDERTable( myStyle: .grouped, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden).anyView
         default:
             EmptyView()
         }
@@ -75,7 +75,7 @@ struct previewComponent: PreviewProvider {
     static var previews: some View {
         let moduleWorkflow = [ModuleWorkFlow(.header), ModuleWorkFlow(.welcome)]
         VStack {
-            RENDERTable( myStyle: TableListStyle.grouped, workflows: moduleWorkflow, sampleData: SampleData(), sectionSeperator: Visibility.visible)
+            RENDERTable( myStyle: TableListStyle.grouped, workflows: moduleWorkflow, data: SampleData(), sectionSeperator: Visibility.visible)
         }
     }
 }

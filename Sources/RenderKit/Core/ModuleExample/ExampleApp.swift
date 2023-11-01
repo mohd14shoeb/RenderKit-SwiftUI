@@ -16,7 +16,7 @@ extension Routes: Identifiable {
 struct RENDERToolBarNav: Identifiable, View {
     var id = UUID()
     @State var selectedRoute: Routes = .home
-    @ObservedObject var sampleData: SampleData = SampleData()
+    @ObservedObject var data: SampleData = SampleData()
     
     var body: some View {
         view(for: selectedRoute)
@@ -36,7 +36,7 @@ struct RENDERToolBarNav: Identifiable, View {
                 Workflow(.empty),
                 Workflow(.empty),
             ]
-            RENDERTable( myStyle: .plain, workflows: workflow, sampleData: sampleData, sectionSeperator: .hidden)
+            RENDERTable( myStyle: .plain, workflows: workflow, data: data, sectionSeperator: .hidden)
         case .some(.orders):
             let moduleWorkflow = [
                 ModuleWorkFlow(.empty),
@@ -46,7 +46,7 @@ struct RENDERToolBarNav: Identifiable, View {
                // ModuleWorkFlow(.login)
             ]
          
-            RENDERTable( myStyle: .grouped, workflows: moduleWorkflow, sampleData: sampleData, sectionSeperator: .hidden)
+            RENDERTable( myStyle: .grouped, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden)
         case .some(.burgers):
              CartView().padding(.top, 50)
         default:

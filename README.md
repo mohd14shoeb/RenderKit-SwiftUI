@@ -43,7 +43,7 @@ Creating Workflow and describing composeable components
         return AnyView(
             GeometryReader { r in
                 ScrollView(.vertical) {
-                    NavigationView {
+                    NavigationStack {
                         RENDERTable( 
                             myStyle: .plain,
                             workflows: flow,

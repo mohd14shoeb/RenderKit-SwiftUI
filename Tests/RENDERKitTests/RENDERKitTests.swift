@@ -13,7 +13,7 @@ final class RENDERKitTests: XCTestCase {
             Workflow(.headerView),
             Workflow(.menuItem)
             ]
-        let tableView =  RENDERTable(myStyle: .plain, workflows: workflow, sampleData: SampleData(), sectionSeperator: .hidden)
+        let tableView =  RENDERTable(myStyle: .plain, workflows: workflow, data: SampleData(), sectionSeperator: .hidden)
         XCTAssertNotNil(tableView)
         //When
         //Table Loads
