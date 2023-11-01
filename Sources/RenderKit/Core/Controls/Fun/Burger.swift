@@ -86,7 +86,7 @@ struct CartView: View {
                                 RoundedRectangle(cornerRadius: 14)
                                     .stroke(Color.DarkGray, lineWidth: 2)
                             ).padding(10).shadow(radius: 3)
-                    }
+                    }.offset(y:-10)
                 }.frame(height: reader.size.height)
                 .background(.black.opacity(0.3))
                     .background(.green.opacity(0.3))
