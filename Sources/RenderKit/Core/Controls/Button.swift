@@ -27,11 +27,12 @@ struct RENDERButton: View, Identifiable {
                         }
                         image
                     }
-                    .padding(10)
+                    .padding(5)
                 }
-                .contentShape(Rectangle())
                 .background(Config().background)
-                .frame(width: reader.size.width)
+                //.frame(width: reader.size.width)
+                 .mask(Rectangle())
+            
                 .padding()
             }
         }
@@ -43,10 +44,9 @@ struct RENDERButtonPreview: PreviewProvider {
     static var previews: some View {
         HStack{
             RENDERButton(text: "Back", action: {}).frame(alignment:.leading)
-                .offset(x:-15)
             RENDERButton(image: Image(systemName:"house"), action: {})
             RENDERButton(text: "Click Me", image: Image(systemName:"pencil"), action: {})
-                .offset(x:-10)
-        }.offset(x:-15)
+                
+        }
     }
 }
