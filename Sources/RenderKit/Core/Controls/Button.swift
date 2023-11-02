@@ -10,18 +10,17 @@ private struct Config {
 
 struct RENDERButton: View, Identifiable {
     var id : UUID = UUID()
-    var text: String = "Click Here"
+    var text: String?
     var image: Image?
-    
-  
     var action: () -> Void
     
     var body: some View {
         GeometryReader { reader in
             Button(action: action) {
                 HStack {
-                    Text(text).foregroundColor(Config().textColor)
-                   image
+                    Text(text ?? "")
+                        .foregroundColor(Config().textColor)
+                    image
                 }
                 .padding(10)
             }

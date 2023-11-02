@@ -11,6 +11,7 @@ import SwiftUI
 @available(iOS 15.0, *)
 struct BackButton: View {
     var dismissAction: () -> Void
+    var navigationTitle: String?
     
     var btnBack : some View { Button(action: {
             self.dismissAction()
@@ -20,7 +21,7 @@ struct BackButton: View {
                //Image(systemName: "chevron.left.circle")
                .aspectRatio(contentMode: .fit)
                .foregroundColor(.black)
-               Text("insert Nav Title")
+               Text(navigationTitle ?? "")
            }.background(.clear)
            //.border(.bar, width: 2)
            .foregroundColor(.black)

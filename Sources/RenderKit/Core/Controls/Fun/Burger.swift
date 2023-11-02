@@ -40,7 +40,8 @@ struct CartView: View {
     func showBurgerOptions() -> any View {
         @State var scale = 0.9
         return
-            GeometryReader { reader in
+        GeometryReader { reader in
+            ViewThatFits {
                 VStack {
                     HStack {
                         ForEach (0..<burgers.count,  id: \.self) { i in
@@ -88,8 +89,9 @@ struct CartView: View {
                             ).padding(10).shadow(radius: 3)
                     }.offset(y:-10)
                 }.frame(height: reader.size.height)
-                .background(.black.opacity(0.3))
+                    .background(.black.opacity(0.3))
                     .background(.green.opacity(0.3))
+            }
         }
     }
     

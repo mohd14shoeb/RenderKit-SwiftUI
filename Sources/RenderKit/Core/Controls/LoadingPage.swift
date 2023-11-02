@@ -4,39 +4,32 @@ import SwiftUI
 @available(iOS 16.0, *)
 struct LoadingPage : View {
     @State var pathAnimation: Bool = false
-    @State var startGame: Bool = false
-    @State var showGame: Bool = false
+    @State var isLoading: Bool = false
+    @State var ready: Bool = false
     
     let bannerOffset:CGFloat = -350.0
     
     var body: some View {
         VStack {
             GeometryReader { r in
-                
-                
                 ZStack {
                     logo()
-                    
                     progressInd()
-                        .opacity(startGame ? 0 : 1)
+                        .opacity(isLoading ? 0 : 1)
                         .animation(.easeInOut.delay(4), value: pathAnimation)
-                }.frame(width: r.size.width, height: r.size.height)
-         
-               
-                if startGame {
-              
-                           RENDERToolBar()
-                            .opacity(showGame ? 1 : 0)
-                            .animation(.easeInOut.delay(2.0).speed(0.7), value: showGame)
-                            .offset(y:70)
-                     .frame(width: r.size.width, height: r.size.height - 80)
                 }
-                
+                .frame(width: r.size.width, height: r.size.height)
+         
+                if isLoading {
+                    RENDERToolBar()
+                        .opacity(ready ? 1 : 0)
+                        .animation(.easeInOut.delay(2.0).speed(0.7), value: ready)
+                        .offset(y:70)
+                        .frame(width: r.size.width, height: r.size.height - 80)
+                }
             }
-
-            
-        }.padding()
-      
+        }
+        .padding()
         .ignoresSafeArea()
         .onAppear() {
             pathAnimation = true
@@ -44,8 +37,8 @@ struct LoadingPage : View {
     }
     
     @MainActor
-    func validateGameStart() async -> Bool {
-        if !startGame {
+    func validate() async -> Bool {
+        if !isLoading {
             //make a call for global_games_played
             return false
         }
@@ -68,20 +61,16 @@ extension LoadingPage {
         let logoSize: CGSize = CGSize(width: 55, height: 55)
         let logoSize2: CGSize = CGSize(width: 0, height: 0)
         return ZStack {
-            
-           
             Image("logo", bundle: Bundle.main).resizable()
-                .frame(width: startGame ? logoSize.width : logoSize2.width, height: startGame ? logoSize.height : logoSize2.height)
-                
-                .offset(startGame ? logoposition1 : logoposition2).opacity(0.8)
-                .animation(.linear.speed(0.8).delay(4), value: startGame)
-            
+                .frame(width: isLoading ? logoSize.width : logoSize2.width, height: isLoading ? logoSize.height : logoSize2.height)
+                .offset(isLoading ? logoposition1 : logoposition2).opacity(0.8)
+                .animation(.linear.speed(0.8).delay(4), value: isLoading)
                 .onAppear() {
-                    startGame = true
+                    isLoading = true
                     
                     Task {
-                        if await validateGameStart() {
-                           showGame = true
+                        if await validate() {
+                           ready = true
                         }
                     }
                 }
@@ -105,13 +94,9 @@ extension LoadingPage {
     
     fileprivate func progressInd() -> some View {
         return ZStack {
-           
-           // CompassDigitalLogo()
-            CircleText()
-                .offset(x:-8, y: 21)
-           
-            
-//slinky()
+            //CircleText()
+            //    .offset(x:-8, y: 21)
+            slinky()
             
             Text("Loading...")
                 .font(.headline)

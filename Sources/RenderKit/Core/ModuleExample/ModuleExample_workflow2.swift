@@ -41,6 +41,15 @@ public struct ModuleWorkFlow: Equatable, Hashable, Identifiable {
             VStack {
                 Image("mo", bundle: Bundle.module).resizable()
                 Text("Thanks for checking out this generated composable tableview and section builder render kit. It's a work in progress")
+                Spacer()
+                GeometryReader { r in
+                    VStack {
+                        Text("Working on ViewThatFits with Nagivation and Split Navigation").font(.Small).frame(width: r.size.width, alignment:.top)
+                        Text("Working on more controls").font(.Small).frame(width: r.size.width, alignment:.leading)
+                        Text("** just updated to NavigationStack").font(.Small).frame(width: r.size.width, alignment:.leading)
+                    }.frame(height: r.size.height)
+                   
+                }
             }
         default:
             EmptyView()
