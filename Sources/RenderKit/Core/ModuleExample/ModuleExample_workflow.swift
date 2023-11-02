@@ -4,6 +4,7 @@ import SwiftUI
 @available(iOS 16.0, *)
 public enum Components: StringLiteralType {
     case welcome = "Welcome Text"
+    case welcomeButton = "Welcome Button"
     case headerView = "Lets get started"
     case menuItem = "Best Burgers "
     case empty = "nil"
@@ -31,9 +32,13 @@ public struct Workflow : View, Identifiable {
     public func view(for destination: Components?, data: SampleData) -> some View {
         switch destination {
         case .some(.welcome):
-            WelcomeText(data: data)
+            ViewThatFits {
+                WelcomeText(data: data)
+            }
+        case .some(.welcomeButton):
             RENDERButton(text: "Change Name", image: nil, action: {
                 data.name = data.name == "Darren" ? "Frankie Bananas" : "Darren"
+                
             })
          case .some(.headerView):
             RENDERNavigationLink(ModuleWorkFlow(.header), data: data)

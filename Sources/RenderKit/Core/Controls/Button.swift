@@ -8,6 +8,7 @@ private struct Config {
  let textColor = Color.blue
 }
 
+@available(iOS 16.0, *)
 struct RENDERButton: View, Identifiable {
     var id : UUID = UUID()
     var text: String?
@@ -15,21 +16,28 @@ struct RENDERButton: View, Identifiable {
     var action: () -> Void
     
     var body: some View {
-        GeometryReader { reader in
-            Button(action: action) {
-                HStack {
-                    Text(text ?? "")
-                        .foregroundColor(Config().textColor)
-                    image
+       ViewThatFits {
+           GeometryReader { reader in
+                Button(action: action) {
+                    HStack {
+                        Text(text ?? "")
+                            .foregroundColor(Config().textColor)
+                            .accessibility(label: Text(text ?? ""))
+                        image
+                    }
+                    .padding(10)
                 }
-                .padding(10)
+                 
+                .contentShape(Rectangle())
+                .background(Config().background)
+                .frame(width: reader.size.width)
+                .padding()
             }
-            .frame(width: reader.size.width, height: reader.size.height)
-            .contentShape(Rectangle()).background(Config().background)
         }
     }
 }
 
+@available(iOS 16.0, *)
 struct RENDERButtonPreview: PreviewProvider {
     static var previews: some View {
         RENDERButton(action: {

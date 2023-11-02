@@ -13,11 +13,13 @@ struct WelcomeText : View {
     @ObservedObject var data: SampleData
     
     var body: some View {
-        GeometryReader { r in
-            VStack {
-                Text("Hey, \(data.name)").frame(width: r.size.width, alignment: .topLeading)
-                Text("Welcome Back! 👋").frame(width: r.size.width, alignment: .topLeading)
-            }.frame(width: r.size.width, alignment: .leading).padding(.leading)
+        ViewThatFits {
+            GeometryReader { r in
+                VStack {
+                    Text("Hey, \(data.name)").frame(width: r.size.width, alignment: .topLeading)
+                    Text("Welcome Back! 👋").frame(width: r.size.width, alignment: .topLeading)
+                }.frame(width: r.size.width, alignment: .leading).padding(.leading)
+            }
         }
     }
 }

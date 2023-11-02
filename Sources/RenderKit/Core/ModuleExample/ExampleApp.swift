@@ -33,6 +33,7 @@ struct RENDERToolBarNav: Identifiable, View {
                 Workflow(.empty),
                 Workflow(.headerView),
                 Workflow(.welcome),
+                Workflow(.welcomeButton),
                 Workflow(.empty),
                 Workflow(.empty),
             ]
@@ -80,16 +81,19 @@ struct RENDERToolBar: View {
                                         Image(systemName: toolbar.selectedRoute == route ? "house.fill" : "house").onTapGesture {
                                             toolbar = RENDERToolBarNav(selectedRoute: route)
                                         }
+                                        .accessibility(label: Text("Home"))
                                         .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
                                     case .orders:
                                         Image(systemName: toolbar.selectedRoute == route ? "menucard.fill" : "menucard").onTapGesture {
                                             toolbar = RENDERToolBarNav(selectedRoute: route)
                                         }
+                                        .accessibility(label: Text("Order"))
                                         .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
                                     case .burgers:
                                         Image(systemName: toolbar.selectedRoute == route ? "burst.fill" : "burst").onTapGesture {
                                             toolbar = RENDERToolBarNav(selectedRoute: route)
                                         }
+                                        .accessibility(label: Text("Burger"))
                                         .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
                                     }
                                     Text(route.rawValue)

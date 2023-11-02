@@ -25,6 +25,7 @@ struct BackButton: View {
            }.background(.clear)
            //.border(.bar, width: 2)
            .foregroundColor(.black)
+           .accessibility(label: Text("Back Button"))
         }
     }
     
