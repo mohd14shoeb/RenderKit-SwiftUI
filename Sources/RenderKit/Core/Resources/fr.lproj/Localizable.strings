@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Darren Hurst on 2023-11-03.
+  
+*/
+"Back" = "Retour"
+"Change Name" = "Changer Nom"
+"Loading" = ":...:"

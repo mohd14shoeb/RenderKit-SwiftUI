@@ -11,41 +11,42 @@ private struct Config {
 @available(iOS 16.0, *)
 struct RENDERButton: View, Identifiable {
     var id : UUID = UUID()
-    var text: String?
+    var text: String = "Back"
     var image: Image?
     var action: () -> Void
     
+   
+ 
     var body: some View {
-       ViewThatFits {
-           GeometryReader { reader in
+ 
+         
                 Button(action: action) {
-                    HStack {
-                        if text != nil {
-                            Text(text ?? "")
+                   
+                        let back = NSLocalizedString(text, tableName: nil, bundle: Bundle.main, value: "", comment: "")
+                        Text(back)
                                 .foregroundColor(Config().textColor)
-                                .accessibility(label: Text(text ?? ""))
-                        }
+                                .accessibility(label: Text(text))
+                        
                         image
-                    }
-                    .padding(5)
+                   
+                 
                 }
                 .background(Config().background)
                 //.frame(width: reader.size.width)
                  .mask(Rectangle())
-            
-                .padding()
-            }
-        }
     }
 }
 
 @available(iOS 16.0, *)
 struct RENDERButtonPreview: PreviewProvider {
+    static let back = NSLocalizedString("Back", tableName: nil, bundle: Bundle.module, value: "", comment: "")
     static var previews: some View {
         HStack{
-            RENDERButton(text: "Back", action: {}).frame(alignment:.leading)
-            RENDERButton(image: Image(systemName:"house"), action: {})
-            RENDERButton(text: "Click Me", image: Image(systemName:"pencil"), action: {})
+            RENDERButton(text: back) {
+                
+            }
+            //RENDERButton(text: $back.wrappedValue, image: Image(systemName:"house"), action: {})
+          //  RENDERButton(text: $back.wrappedValue, image: Image(systemName:"pencil"), action: {})
                 
         }
     }

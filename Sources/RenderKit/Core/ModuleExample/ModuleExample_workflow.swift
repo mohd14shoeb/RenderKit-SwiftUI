@@ -32,19 +32,19 @@ public struct Workflow : View, Identifiable {
     public func view(for destination: Components?, data: SampleData) -> some View {
         switch destination {
         case .some(.welcome):
-            ViewThatFits {
-                WelcomeText(data: data)
-            }
+            WelcomeText(data: data)
+                .padding(.top, 10)
+                .padding(.bottom, 10)
         case .some(.welcomeButton):
             RENDERButton(text: "Change Name", image: nil, action: {
                 data.name = data.name == "Darren" ? "Frankie Bananas" : "Darren"
-                
-            })
+            }).anyView
          case .some(.headerView):
             RENDERNavigationLink(ModuleWorkFlow(.header), data: data)
             HeaderView()
         case .some(.menuItem):
-           CartView().allowsHitTesting(true)
+            Image(systemName: "food")
+            RENDERGrid(data: data)
         default:
           EmptyView()
         }
@@ -61,7 +61,6 @@ public struct Workflow : View, Identifiable {
     public func componentLanding(view: Components?, data: SampleData) -> some View {
         switch view {
         case .some(.menuItem):
-            let myBurger: Burger = Burger(burger: BaconburgerBuilder())
             CartView()
         default:
             EmptyView()

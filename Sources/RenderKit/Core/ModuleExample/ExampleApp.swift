@@ -27,15 +27,10 @@ struct RENDERToolBarNav: Identifiable, View {
         switch selectedRoute {
         case .some(.home):
             let workflow = [
-                Workflow(.empty),
-                Workflow(.empty),
-                Workflow(.empty),
-                Workflow(.empty),
                 Workflow(.headerView),
-                Workflow(.welcome),
                 Workflow(.welcomeButton),
-                Workflow(.empty),
-                Workflow(.empty),
+                Workflow(.menuItem)
+                
             ]
             RENDERTable( myStyle: .plain, workflows: workflow, data: data, sectionSeperator: .hidden)
         case .some(.orders):
