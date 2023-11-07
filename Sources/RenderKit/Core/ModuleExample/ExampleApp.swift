@@ -29,8 +29,8 @@ struct RENDERToolBarNav: Identifiable, View {
             let workflow = [
                 Workflow(.headerView),
                 Workflow(.welcomeButton),
-                Workflow(.menuItem)
-                
+                Workflow(.menuItem),
+              
             ]
             RENDERTable( myStyle: .plain, workflows: workflow, data: data, sectionSeperator: .hidden)
         case .some(.orders):
@@ -69,43 +69,44 @@ struct RENDERToolBar: View {
                             Button(action: {
                                 toolbar = RENDERToolBarNav(selectedRoute: route)
                             }) {
-                                
-                                VStack {
-                                    switch route {
-                                    case .home:
-                                        Image(systemName: toolbar.selectedRoute == route ? "house.fill" : "house").onTapGesture {
-                                            toolbar = RENDERToolBarNav(selectedRoute: route)
+                                ViewThatFits {
+                                    VStack {
+                                        switch route {
+                                        case .home:
+                                            Image(systemName: toolbar.selectedRoute == route ? "house.fill" : "house").onTapGesture {
+                                                toolbar = RENDERToolBarNav(selectedRoute: route)
+                                            }
+                                            .accessibility(label: Text("Home"))
+                                            .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
+                                        case .orders:
+                                            Image(systemName: toolbar.selectedRoute == route ? "menucard.fill" : "menucard").onTapGesture {
+                                                toolbar = RENDERToolBarNav(selectedRoute: route)
+                                            }
+                                            .accessibility(label: Text("Order"))
+                                            .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
+                                        case .burgers:
+                                            Image(systemName: toolbar.selectedRoute == route ? "burst.fill" : "burst").onTapGesture {
+                                                toolbar = RENDERToolBarNav(selectedRoute: route)
+                                            }
+                                            .accessibility(label: Text("Burger"))
+                                            .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
                                         }
-                                        .accessibility(label: Text("Home"))
-                                        .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
-                                    case .orders:
-                                        Image(systemName: toolbar.selectedRoute == route ? "menucard.fill" : "menucard").onTapGesture {
-                                            toolbar = RENDERToolBarNav(selectedRoute: route)
-                                        }
-                                        .accessibility(label: Text("Order"))
-                                        .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
-                                    case .burgers:
-                                        Image(systemName: toolbar.selectedRoute == route ? "burst.fill" : "burst").onTapGesture {
-                                            toolbar = RENDERToolBarNav(selectedRoute: route)
-                                        }
-                                        .accessibility(label: Text("Burger"))
-                                        .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
+                                        Text(route.rawValue)
+                                            .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
                                     }
-                                    Text(route.rawValue)
-                                        .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
+                                    .frame(width:reader.size.width / CGFloat(Routes.allCases.count))
                                 }
-                                .frame(width:reader.size.width / CGFloat(Routes.allCases.count))
-                                
-                                
                             }
                         }
-                    }.frame(width: reader.size.width, height: 50, alignment: .bottom)
-                        .padding(.top,10)
-                        .padding(.bottom,10)
+                    }.frame(width: reader.size.width, height: 80, alignment: .bottom)
+                        //.padding(.top,10)
+                        //.padding(.bottom,30)
                         .foregroundColor(.black)
                         .background(.gray.opacity(0.05))
-                        .offset(y:-60)
-                }.frame(alignment: .leading)
+                        .offset(y:-40)
+                }  .offset(y:-40)
+                //.frame(alignment: .leading)
+                
                 
             }
             

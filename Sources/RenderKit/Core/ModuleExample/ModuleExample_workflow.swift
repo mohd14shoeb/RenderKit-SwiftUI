@@ -43,8 +43,8 @@ public struct Workflow : View, Identifiable {
             RENDERNavigationLink(ModuleWorkFlow(.header), data: data)
             HeaderView()
         case .some(.menuItem):
-            Image(systemName: "food")
-            RENDERGrid(data: data)
+            Text("Amazon Movies Feed")
+            RENDERGrid(data: data, itemPerRow: 3)
         default:
           EmptyView()
         }

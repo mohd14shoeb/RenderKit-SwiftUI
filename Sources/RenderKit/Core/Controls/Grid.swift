@@ -23,22 +23,23 @@ extension Array: Identifiable where Element: Hashable {
 @available(iOS 16.0, *)
 struct RENDERGrid : View {
     @ObservedObject var data: SampleData
+    var itemPerRow: Int
     
     let gradient = Gradient(colors: [.yellow, .yellow, .white, .white])
 
         var body: some View {
 
-            let itemPerRow = 4
+   
             let movieset = data.moviePosters.chunked(into: itemPerRow)
      
-            ViewThatFits {
+      
             GridLayout(alignment: .topLeading, horizontalSpacing: 2.0, verticalSpacing:2.0){
     
                 ForEach(movieset) {  rowdata in
                     let movies = rowdata
                     GridRow {
                         ForEach (movies) { movie in
-                          
+                            ViewThatFits  {
                                 AsyncImage(url: URL(string: movie.poster)) {  phase in
                                     if let image = phase.image {
                                         image.resizable().scaledToFit() // Displays the loaded image.
@@ -47,14 +48,15 @@ struct RENDERGrid : View {
                                     } else {
                                         Color.blue // Acts as a placeholder.
                                     }
-                                }
+                                }.cornerRadius(25.0).opacity(0.7)
+                            }
                             
                         }
                     }
-                }
                 
-        }.padding(10)
-    }
+                
+        }
+    }.padding(10)
         
     }
 }
@@ -62,7 +64,7 @@ struct RENDERGrid : View {
 struct previewGrid: PreviewProvider {
  
     static var previews: some View {
-        RENDERGrid(data: SampleData())
+        RENDERGrid(data: SampleData(), itemPerRow:2)
     }
 }
 
