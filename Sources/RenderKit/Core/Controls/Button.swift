@@ -24,7 +24,7 @@ struct RENDERButton: View, Identifiable {
                    
                         let back = NSLocalizedString(text, tableName: nil, bundle: Bundle.main, value: "", comment: "")
                         Text(back)
-                                .foregroundColor(Config().textColor)
+                                //.foregroundColor(Config().textColor)
                                 .accessibility(label: Text(text))
                         
                         image

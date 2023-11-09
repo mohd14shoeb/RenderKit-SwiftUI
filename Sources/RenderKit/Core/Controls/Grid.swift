@@ -24,6 +24,7 @@ extension Array: Identifiable where Element: Hashable {
 struct RENDERGrid : View {
     @ObservedObject var data: SampleData
     var itemPerRow: Int
+ 
     
     let gradient = Gradient(colors: [.yellow, .yellow, .white, .white])
 
@@ -42,7 +43,11 @@ struct RENDERGrid : View {
                             ViewThatFits  {
                                 AsyncImage(url: URL(string: movie.poster)) {  phase in
                                     if let image = phase.image {
-                                        image.resizable().scaledToFit() // Displays the loaded image.
+                                        image.resizable().scaledToFit().onTapGesture {
+                                            VStack{
+                                                
+                                            }
+                                        } // Displays the loaded image.
                                     } else if phase.error != nil {
                                         Text("Error in loading url for id: \(movie.id)")
                                     } else {

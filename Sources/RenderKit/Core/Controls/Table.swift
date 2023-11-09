@@ -16,7 +16,6 @@ public struct RENDERTable<T: Identifiable>: View {
                             List($workflows.wrappedValue) { flow in
                                 Section(
                                     content: {
-                                  
                                             if let flow = flow as? Workflow {
                                                 flow.view(for: flow.component, data: data)
                                                     .allowsHitTesting(true)
