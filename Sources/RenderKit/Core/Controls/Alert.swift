@@ -21,6 +21,7 @@ struct Alert: View, Identifiable {
     var body: some View {
         VStack {
             HStack {
+                
                 ZStack {
                     Image(systemName:"pencil")
                         .background(Circle().stroke(style:(StrokeStyle(lineWidth: 2))).padding(-25))
@@ -30,9 +31,11 @@ struct Alert: View, Identifiable {
                         .frame(minWidth: 60)
                         .offset(y:offset)
                 }
-            
                 .padding(.leading)
-                Text(text).foregroundColor(Color.black)
+                
+                Text(text)
+                    .foregroundColor(Color.black)
+                    .accessibility(label: Text(text))
                     .padding()
                     .offset(y:-20)
             }
@@ -44,10 +47,12 @@ struct Alert: View, Identifiable {
                      if let action = cancelBtn as? () -> Void {
                          RENDERButton(id: UUID(), text: "Cancel", image: nil, action: action).foregroundColor(Color.black)
                              .frame(width: r.size.width / 2 - 20)
+                             .accessibility(label: Text("Cancel"))
                      }
                     if let okaction = okBtn as? () -> Void {
                         RENDERButton(id: UUID(), text: "OK", image: nil, action: okaction).foregroundColor(Color.black)
                             .frame(width: r.size.width / 2 - 20)
+                        .accessibility(label: Text("Ok"))
                     }
                 }.padding(20)
                     .background(Rectangle().stroke(.blue, style: StrokeStyle(lineWidth: 1.0)).background(Color.white).cornerRadius(5.0))
