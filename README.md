@@ -1,6 +1,8 @@
 # RENDERKit SPM Workflow sample
 
-A description of this package.
+ 
+![Screenshot 2023-11-11 at 9 25 49 AM](https://github.com/DarrenHurst/RenderKit/assets/1024006/c3e4632a-4d0d-41ef-94e9-d999672133fd)
+
 
 
 https://github.com/DarrenHurst/RenderKit/assets/1024006/5ea1f734-7235-4a46-979f-1f5acca24615
