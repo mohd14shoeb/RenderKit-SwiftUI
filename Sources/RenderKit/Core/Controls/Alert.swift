@@ -21,7 +21,6 @@ struct Alert: View, Identifiable {
     let minH: CGFloat = 140
     let offset: CGFloat = -20
     
-    
     init(_ text: String, okBtn: @escaping () -> Void) {
         self.text = text
         self.okBtn = okBtn
@@ -33,8 +32,6 @@ struct Alert: View, Identifiable {
         self.okBtn = okBtn
         self.cancelBtn = cancelBtn
     }
-    
-    
     
     var body: some View {
         VStack {
@@ -66,7 +63,6 @@ struct Alert: View, Identifiable {
                      if let action = cancelBtn as? () -> Void {
                          RENDERButton(id: UUID(), text: "Cancel", image: nil, action: action).foregroundColor(Color.black)
                              .frame(width: r.size.width / 2 - 20)
-                             .accessibility(label: Text("Cancel"))
                              .onTapGesture {
                                  presentationMode.wrappedValue.dismiss()
                              }.onAppear(){
@@ -77,9 +73,8 @@ struct Alert: View, Identifiable {
                     if let okaction = okBtn as? () -> Void {
                         RENDERButton(id: UUID(), text: "OK", image: nil, action: okaction).foregroundColor(Color.black)
                             .frame(width: self.controls == 1 ? r.size.width / 2 - 20 : r.size.width)
-                        .accessibility(label: Text("Ok"))
                         .onTapGesture {
-                           // presentationMode.wrappedValue.dismiss()
+                        
                         }
                     }
                 }.padding(20)
