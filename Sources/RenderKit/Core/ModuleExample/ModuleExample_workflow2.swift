@@ -16,6 +16,7 @@ public enum ModuleComponents: StringLiteralType, CaseIterable, Identifiable {
     case welcome = "Welcome Text"
     case login = "Login"
     case header = "Navigation Links"
+    case alert = "Alert"
     case empty = "empty"
    
 }
@@ -37,6 +38,12 @@ public struct ModuleWorkFlow: Equatable, Hashable, Identifiable {
             WelcomeText(data: data)
         case .some(.login):
             RENDERForm(data: data)
+        case .some(.alert):
+            Alert("this is a test", okBtn: {
+                
+            }, cancelBtn: {
+                
+            })
         case .some(.header):
             VStack {
                 Image("mo", bundle: Bundle.module).resizable()
@@ -67,10 +74,14 @@ extension ModuleWorkFlow {
             View2(sampleData: data)
         case .some(.welcome):
             View3(sampleData: data)
+        case .some(.alert):
+            let moduleWorkflow = [
+                ModuleWorkFlow(.alert)]
+         
+            RENDERTable( myStyle: .grouped, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden).anyView
         case .some(.header):
             let moduleWorkflow = [
-                ModuleWorkFlow(.empty),
-                ModuleWorkFlow(.login)]
+                ModuleWorkFlow(.alert)]
          
             RENDERTable( myStyle: .grouped, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden).anyView
         default:
