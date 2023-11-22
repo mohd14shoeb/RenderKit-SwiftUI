@@ -84,9 +84,6 @@ struct Alert: View, Identifiable {
                 .offset(y:offset)
             }
             .frame( height: 30)
-            .onTapGesture {
-                presentationMode.wrappedValue.dismiss()
-            }
         }
         .ignoresSafeArea()
         .padding(.top, 20)
