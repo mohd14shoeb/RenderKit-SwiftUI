@@ -14,6 +14,7 @@ struct NavigationBack: ViewModifier {
   
     func body(content: Content) -> some View {
         content
+            .offset(y:30)
             .navigationTitle(Text(""))
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: BackButton(dismissAction: {
@@ -29,6 +30,7 @@ struct NavigationBackRoot: ViewModifier {
  
     func body(content: Content) -> some View {
         content
+            .offset(y:30)
             .navigationTitle(Text(""))
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: BackButton(dismissAction: {

@@ -31,6 +31,7 @@ public struct RENDERTable<T: Identifiable>: View {
                                     })
                                 .background(.clear)
                                 .listRowSeparator(sectionSeperator)
+                              
                             }
                             .padding(.top,50)
                             .background(.clear)
@@ -39,6 +40,7 @@ public struct RENDERTable<T: Identifiable>: View {
                             .background(.clear)
                             .anyView
                         }.backButton()
+                     
                     }
             }
     }

@@ -36,10 +36,9 @@ public struct Workflow : View, Identifiable {
                 .padding(.top, 10)
                 .padding(.bottom, 10)
         case .some(.welcomeButton):
-           
             RENDERButton(text: "Change Name", image: nil, action: {
             data.name = data.name == "Darren" ? "Frankie Bananas" : "Darren"
-            }).anyView
+            })
          case .some(.headerView):
             RENDERNavigationLink(ModuleWorkFlow(.header), data: data)
             HeaderView()

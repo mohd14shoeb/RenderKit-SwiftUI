@@ -18,7 +18,8 @@ final class ModuleExampleTests: XCTestCase {
         // I request a tableView with Section config
         let workflow: [ModuleWorkFlow] = [
             ModuleWorkFlow(.welcome),
-            ModuleWorkFlow(.login)
+            ModuleWorkFlow(.login),
+            ModuleWorkFlow(.jokes)
             ]
         let tableView =  RENDERTable(myStyle: .plain, workflows: workflow, data: SampleData(), sectionSeperator: .hidden)
         XCTAssertNotNil(tableView)
@@ -30,6 +31,14 @@ final class ModuleExampleTests: XCTestCase {
         let component: ModuleComponents = tableView.$workflows[0].component.wrappedValue
         //Section 1 = Components.component1
         XCTAssertTrue(ModuleComponents.welcome == component)
+        
+        let component2: ModuleComponents = tableView.$workflows[1].component.wrappedValue
+        //Section 2 = Components.component2
+        XCTAssertTrue(ModuleComponents.login == component2)
+        
+        let component3: ModuleComponents = tableView.$workflows[2].component.wrappedValue
+        //Section 2 = Components.component2
+        XCTAssertTrue(ModuleComponents.jokes == component3)
       
     }
 }

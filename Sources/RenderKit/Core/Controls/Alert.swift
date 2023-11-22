@@ -74,7 +74,7 @@ struct Alert: View, Identifiable {
                         RENDERButton(id: UUID(), text: "OK", image: nil, action: okaction).foregroundColor(Color.black)
                             .frame(width: self.controls == 1 ? r.size.width / 2 - 20 : r.size.width)
                         .onTapGesture {
-                        
+                            presentationMode.wrappedValue.dismiss()
                         }
                     }
                 }.padding(20)
@@ -83,6 +83,9 @@ struct Alert: View, Identifiable {
                 .offset(y:offset)
             }
             .frame( height: 30)
+            .onTapGesture {
+                presentationMode.wrappedValue.dismiss()
+            }
         }
         .ignoresSafeArea()
         .padding(.top, 20)

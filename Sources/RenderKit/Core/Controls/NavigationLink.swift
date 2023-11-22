@@ -18,6 +18,7 @@ struct RENDERNavigationLink <T> : View {
         self.data = data
     }
     var body: some View {
+  
             if let flow = flow as? Workflow {
                 NavigationLink(destination: flow.componentLanding(view: flow.component, data: data)) {
                     Text(flow.component.rawValue)
@@ -28,6 +29,7 @@ struct RENDERNavigationLink <T> : View {
                     Text(flow.component.rawValue)
                 }
             }
+        
     }
 }
 

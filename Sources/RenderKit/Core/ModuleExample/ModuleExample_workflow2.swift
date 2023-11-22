@@ -15,9 +15,10 @@ public enum ModuleComponents: StringLiteralType, CaseIterable, Identifiable {
     }
     case welcome = "Welcome Text"
     case login = "Login"
-    case header = "Navigation Links"
+    case header = "Chuck Norris Jokes "
     case alert = "Alert"
     case empty = "empty"
+    case jokes = "Jokes"
    
 }
 
@@ -26,7 +27,11 @@ public struct ModuleWorkFlow: Equatable, Hashable, Identifiable {
     public var id = UUID()
     public var featureName: String = "ThisFeature"
     public var component: ModuleComponents = .welcome
-   
+    
+    enum endpoints: StringLiteralType {
+        case chuckNorris = "https://api.chucknorris.io/jokes/random"
+    }
+    
     init(_ component: ModuleComponents) {
         self.component = component
     }
@@ -36,14 +41,15 @@ public struct ModuleWorkFlow: Equatable, Hashable, Identifiable {
         switch destination {
         case .some(.welcome):
             WelcomeText(data: data)
-        case .some(.login):
-            RENDERForm(data: data)
+        case .some(.jokes):
+            Jokes()
         case .some(.alert):
-            Alert("this is a test", okBtn: {
-                
-            }, cancelBtn: {
-                
-            })
+        
+                Alert("This is just here showing a in table placement :)", okBtn: {
+                    
+                }, cancelBtn: {
+                    
+                })
         case .some(.header):
             VStack {
                 Image("mo", bundle: Bundle.module).resizable()
@@ -72,8 +78,8 @@ extension ModuleWorkFlow {
         switch view {
         case .some(.login):
             View2(sampleData: data)
-        case .some(.welcome):
-            View3(sampleData: data)
+        case .some(.header):
+            Jokes()
         case .some(.alert):
             let moduleWorkflow = [
                 ModuleWorkFlow(.alert)]
@@ -93,7 +99,7 @@ extension ModuleWorkFlow {
 @available(iOS 16.0, *)
 struct previewComponent: PreviewProvider {
     static var previews: some View {
-        let moduleWorkflow = [ModuleWorkFlow(.header), ModuleWorkFlow(.welcome)]
+        let moduleWorkflow = [ModuleWorkFlow(.jokes), ModuleWorkFlow(.header)]
         VStack {
             RENDERTable( myStyle: TableListStyle.grouped, workflows: moduleWorkflow, data: SampleData(), sectionSeperator: Visibility.visible)
         }
