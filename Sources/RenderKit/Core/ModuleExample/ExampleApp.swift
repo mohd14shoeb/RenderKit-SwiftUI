@@ -42,7 +42,7 @@ struct RENDERToolBarNav: Identifiable, View {
          
             RENDERTable( myStyle: .grouped, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden)
         case .some(.burgers):
-             CartView().padding(.top, 50)
+            CartView().offset(y:30)
         default:
            EmptyView()
         }
@@ -96,7 +96,7 @@ struct RENDERToolBar: View {
                                 }
                             }
                         }
-                    }.frame(width: reader.size.width, height: 80, alignment: .bottom)
+                    }.frame(width: reader.size.width, height: 70, alignment: .bottom)
                         //.padding(.top,10)
                         //.padding(.bottom,30)
                         .foregroundColor(.black)
