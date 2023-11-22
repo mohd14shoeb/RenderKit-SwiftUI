@@ -16,6 +16,7 @@ struct ChuckNorrisJoke: Codable {
 struct Jokes: View {
     @State private var joke: ChuckNorrisJoke? = nil
     @State var showAlert: Bool = false
+
     var body: some View {
         
         GeometryReader { r in
@@ -23,6 +24,8 @@ struct Jokes: View {
                 Text(joke?.value ?? "")
                     .font(.title3)
                     .frame(width:r.size.width,height:r.size.height)
+                    .opacity(showAlert ? 0.0 : 1.0)
+                    .animation(Animation.spring(), value: showAlert)
                 Button("Next One!") {
                     showAlert = true
                     Task {
@@ -44,12 +47,14 @@ struct Jokes: View {
                 .navigationTitle("Chuck Norris Jokes")
                 .overlay(
                     VStack{
-                        Alert("Getting a new Joke", okBtn: {
+                        Alert("Getting a new Chuck Norris joke", okBtn: {
                             showAlert = false
                         })
+                       
                     }
                         .frame(width:r.size.width, height: r.size.height)
                     .opacity(showAlert ? 1.0 : 0.0))
+                .animation(Animation.spring(), value: showAlert)
         }
     }
       

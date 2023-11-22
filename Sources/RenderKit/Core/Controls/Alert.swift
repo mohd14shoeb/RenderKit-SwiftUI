@@ -39,11 +39,12 @@ struct Alert: View, Identifiable {
                 
                 ZStack {
                     Image(systemName:"pencil")
-                        .background(Circle().stroke(style:(StrokeStyle(lineWidth: 2))).padding(-25))
-                        .padding()
+                        .background(Circle().stroke(style:(StrokeStyle(lineWidth: 2))).padding(-15))
+                         .padding()
                         .scaledToFit()
                         .foregroundColor(Color.black)
                         .frame(minWidth: 60)
+                        .fixedSize()
                         .offset(y:offset)
                 }
                 .padding(.leading)
@@ -55,7 +56,7 @@ struct Alert: View, Identifiable {
                     .offset(y:-20)
             }
             .frame(minHeight: minH)
-            .background(Rectangle().fill(Color.gray.opacity(0.99)))
+            .background(Rectangle().fill(Color.gray))
        
             GeometryReader { r in
                 HStack {
