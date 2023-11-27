@@ -51,19 +51,8 @@ public struct ModuleWorkFlow: Equatable, Hashable, Identifiable {
                     
                 })
         case .some(.header):
-            VStack {
-                Image("mo", bundle: Bundle.module).resizable()
-                Text("Thanks for checking out this generated composable tableview and section builder render kit. It's a work in progress")
-                Spacer()
-                GeometryReader { r in
-                    VStack {
-                        Text("Working on ViewThatFits with Nagivation and Split Navigation").font(.Small).frame(width: r.size.width, alignment:.top)
-                        Text("Working on more controls").font(.Small).frame(width: r.size.width, alignment:.leading)
-                        Text("** just updated to NavigationStack").font(.Small).frame(width: r.size.width, alignment:.leading)
-                    }.frame(height: r.size.height)
+        GridDisplay(data: data)
                    
-                }
-            }
         default:
             EmptyView()
         }
@@ -99,7 +88,7 @@ extension ModuleWorkFlow {
 @available(iOS 16.0, *)
 struct previewComponent: PreviewProvider {
     static var previews: some View {
-        let moduleWorkflow = [ModuleWorkFlow(.jokes), ModuleWorkFlow(.header)]
+        let moduleWorkflow = [ModuleWorkFlow(.header)]
         VStack {
             RENDERTable( myStyle: TableListStyle.grouped, workflows: moduleWorkflow, data: SampleData(), sectionSeperator: Visibility.visible)
         }

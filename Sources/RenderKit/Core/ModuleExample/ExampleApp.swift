@@ -3,7 +3,7 @@ import SwiftUI
 
 enum Routes: StringLiteralType, CaseIterable {
     case home = "Home"
-    case orders = "Orders"
+    case orders = "Movies"
     case burgers = "Burgers"
     
 }
@@ -34,13 +34,9 @@ struct RENDERToolBarNav: Identifiable, View {
             RENDERTable( myStyle: .plain, workflows: workflow, data: data, sectionSeperator: .hidden)
         case .some(.orders):
             let moduleWorkflow = [
-                ModuleWorkFlow(.empty),
-                ModuleWorkFlow(.alert),
-                ModuleWorkFlow(.header),
-                 
+                ModuleWorkFlow(.header)
             ]
-         
-            RENDERTable( myStyle: .grouped, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden)
+            RENDERTable( myStyle: .plain, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden)
         case .some(.burgers):
             CartView().offset(y:30)
         default:

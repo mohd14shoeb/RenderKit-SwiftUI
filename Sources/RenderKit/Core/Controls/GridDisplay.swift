@@ -25,7 +25,7 @@ struct GridDisplay: View  {
                     Color.blue // Acts as a placeholder.
                 }
              
-                RENDERGrid(data: data, itemPerRow:30)
+                RENDERGrid(data: data, itemPerRow:15)
             }
         }
     }

@@ -6,7 +6,7 @@ public enum Components: StringLiteralType {
     case welcome = "Welcome Text"
     case welcomeButton = "Welcome Button"
     case headerView = "Lets get started"
-    case menuItem = "Best Burgers "
+    case menuItem = "Map "
     case empty = "nil"
 }
 
@@ -36,15 +36,12 @@ public struct Workflow : View, Identifiable {
                 .padding(.top, 10)
                 .padding(.bottom, 10)
         case .some(.welcomeButton):
-            RENDERButton(text: "Change Name", image: nil, action: {
-            data.name = data.name == "Darren" ? "Frankie Bananas" : "Darren"
-            })
+             EmptyView()
          case .some(.headerView):
             RENDERNavigationLink(ModuleWorkFlow(.header), data: data)
             HeaderView()
         case .some(.menuItem):
-            Text("Amazon Movies Feed")
-            RENDERGrid(data: data, itemPerRow: 3)
+            MapView(location: Location()).frame(idealHeight:400)
         default:
           EmptyView()
         }

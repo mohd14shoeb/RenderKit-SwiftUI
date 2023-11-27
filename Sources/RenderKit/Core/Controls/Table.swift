@@ -5,6 +5,7 @@ import SwiftUI
 @available(iOS 16.0, *)
 public struct RENDERTable<T: Identifiable>: View {
     @State var myStyle: TableListStyle = TableListStyle.plain
+    var backgroundColor: Color = Color.blue.opacity(0.1)
     @State var workflows: [T] = []
     @ObservedObject var data: SampleData
     var sectionSeperator: Visibility
@@ -16,6 +17,7 @@ public struct RENDERTable<T: Identifiable>: View {
                             List($workflows.wrappedValue) { flow in
                                 Section(
                                     content: {
+                                        VStack {
                                             if let flow = flow as? Workflow {
                                                 flow.view(for: flow.component, data: data)
                                                     .allowsHitTesting(true)
@@ -27,21 +29,21 @@ public struct RENDERTable<T: Identifiable>: View {
                                                     .background(.clear)
                                                     .accessibility(label: Text(""))
                                             }
-                                       
+                                        }
                                     })
-                                .background(.clear)
                                 .listRowSeparator(sectionSeperator)
-                              
+                                .listRowBackground(backgroundColor)
+                           
                             }
                             .padding(.top,50)
-                            .background(.clear)
+                             
                             .listStyle(myStyle.style)
-                            .listSectionSeparator(sectionSeperator)
-                            .background(.clear)
                             .anyView
-                        }.backButton()
+                        }
+                        .backButton()
                      
                     }
+                    
             }
     }
 }
