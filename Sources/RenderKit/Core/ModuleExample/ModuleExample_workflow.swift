@@ -36,11 +36,11 @@ public struct Workflow : View, Identifiable {
                 .padding(.top, 10)
                 .padding(.bottom, 10)
         case .some(.welcomeButton):
-             EmptyView()
-         case .some(.headerView):
             RENDERNavigationLink(ModuleWorkFlow(.header), data: data)
+         case .some(.headerView):
             HeaderView()
         case .some(.menuItem):
+            // Creating a menu Item.
             MapView(location: Location()).frame(idealHeight:400)
         default:
           EmptyView()

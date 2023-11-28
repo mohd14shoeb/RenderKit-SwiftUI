@@ -1,26 +1,47 @@
 import Foundation
 import SwiftUI
 
+
+protocol ModelProtocol {
+    var model: ModelTypes { get set }
+}
+enum ModelTypes: String, CaseIterable{
+    var id: Self {
+        return self
+    }
+    static var allCases: [ModelTypes] {
+        return [.login]
+       }
+
+    case login = "Login"
+           
+       @available(*, unavailable)
+       case all
+}
+struct ModelType: ModelProtocol {
+    var model: ModelTypes = .login
+}
+
 @available(iOS 16.0, *)
 struct RENDERForm: View {
     // AppStorage temp for demo
     //@AppStorage("loginName") private var loginName: String = ""
     //@AppStorage("password") private var password: String = ""
-    @StateObject var loginModel = LoginModel(loginName: "",
+    @StateObject var loginModel =  LoginModel(loginName: "",
                                              password: "",
                                              rememberMe: false)
 
-    @State  var authenticated: Bool = false
+    @State var authenticated: Bool = false
     @ObservedObject var data: SampleData
     var body: some View {
             GeometryReader() { reader in
                 if !$authenticated.wrappedValue {
-                    VStack {
+                    Form {
                         TextField("Login", text: $loginModel.loginName)
-                            .background(Color.blue.opacity(0.2)).frame(height:20)
+                            .background(Color.blue.opacity(0.2))
                             .padding(.bottom, 10)
                         TextField("Password", text: $loginModel.password)
-                            .background(Color.blue.opacity(0.2)).frame(height:20)
+                            .background(Color.blue.opacity(0.2))
                             .padding(.bottom, 10)
                         Button(action: {
                             Task {
@@ -31,7 +52,7 @@ struct RENDERForm: View {
                             }
               
                         }, label: {
-                            Text("Login").frame(width: reader.size.width, height:20).padding(10)
+                            Text("Login").frame(width: reader.size.width).padding(10)
                         })
                         .contentShape(Rectangle())
                         .background(Color.blue.opacity(0.2))
@@ -44,9 +65,16 @@ struct RENDERForm: View {
                         self.authenticated.toggle()
                     }
                 }
-            }.frame(height: 400)
+            }
         }
     
+}
+
+@available(iOS 16.0, *)
+struct RENDERFormPreview: PreviewProvider {
+    static var previews: some View {
+        RENDERForm(data:SampleData())
+    }
 }
 
 class LoginModel: ObservableObject {

@@ -51,7 +51,7 @@ struct RENDERToolBar: View {
     @State var toolbar: RENDERToolBarNav = RENDERToolBarNav(selectedRoute: .home)
     let iconSize = 55.0
     let iconPadding = 0.0
-   
+
     var body: some View {
         VStack {
             GeometryReader { reader in
@@ -60,6 +60,22 @@ struct RENDERToolBar: View {
                         .frame(height: reader.size.height,alignment: .top).offset(y:-50)
                     HStack {
                         ForEach(Routes.allCases) { route in
+                  
+                            VStack {
+                              
+                                if isSelected(route: route) {
+                                    VStack {
+                                        Color.blue
+                                            
+                                    }
+                                  
+                                        //.offset(y: isSelected(route: route) ? -100 : 0)
+                                      
+                                    .frame(height:3.0)
+                                    .offset(y:-5)
+                               
+                                    
+                                }
                             Button(action: {
                                 toolbar = RENDERToolBarNav(selectedRoute: route)
                             }) {
@@ -87,7 +103,8 @@ struct RENDERToolBar: View {
                                         }
                                         Text(route.rawValue)
                                             .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
-                                    }
+                                    }.animation(Animation.linear(duration: 0.5), value: isSelected(route: route))
+                                }
                                     .frame(width:reader.size.width / CGFloat(Routes.allCases.count))
                                 }
                             }
@@ -105,6 +122,10 @@ struct RENDERToolBar: View {
             }
             
         } 
+    }
+    
+    func isSelected(route: Routes) -> Bool {
+        toolbar.selectedRoute == route
     }
 }
 

@@ -41,10 +41,11 @@ public struct ModuleWorkFlow: Equatable, Hashable, Identifiable {
         switch destination {
         case .some(.welcome):
             WelcomeText(data: data)
+        case .some(.login):
+            RENDERForm(data: data).frame(idealHeight:200)
         case .some(.jokes):
             Jokes()
         case .some(.alert):
-        
                 Alert("This is just here showing a in table placement :)", okBtn: {
                     
                 }, cancelBtn: {
@@ -66,7 +67,7 @@ extension ModuleWorkFlow {
     public func componentLanding(view: ModuleComponents?, data: SampleData) -> some View {
         switch view {
         case .some(.login):
-            View2(sampleData: data)
+                RENDERForm(data: data)
         case .some(.header):
             Jokes()
         case .some(.alert):
@@ -88,7 +89,7 @@ extension ModuleWorkFlow {
 @available(iOS 16.0, *)
 struct previewComponent: PreviewProvider {
     static var previews: some View {
-        let moduleWorkflow = [ModuleWorkFlow(.header)]
+        let moduleWorkflow = [ModuleWorkFlow(.login)]
         VStack {
             RENDERTable( myStyle: TableListStyle.grouped, workflows: moduleWorkflow, data: SampleData(), sectionSeperator: Visibility.visible)
         }
