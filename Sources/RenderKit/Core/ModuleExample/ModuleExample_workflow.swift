@@ -21,8 +21,6 @@ public struct Workflow : View, Identifiable {
     public var id = UUID()
     public var component: Components = .welcome
     
-    var sectionHeader: (any View)?
-    var sectionFooter: (any View)?
     public var body: some View {
         VStack {}
     }

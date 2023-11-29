@@ -10,7 +10,6 @@ import SwiftUI
 
 @available(iOS 16.0, *)
 struct GridDisplay: View  {
-    
     @ObservedObject var data: SampleData
     var body: some View {
         VStack {
@@ -33,7 +32,6 @@ struct GridDisplay: View  {
 
 @available(iOS 16.0, *)
 struct GridDisplayPreview: PreviewProvider {
- 
     static var previews: some View {
         GridDisplay(data: SampleData())
     }

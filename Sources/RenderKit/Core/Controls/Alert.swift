@@ -78,8 +78,9 @@ struct Alert: View, Identifiable {
                            
                         }
                     }
-                }.padding(20)
-                    .background(Rectangle().stroke(.blue, style: StrokeStyle(lineWidth: 1.0)).background(Color.white).cornerRadius(5.0))
+                }
+                .padding(20)
+                .background(Rectangle().stroke(.blue, style: StrokeStyle(lineWidth: 1.0)).background(Color.white).cornerRadius(5.0))
                 .frame(width: r.size.width)
                 .offset(y:offset)
             }

@@ -17,13 +17,13 @@ struct BackButton: View {
             self.dismissAction()
         }) {
            HStack {
-               Image(systemName: "arrow.left")
-               //Image(systemName: "chevron.left.circle")
+               //Image(systemName: "arrow.left")
+               Image(systemName: "chevron.left.circle")
                .aspectRatio(contentMode: .fit)
                .foregroundColor(.black)
                Text(navigationTitle ?? "")
            }.background(.clear)
-           //.border(.bar, width: 2)
+           .border(.bar, width: 2)
            .foregroundColor(.black)
            .accessibility(label: Text("Back Button"))
         }

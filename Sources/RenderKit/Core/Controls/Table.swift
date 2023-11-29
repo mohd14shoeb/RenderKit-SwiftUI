@@ -11,40 +11,36 @@ public struct RENDERTable<T: Identifiable>: View {
     var sectionSeperator: Visibility
     
     public var body: some View {
-                GeometryReader { r in
-                    ViewThatFits  {
-                        NavigationStack {
-                            List($workflows.wrappedValue) { flow in
-                                Section(
-                                    content: {
-                                        VStack {
-                                            if let flow = flow as? Workflow {
-                                                flow.view(for: flow.component, data: data)
-                                                    .allowsHitTesting(true)
-                                                    .background(.clear)
-                                                    .accessibility(label: Text(""))
-                                            }
-                                            else if let flow = flow as? ModuleWorkFlow {
-                                                flow.view(for: flow.component, data: data)
-                                                    .background(.clear)
-                                                    .accessibility(label: Text(""))
-                                            }
-                                        }
-                                    })
-                                .listRowSeparator(sectionSeperator)
-                                .listRowBackground(backgroundColor)
-                           
-                            }
-                            .padding(.top,50)
-                             
-                            .listStyle(myStyle.style)
-                            .anyView
-                        }
-                        .backButton()
-                     
+        GeometryReader { r in
+            ViewThatFits  {
+                NavigationStack {
+                    List($workflows.wrappedValue) { flow in
+                        Section(
+                            content: {
+                                VStack {
+                                    if let flow = flow as? Workflow {
+                                        flow.view(for: flow.component, data: data)
+                                            .allowsHitTesting(true)
+                                            .background(.clear)
+                                            .accessibility(label: Text(""))
+                                    }
+                                    else if let flow = flow as? ModuleWorkFlow {
+                                        flow.view(for: flow.component, data: data)
+                                            .background(.clear)
+                                            .accessibility(label: Text(""))
+                                    }
+                                }
+                            })
+                        .listRowSeparator(sectionSeperator)
+                        .listRowBackground(backgroundColor)
                     }
-                    
+                    .padding(.top,50)
+                    .listStyle(myStyle.style)
+                    .anyView
+                }
+                .backButton()
             }
+        }
     }
 }
 

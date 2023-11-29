@@ -15,25 +15,15 @@ struct RENDERButton: View, Identifiable {
     var image: Image?
     var action: () -> Void
     
-   
- 
     var body: some View {
- 
-         
-                Button(action: action) {
-                   
-                        let back = NSLocalizedString(text, tableName: nil, bundle: Bundle.main, value: "", comment: "")
-                        Text(back)
-                                //.foregroundColor(Config().textColor)
-                                .accessibility(label: Text(text))
-                        
-                        image
-                   
-                 
-                }
-                .background(Config().background)
-                //.frame(width: reader.size.width)
-                 .mask(Rectangle())
+        Button(action: action) {
+            let back = NSLocalizedString(text, tableName: nil, bundle: Bundle.main, value: "", comment: "")
+            Text(back)
+                    .accessibility(label: Text(text))
+            image
+        }
+        .background(Config().background)
+        .mask(Rectangle())
     }
 }
 
@@ -42,12 +32,8 @@ struct RENDERButtonPreview: PreviewProvider {
     static let back = NSLocalizedString("Back", tableName: nil, bundle: Bundle.module, value: "", comment: "")
     static var previews: some View {
         HStack{
-            RENDERButton(text: back) {
-                
-            }
-            //RENDERButton(text: $back.wrappedValue, image: Image(systemName:"house"), action: {})
-          //  RENDERButton(text: $back.wrappedValue, image: Image(systemName:"pencil"), action: {})
-                
+            RENDERButton(text: back) {}
+            RENDERButton(text: back, image: Image(systemName:"house")) {}
         }
     }
 }
