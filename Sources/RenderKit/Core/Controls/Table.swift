@@ -32,9 +32,9 @@ public struct RENDERTable<T: Identifiable>: View {
                                 }
                             })
                         .listRowSeparator(sectionSeperator)
-                        .listRowBackground(backgroundColor)
+                        //.listRowBackground(backgroundColor)
                     }
-                    .padding(.top,50)
+       
                     .listStyle(myStyle.style)
                     .anyView
                 }

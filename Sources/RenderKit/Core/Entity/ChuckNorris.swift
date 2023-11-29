@@ -39,7 +39,7 @@ struct Jokes: View {
                         }
                     }
                 }
-                .offset(y:-50)
+                .offset(y:-150)
                 .buttonStyle(.borderedProminent)
             }
             .frame(width:r.size.width,height:r.size.height)

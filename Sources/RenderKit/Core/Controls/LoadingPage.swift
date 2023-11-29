@@ -26,7 +26,6 @@ struct LoadingPage : View {
                         .animation(.easeInOut.delay(2.0).speed(0.7), value: ready)
                         .offset(y:70)
                         .frame(width: r.size.width, height: r.size.height - 80)
-                       
                 }
             }
         }

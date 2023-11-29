@@ -56,8 +56,10 @@ struct RENDERToolBar: View {
         VStack {
             GeometryReader { reader in
                 VStack {
-                    toolbar.view(for: toolbar.selectedRoute).allowsHitTesting(true)
-                        .frame(height: reader.size.height,alignment: .top).offset(y:-50)
+                    toolbar.view(for: toolbar.selectedRoute)
+                        .allowsHitTesting(true)
+                        .frame(height: reader.size.height-50,alignment: .top)
+                        .background(Config().background)
                     HStack {
                         ForEach(Routes.allCases) { route in
                   
@@ -68,14 +70,9 @@ struct RENDERToolBar: View {
                                         Color.blue
                                             
                                     }
-                                  
-                                        //.offset(y: isSelected(route: route) ? -100 : 0)
-                                      
                                     .frame(height:3.0)
-                                    .offset(y:-5)
-                               
-                                    
-                                }
+                                    //.offset(y:-5)
+                            }
                             Button(action: {
                                 toolbar = RENDERToolBarNav(selectedRoute: route)
                             }) {
@@ -109,24 +106,25 @@ struct RENDERToolBar: View {
                                 }
                             }
                         }
-                    }.frame(width: reader.size.width, height: 70, alignment: .bottom)
-                        //.padding(.top,10)
-                        //.padding(.bottom,30)
+                    }.frame(width: reader.size.width, height: 50, alignment: .bottom)
+                        .background(Color.white)
                         .foregroundColor(.black)
-                        .background(.gray.opacity(0.05))
-                        .offset(y:-40)
-                }  .offset(y:-40)
-                //.frame(alignment: .leading)
-                
-                
+             
+                }  .offset(y:-20)
             }
             
-        } 
+        } .ignoresSafeArea()
+      
     }
     
     func isSelected(route: Routes) -> Bool {
         toolbar.selectedRoute == route
     }
+}
+
+private struct Config {
+    let background = Color.yellow.opacity(0.1)
+ let textColor = Color.blue
 }
 
 @available(iOS 16.0, *)

@@ -25,16 +25,12 @@ struct Toast: View {
                         .background(Circle().stroke(style:(StrokeStyle(lineWidth: 2)))
                             .background(Circle().fill(Priority.allCases[priority].opacity(0.5)))
                             .padding(-15)
-                            //.offset(y:showToast ? -0 : -40)
                         )
                         .padding(.trailing, 2.0)
                     Text(message ?? "If you want to toast this toast..")
-                       //.offset(y:showToast ? -0 : -40)
                         .padding(20)
                 }
-                
-                //.offset(y:showToast ? -0 : -40)
-                
+                 
             }
             .frame(minWidth: r.size.width, minHeight: 40)
             .background( Rectangle().fill(Color.blue.opacity(0.2)))
@@ -54,7 +50,7 @@ struct ToastPreview : PreviewProvider {
     static var previews : some View {
         VStack {
             Toast(priority: 0)
-            //Toast(priority: 1)
+            Toast(priority: 1)
             //Toast(priority: 2)
         }
     }
