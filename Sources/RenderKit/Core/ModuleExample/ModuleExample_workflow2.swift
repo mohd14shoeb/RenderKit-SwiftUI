@@ -67,15 +67,10 @@ extension ModuleWorkFlow {
     public func componentLanding(view: ModuleComponents?, data: SampleData) -> some View {
         switch view {
         case .some(.login):
-                RENDERForm(data: data)
+            RENDERForm(data: data)
         case .some(.header):
             Jokes()
         case .some(.alert):
-            let moduleWorkflow = [
-                ModuleWorkFlow(.alert)]
-         
-            RENDERTable( myStyle: .grouped, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden).anyView
-        case .some(.header):
             let moduleWorkflow = [
                 ModuleWorkFlow(.alert)]
          

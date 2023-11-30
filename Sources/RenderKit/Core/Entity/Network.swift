@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 
 
-enum Endpoints: StringLiteralType {
-    case chuckNorris = "https://api.chucknorris.io/jokes/random"
-}
+//enum Endpoints: StringLiteralType {
+//    case chuckNorris = "https://api.chucknorris.io/jokes/random"
+//}
  
 struct Network {
     func fetch<T: Codable>(from urlString: String) async throws -> T {

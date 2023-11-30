@@ -31,8 +31,6 @@ public struct Workflow : View, Identifiable {
         switch destination {
         case .some(.welcome):
             WelcomeText(data: data)
-                .padding(.top, 10)
-                .padding(.bottom, 10)
         case .some(.welcomeButton):
             RENDERNavigationLink(ModuleWorkFlow(.header), data: data)
          case .some(.headerView):

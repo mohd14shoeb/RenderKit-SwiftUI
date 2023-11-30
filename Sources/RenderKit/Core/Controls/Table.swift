@@ -29,10 +29,13 @@ public struct RENDERTable<T: Identifiable>: View {
                                             .background(.clear)
                                             .accessibility(label: Text(""))
                                     }
+                                    else if let flow = flow as? ShopWorkFlow {
+                                        flow.view(for: flow.component, data: data)
+                                    }
                                 }
                             })
                         .listRowSeparator(sectionSeperator)
-                        //.listRowBackground(backgroundColor)
+                        .listRowBackground(backgroundColor)
                     }
        
                     .listStyle(myStyle.style)

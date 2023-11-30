@@ -16,7 +16,7 @@ struct ChuckNorrisJoke: Codable {
 struct Jokes: View {
     @State private var joke: ChuckNorrisJoke? = nil
     @State var showAlert: Bool = false
-
+   
     var body: some View {
         
         GeometryReader { r in
@@ -31,7 +31,7 @@ struct Jokes: View {
                     showAlert = true
                     Task {
                         do {
-                            let chuckNorrisJoke: ChuckNorrisJoke = try await Network().fetch(from: Endpoints.chuckNorris.rawValue)
+                            let chuckNorrisJoke: ChuckNorrisJoke = try await Network().fetch(from: ModuleWorkFlow.endpoints.chuckNorris.rawValue)
                             joke = chuckNorrisJoke
                             
                         } catch {

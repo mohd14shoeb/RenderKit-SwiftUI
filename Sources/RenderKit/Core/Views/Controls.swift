@@ -14,12 +14,12 @@ struct WelcomeText : View {
     
     var body: some View {
         GeometryReader { r in
-            ViewThatFits {
+      
                 VStack {
                     Text("Hey, \(data.name)").frame(width: r.size.width, alignment: .topLeading)
                     Text("Welcome Back! 👋").frame(width: r.size.width, alignment: .topLeading)
                 }
-            }
+           
         }
     }
 }

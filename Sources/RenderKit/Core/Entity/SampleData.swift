@@ -27,7 +27,7 @@ public class MoviePoster: Identifiable, Hashable {
 public class SampleData: ObservableObject {
     @Published var name: String = "Darren"
     @Published var loginID: String = ""
-    
+    @Published var searchText: String = "What are you looking for?"
     @Published var selectedMovie: MoviePoster?
     @Published var moviePosters = [
         MoviePoster.init(id: 0, poster: "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UY268_CR0,0,182,268_AL_.jpg"),

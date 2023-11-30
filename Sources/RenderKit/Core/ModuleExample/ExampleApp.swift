@@ -113,7 +113,9 @@ struct RENDERToolBar: View {
                 }  .offset(y:-20)
             }
             
-        } .ignoresSafeArea()
+        }
+        .background(Config().background)
+        .ignoresSafeArea()
       
     }
     
@@ -122,10 +124,7 @@ struct RENDERToolBar: View {
     }
 }
 
-private struct Config {
-    let background = Color.yellow.opacity(0.1)
- let textColor = Color.blue
-}
+
 
 @available(iOS 16.0, *)
 struct RENDERToolBarPreview: PreviewProvider {
