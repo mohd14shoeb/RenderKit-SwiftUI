@@ -28,13 +28,13 @@ struct ImageScroll: View {
                             .frame(width: r.size.width, alignment: .leading)
                     }
                     .padding(10)
-                    .offset(y:170)
+                    .offset(x:10, y:200)
                     .frame(width: r.size.width, alignment: .leading)
                     .foregroundColor(Color.white)
                 }.background(Image("shot1", bundle: Bundle.module)
                     .resizable()
                     .padding(-10)
-                    .frame(idealWidth: r.size.width, idealHeight:400).offset(y:60)
+                    .frame(idealWidth: r.size.width, idealHeight:400).offset(y:90)
                     .scaledToFill())
             }
         }
@@ -84,7 +84,7 @@ struct SearchBarResults: View {
                         .animation(Animation.easeInOut(duration: 2.5), value: showItem)
                 }
             }
-        }
+        }.offset(y:-20)
     }
     
 }

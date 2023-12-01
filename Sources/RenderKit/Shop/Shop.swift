@@ -11,6 +11,7 @@ struct SearchProduct: View {
         RENDERTable(myStyle: .plain, backgroundColor: Color.white, workflows: workflow, data: SampleData(), sectionSeperator: Visibility.hidden)
             .ignoresSafeArea()
             .padding(-24)
+            .background(Color.blue)
     }
 }
 

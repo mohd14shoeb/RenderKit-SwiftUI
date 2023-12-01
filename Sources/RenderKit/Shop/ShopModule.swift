@@ -33,7 +33,7 @@ public struct ShopWorkFlow: Identifiable {
     public func view(for destination: ShopComponents?, data: SampleData) -> some View {
         switch destination {
         case .some(.search):
-            SearchBar(data: data).frame(idealHeight:290)
+            SearchBar(data: data).frame(idealHeight:350)
         case .some(.results):
             SearchBarResults(data: data)
         default:
