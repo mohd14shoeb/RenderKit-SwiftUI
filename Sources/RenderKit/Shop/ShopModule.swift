@@ -35,9 +35,7 @@ public struct ShopWorkFlow: Identifiable {
         case .some(.search):
             SearchBar(data: data).frame(idealHeight:290)
         case .some(.results):
-            Text(data.searchText)
-                .foregroundColor(Color.black)
-                .padding(.leading,20)
+            SearchBarResults(data: data)
         default:
             EmptyView()
         }

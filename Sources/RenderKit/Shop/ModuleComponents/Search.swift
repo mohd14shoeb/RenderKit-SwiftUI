@@ -8,13 +8,11 @@
 import Foundation
 import SwiftUI
 
+
 @available(iOS 16.0, *)
-struct SearchBar: View {
- 
-   
-    @ObservedObject var data : SampleData
+struct ImageScroll: View {
     var body: some View {
-        VStack {
+        ZStack {
             GeometryReader { r in
                 ZStack {
                     VStack {
@@ -35,29 +33,88 @@ struct SearchBar: View {
                     .foregroundColor(Color.white)
                 }.background(Image("shot1", bundle: Bundle.module)
                     .resizable()
-                    .frame(width:r.size.width + 30, height:400).offset(y:60)
+                    .padding(-10)
+                    .frame(idealWidth: r.size.width, idealHeight:400).offset(y:60)
                     .scaledToFill())
-                HStack {
-                    Image(systemName: "magnifyingglass.circle")
-                        .padding(10)
+            }
+        }
+    }
+}
+
+class Item: Identifiable {
+    var id: UUID = UUID()
+    var name: String
+    var description: String
+    var size: String //enum
+    var itemColor: String //enum
+    var price: String
+    var image: String
+    
+    init(name: String, description: String, size: String, itemColor: String, price: String, image: String) {
+        self.name = name
+        self.description = description
+        self.size = size
+        self.itemColor = itemColor
+        self.price = price
+        self.image = image
+    }
+}
+
+@available(iOS 16.0, *)
+struct SearchBarResults: View {
+    @ObservedObject var data : SampleData
+    var items: [Item] = [
+        Item(name: "Grey Hoodie", description: "terry cloth fuzzy", size: "L", itemColor: "Gray", price: "30.00", image:"shot1"),
+        Item(name: "Grey Hoodie", description: "terry cloth fuzzy", size: "L", itemColor: "Gray", price: "30.00", image:"shot2"),
+        Item(name: "Grey Hoodie", description: "terry cloth fuzzy", size: "L", itemColor: "Gray", price: "30.00", image:"shot3"),
+        Item(name: "Grey Hoodie", description: "terry cloth fuzzy", size: "L", itemColor: "Gray", price: "30.00", image:"shot4"),
+    ]
+    var body: some View {
+        HStack {
+            ForEach(items) { item in
+                Image(item.image, bundle: Bundle.module).resizable().frame(idealWidth:60, idealHeight:100)
+            }
+        }
+    }
+}
+
+@available(iOS 16.0, *)
+struct SearchBar: View {
+    @ObservedObject var data : SampleData
+    var body: some View {
+        VStack {
+            GeometryReader { r in
+                ZStack {
+                    ImageScroll()
+                }
+                ZStack {
+                    HStack {
+                        Image(systemName: "magnifyingglass.circle")
+                            .padding(10)
+                            .foregroundColor(Color.white)
+                        TextField("", text: $data.searchText, onCommit: {
+                            
+                        })
+                        .frame(alignment:.top)
+                        .onTapGesture(perform: {
+                            data.searchText = ""
+                        })
                         .foregroundColor(Color.white)
-                    TextField("", text: $data.searchText, onCommit: {
-                        
-                    }).onTapGesture(perform: {
-                        data.searchText = ""
-                    })
-                    .foregroundColor(Color.white)
-                }.background(Rectangle()
-                    .stroke(Color.black, lineWidth: Config().borderWidth)
-                    .cornerRadius(2)
-                    .padding(2)
-                )
-                .background(Rectangle()
-                    .fill(Color.white.opacity(0.1))
-                    .cornerRadius(2)
-                    .padding(2)
-                )
-         
+                    }
+                    .frame(alignment:.top)
+                    .background(Rectangle()
+                        .stroke(Color.black, lineWidth: Config().borderWidth)
+                        .cornerRadius(2)
+                        .padding(2)
+                    )
+                    .background(Rectangle()
+                        .fill(Color.white.opacity(0.1))
+                        .cornerRadius(2)
+                        .padding(2)
+                    ).frame(alignment:.top)
+                   
+                  
+                }
             }
         }
     }

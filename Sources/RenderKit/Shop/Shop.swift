@@ -9,7 +9,8 @@ struct SearchProduct: View {
             ShopWorkFlow(.results)
         ]
         RENDERTable(myStyle: .plain, backgroundColor: Color.white, workflows: workflow, data: SampleData(), sectionSeperator: Visibility.hidden)
-            .ignoresSafeArea().padding(-18)
+            .ignoresSafeArea()
+            .padding(-24)
     }
 }
 
