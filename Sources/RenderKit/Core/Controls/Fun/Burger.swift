@@ -48,7 +48,7 @@ struct CartView: View {
                             Button(burgers[i].name, action: {
                                 self.burger = Burger(burger: burgers[i])
                             }).padding(10).overlay(RoundedRectangle(cornerRadius: 14)
-                                .stroke(Color.DarkGray, lineWidth: 2)).frame(height:50).offset(y:90).ignoresSafeArea().shadow(radius: 3)
+                                .stroke(Color.DarkGray, lineWidth: 2)).frame(height:50).offset(y:60).ignoresSafeArea().shadow(radius: 3)
                                 .foregroundColor(.white)
                         }
                     }.zIndex(5).padding(10)
