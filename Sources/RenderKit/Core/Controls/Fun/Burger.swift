@@ -48,7 +48,7 @@ struct CartView: View {
                             Button(burgers[i].name, action: {
                                 self.burger = Burger(burger: burgers[i])
                             }).padding(10).overlay(RoundedRectangle(cornerRadius: 14)
-                                .stroke(Color.DarkGray, lineWidth: 2)).frame(height:50).offset(y:60).ignoresSafeArea().shadow(radius: 3)
+                                .stroke(Color.DarkGray, lineWidth: 2)).frame(height:50).offset(y:90).ignoresSafeArea().shadow(radius: 3)
                                 .foregroundColor(.white)
                         }
                     }.zIndex(5).padding(10)
@@ -90,11 +90,11 @@ struct CartView: View {
                                 RoundedRectangle(cornerRadius: 14)
                                     .stroke(Color.DarkGray, lineWidth: 2)
                             ).padding(10).shadow(radius: 3)
-                    }.offset(y:-40)
+                    }.offset(y:-30)
                
-                }.frame(height: reader.size.height - 50 )
+                }.frame(height: reader.size.height)
            
-        }.background(.blue)
+        }.background(Config().background)
     }
     
 }
