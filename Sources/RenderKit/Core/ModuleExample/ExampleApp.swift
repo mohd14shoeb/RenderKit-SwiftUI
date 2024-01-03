@@ -13,7 +13,7 @@ extension Routes: Identifiable {
 }
 
 @available(iOS 16.0, *)
-struct RENDERToolBarNav: Identifiable, View {
+struct RenderToolBarNav: Identifiable, View {
     var id = UUID()
     @State var selectedRoute: Routes = .home
     @ObservedObject var data: SampleData = SampleData()
@@ -31,12 +31,12 @@ struct RENDERToolBarNav: Identifiable, View {
                 Workflow(.welcomeButton),
                 Workflow(.menuItem)
             ]
-            RENDERTable( myStyle: .plain, workflows: workflow, data: data, sectionSeperator: .hidden)
+            RenderTable( myStyle: .plain, workflows: workflow, data: data, sectionSeperator: .hidden)
         case .some(.orders):
             let moduleWorkflow = [
                 ModuleWorkFlow(.header)
             ]
-            RENDERTable( myStyle: .plain, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden)
+            RenderTable( myStyle: .plain, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden)
         case .some(.burgers):
             CartView().offset(y:30)
         default:
@@ -47,8 +47,8 @@ struct RENDERToolBarNav: Identifiable, View {
 }
 
 @available(iOS 16.0, *)
-struct RENDERToolBar: View {
-    @State var toolbar: RENDERToolBarNav = RENDERToolBarNav(selectedRoute: .home)
+struct RenderToolBar: View {
+    @State var toolbar: RenderToolBarNav = RenderToolBarNav(selectedRoute: .home)
     let iconSize = 55.0
     let iconPadding = 0.0
 
@@ -58,7 +58,7 @@ struct RENDERToolBar: View {
                 VStack {
                     toolbar.view(for: toolbar.selectedRoute)
                         .allowsHitTesting(true)
-                        .frame(height: reader.size.height-50,alignment: .top)
+                        .frame(height: reader.size.height-80,alignment: .top)
                         .background(Config().background)
                     HStack {
                         ForEach(Routes.allCases) { route in
@@ -67,54 +67,51 @@ struct RENDERToolBar: View {
                               
                                 if isSelected(route: route) {
                                     VStack {
-                                        Color.blue
+                                        Config().background
                                             
                                     }
                                     .frame(height:3.0)
                                     //.offset(y:-5)
                             }
                             Button(action: {
-                                toolbar = RENDERToolBarNav(selectedRoute: route)
+                                toolbar = RenderToolBarNav(selectedRoute: route)
                             }) {
                                 ViewThatFits {
                                     VStack {
                                         switch route {
                                         case .home:
-                                            Image(systemName: toolbar.selectedRoute == route ? "house.fill" : "house").onTapGesture {
-                                                toolbar = RENDERToolBarNav(selectedRoute: route)
-                                            }
-                                            .accessibility(label: Text("Home"))
-                                            .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
+                                            RenderButton(image:Image(systemName: "house"), shape: Circle(), action: {
+                                                toolbar = RenderToolBarNav(selectedRoute: route)
+                                            })
+                                           
                                         case .orders:
-                                            Image(systemName: toolbar.selectedRoute == route ? "menucard.fill" : "menucard").onTapGesture {
-                                                toolbar = RENDERToolBarNav(selectedRoute: route)
-                                            }
-                                            .accessibility(label: Text("Order"))
-                                            .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
+                                            RenderButton(image:Image(systemName: "menucard"), shape: Circle(), action: {
+                                                toolbar = RenderToolBarNav(selectedRoute: route)
+                                            })
+                                          
                                         case .burgers:
-                                            Image(systemName: toolbar.selectedRoute == route ? "burst.fill" : "burst").onTapGesture {
-                                                toolbar = RENDERToolBarNav(selectedRoute: route)
-                                            }
-                                            .accessibility(label: Text("Burger"))
-                                            .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
+                                            RenderButton(image:Image(systemName: "burst"), shape: Circle(), action: {
+                                                toolbar = RenderToolBarNav(selectedRoute: route)
+                                            })
+                                          
                                         }
                                         Text(route.rawValue)
-                                            .foregroundColor(route == toolbar.selectedRoute ? .black : .blue)
+                                            .foregroundColor(route == toolbar.selectedRoute ? .black : Config().backgroundColor)
                                     }.animation(Animation.linear(duration: 0.5), value: isSelected(route: route))
                                 }
-                                    .frame(width:reader.size.width / CGFloat(Routes.allCases.count))
+                                .frame(width:reader.size.width / CGFloat(Routes.allCases.count))
                                 }
+               
                             }
                         }
-                    }.frame(width: reader.size.width, height: 50, alignment: .bottom)
-                        .background(Color.white)
+                    }.frame(width: reader.size.width, height: 80, alignment: .bottom) 
                         .foregroundColor(.black)
-             
+                        
                 }  .offset(y:-20)
             }
-            
+            .background(.white)
         }
-        .background(Config().background)
+    
         .ignoresSafeArea()
       
     }
@@ -127,10 +124,10 @@ struct RENDERToolBar: View {
 
 
 @available(iOS 16.0, *)
-struct RENDERToolBarPreview: PreviewProvider {
-    static var view: RENDERToolBarNav = RENDERToolBarNav(selectedRoute: .home)
+struct RenderToolBarPreview: PreviewProvider {
+    static var view: RenderToolBarNav = RenderToolBarNav(selectedRoute: .home)
     static var previews: some View {
-        RENDERToolBar(toolbar: view)
+        RenderToolBar(toolbar: view)
     }
 }
 

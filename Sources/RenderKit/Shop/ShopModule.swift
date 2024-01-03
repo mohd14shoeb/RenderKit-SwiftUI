@@ -61,7 +61,7 @@ struct ShopPreviewComponent: PreviewProvider {
                               ,ShopWorkFlow(.results)
                               ]
         VStack {
-            RENDERTable( myStyle: TableListStyle.grouped, workflows: moduleWorkflow, data: SampleData(), sectionSeperator: Visibility.visible).ignoresSafeArea()
+            RenderTable( myStyle: TableListStyle.grouped, workflows: moduleWorkflow, data: SampleData(), sectionSeperator: Visibility.visible).ignoresSafeArea()
         }
     }
 }

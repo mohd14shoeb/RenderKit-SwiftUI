@@ -15,6 +15,7 @@ public struct ID<T>: Equatable {
     private let value = UUID()
 }
 
+ 
 @available(iOS 16.0, *)
 public struct Workflow : View, Identifiable {
     
@@ -32,7 +33,7 @@ public struct Workflow : View, Identifiable {
         case .some(.welcome):
             WelcomeText(data: data)
         case .some(.welcomeButton):
-            RENDERNavigationLink(ModuleWorkFlow(.header), data: data)
+            RenderNavigationLink(ModuleWorkFlow(.header), data: data)
          case .some(.headerView):
             HeaderView()
         case .some(.menuItem):

@@ -1,9 +1,9 @@
 import XCTest
 import SwiftUI
-@testable import RENDERKit
+@testable import RenderKit
 
 @available(iOS 16.0, *)
-final class RENDERKitTests: XCTestCase {
+final class RenderKitTests: XCTestCase {
     func testTableView() throws {
     
         // Given
@@ -13,7 +13,7 @@ final class RENDERKitTests: XCTestCase {
             Workflow(.headerView),
             Workflow(.menuItem)
             ]
-        let tableView =  RENDERTable(myStyle: .plain, workflows: workflow, data: SampleData(), sectionSeperator: .hidden)
+        let tableView =  RenderTable(myStyle: .plain, workflows: workflow, data: SampleData(), sectionSeperator: .hidden)
         XCTAssertNotNil(tableView)
         //When
         //Table Loads

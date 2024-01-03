@@ -26,8 +26,8 @@ struct Jokes: View {
                     .font(.title3)
                     .frame(width:r.size.width,height:r.size.height)
                     .opacity(showAlert ? 0.0 : 1.0)
-                    
-                Button("Next One!") {
+                   
+                RenderButton(text: "Next Joke", shape: Capsule()){
                     showAlert = true
                     Task {
                         do {
@@ -39,8 +39,8 @@ struct Jokes: View {
                         }
                     }
                 }
-                .offset(y:-150)
-                .buttonStyle(.borderedProminent)
+                .offset(y:-80)
+               // .buttonStyle(.borderedProminent)
             }
             .frame(width:r.size.width,height:r.size.height)
             .navigationTitle("Chuck Norris Jokes")
@@ -52,7 +52,7 @@ struct Jokes: View {
                 }
                 .frame(width:r.size.width, height: r.size.height)
                 .opacity(showAlert ? 1.0 : 0.0))
-            .animation(Animation.linear(duration: 0.1), value: showAlert)
+            .animation(Animation.linear(duration: 0.07), value: showAlert)
            
         }
     }

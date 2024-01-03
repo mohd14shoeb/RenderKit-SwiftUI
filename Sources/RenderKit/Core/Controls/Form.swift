@@ -23,7 +23,7 @@ struct ModelType: ModelProtocol {
 }
 
 @available(iOS 16.0, *)
-struct RENDERForm: View {
+struct RenderForm: View {
     // AppStorage temp for demo
     //@AppStorage("loginName") private var loginName: String = ""
     //@AppStorage("password") private var password: String = ""
@@ -71,9 +71,9 @@ struct RENDERForm: View {
 }
 
 @available(iOS 16.0, *)
-struct RENDERFormPreview: PreviewProvider {
+struct RenderFormPreview: PreviewProvider {
     static var previews: some View {
-        RENDERForm(data:SampleData())
+        RenderForm(data:SampleData())
     }
 }
 

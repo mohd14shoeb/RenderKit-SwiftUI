@@ -1,4 +1,4 @@
-# RENDERKit SPM Workflow sample
+# RenderKit SPM Workflow sample
 
  
 ![Screenshot 2023-11-11 at 9 25 49 AM](https://github.com/DarrenHurst/RenderKit/assets/1024006/c3e4632a-4d0d-41ef-94e9-d999672133fd)
@@ -11,7 +11,7 @@ https://github.com/DarrenHurst/RenderKit/assets/1024006/5ea1f734-7235-4a46-979f-
 
 Examples of Internal View builder creation in Core/ModuleExample
 
-1.  app in a Swift Package, rendering a toolbar and seperate flows
+1.  app in a Swift Package, Rendering a toolbar and seperate flows
 2.  tableView creation of spm module flows by exposing in spm interface.
 
 Load package in xcode, swift tools are xcode 14 swift-tools-version: 5.7
@@ -20,18 +20,18 @@ just add the package.
 https://github.com/DarrenHurst/RenderKit
 
 import SwiftUI
-import RENDERKit
+import RenderKit
 
 struct ContentView: View {
-    let render = RENDERKit()
+    let Render = RenderKit()
    
     var body: some View {
        
-        let render = RENDERKit()
+        let Render = RenderKit()
         VStack {
             GeometryReader { reader in
                 VStack {
-                    AnyView(render.appContext(view: self))
+                    AnyView(Render.appContext(view: self))
                 }.ignoresSafeArea()
             }
         }
@@ -46,7 +46,7 @@ Creating Workflow and describing composeable components
             GeometryReader { r in
                 ScrollView(.vertical) {
                     NavigationStack {
-                        RENDERTable( 
+                        RenderTable( 
                             myStyle: .plain,
                             workflows: flow,
                             sampleData: SampleData(),

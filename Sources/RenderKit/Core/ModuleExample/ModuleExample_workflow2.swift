@@ -42,7 +42,7 @@ public struct ModuleWorkFlow: Equatable, Hashable, Identifiable {
         case .some(.welcome):
             WelcomeText(data: data)
         case .some(.login):
-            RENDERForm(data: data).frame(idealHeight:200)
+            RenderForm(data: data).frame(idealHeight:200)
         case .some(.jokes):
             Jokes()
         case .some(.alert):
@@ -67,14 +67,14 @@ extension ModuleWorkFlow {
     public func componentLanding(view: ModuleComponents?, data: SampleData) -> some View {
         switch view {
         case .some(.login):
-            RENDERForm(data: data)
+            RenderForm(data: data)
         case .some(.header):
             Jokes()
         case .some(.alert):
             let moduleWorkflow = [
                 ModuleWorkFlow(.alert)]
          
-            RENDERTable( myStyle: .grouped, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden).anyView
+            RenderTable( myStyle: .grouped, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden).anyView
         default:
             EmptyView()
         }
@@ -86,7 +86,7 @@ struct previewComponent: PreviewProvider {
     static var previews: some View {
         let moduleWorkflow = [ModuleWorkFlow(.login)]
         VStack {
-            RENDERTable( myStyle: TableListStyle.grouped, workflows: moduleWorkflow, data: SampleData(), sectionSeperator: Visibility.visible)
+            RenderTable( myStyle: TableListStyle.grouped, workflows: moduleWorkflow, data: SampleData(), sectionSeperator: Visibility.visible)
         }
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 @available(iOS 16.0, *)
-struct RENDERNavigationLink <T> : View {
+struct RenderNavigationLink <T> : View {
     var flow : T
     @ObservedObject var data: SampleData
     

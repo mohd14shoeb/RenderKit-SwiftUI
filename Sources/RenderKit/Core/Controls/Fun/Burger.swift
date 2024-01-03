@@ -41,7 +41,7 @@ struct CartView: View {
         @State var scale = 0.9
         return
         GeometryReader { reader in
-            ViewThatFits {
+           
                 VStack {
                     HStack {
                         ForEach (0..<burgers.count,  id: \.self) { i in
@@ -71,28 +71,30 @@ struct CartView: View {
                     VStack {
                         LazyVStack {
                             Toggle("Tomatoes: ", isOn: $burger.tomatoes)
+                                .tint(Config().backgroundColor)
                                 .onTapGesture(perform: { burger.tomatoes = burger.tomatoes ? false : true})
                                 .shadow(radius: 3).tint(.blue)
                             Toggle("Onions: ", isOn: $burger.onions)
+                                .tint(Config().backgroundColor)
                                 .onTapGesture(perform: { burger.onions = burger.onions ? false : true}).shadow(radius: 3).tint(.blue)
                             Toggle("Lettuce: ", isOn: $burger.lettuce)
+                                .tint(Config().backgroundColor)
                                 .onTapGesture(perform: { burger.lettuce = burger.lettuce ? false : true}).shadow(radius: 3).tint(.blue)
                             Toggle(isOn: $burger.ketchup){
                                 Text("Ketchup")
                                 
-                            }.tint(.blue)
+                            }   .tint(Config().backgroundColor)
                                 .onTapGesture(perform: { burger.ketchup = burger.ketchup ? false : true}).shadow(radius: 3)
                         }.font(.Large).padding(30)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 14)
                                     .stroke(Color.DarkGray, lineWidth: 2)
                             ).padding(10).shadow(radius: 3)
-                    }.offset(y:-10)
-                }.frame(height: reader.size.height)
-                    .background(.black.opacity(0.3))
-                    .background(.green.opacity(0.3))
+                    }.offset(y:-40)
+               
+                }.frame(height: reader.size.height )
+           
             }
-        }
     }
     
 }

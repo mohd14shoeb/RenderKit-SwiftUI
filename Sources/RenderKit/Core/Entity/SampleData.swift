@@ -27,6 +27,7 @@ public class MoviePoster: Identifiable, Hashable {
 public class SampleData: ObservableObject {
     @Published var name: String = "Darren"
     @Published var loginID: String = ""
+    @Published var showItem: Bool = false
     @Published var searchText: String = "What are you looking for?"
     @Published var selectedMovie: MoviePoster?
     @Published var moviePosters = [

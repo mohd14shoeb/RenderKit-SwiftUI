@@ -21,7 +21,7 @@ extension Array: Identifiable where Element: Hashable {
 }
 
 @available(iOS 16.0, *)
-struct RENDERGrid : View {
+struct RenderGrid : View {
     @ObservedObject var data: SampleData
     var itemPerRow: Int
 
@@ -62,7 +62,7 @@ struct RENDERGrid : View {
 struct previewGrid: PreviewProvider {
  
     static var previews: some View {
-        RENDERGrid(data: SampleData(), itemPerRow:2)
+        RenderGrid(data: SampleData(), itemPerRow:2)
     }
 }
 

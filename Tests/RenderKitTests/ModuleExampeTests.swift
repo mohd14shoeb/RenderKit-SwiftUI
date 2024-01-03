@@ -8,7 +8,7 @@
 import Foundation
 import XCTest
 import SwiftUI
-@testable import RENDERKit
+@testable import RenderKit
 
 @available(iOS 16.0, *)
 final class ModuleExampleTests: XCTestCase {
@@ -21,7 +21,7 @@ final class ModuleExampleTests: XCTestCase {
             ModuleWorkFlow(.login),
             ModuleWorkFlow(.jokes)
             ]
-        let tableView =  RENDERTable(myStyle: .plain, workflows: workflow, data: SampleData(), sectionSeperator: .hidden)
+        let tableView =  RenderTable(myStyle: .plain, workflows: workflow, data: SampleData(), sectionSeperator: .hidden)
         XCTAssertNotNil(tableView)
         //When
         //Table Loads

@@ -3,7 +3,7 @@ import Foundation
 import SwiftUI
 
 @available(iOS 16.0, *)
-public struct RENDERTable<T: Identifiable>: View {
+public struct RenderTable<T: Identifiable>: View {
     @State var myStyle: TableListStyle = TableListStyle.plain
     var backgroundColor: Color = Color.blue.opacity(0.1)
     @State var workflows: [T] = []
@@ -18,7 +18,7 @@ public struct RENDERTable<T: Identifiable>: View {
                         Section(
                             content: {
                                 VStack {
-                                    if let flow = flow as? Workflow {
+                                    if let flow = flow as? Workflow  {
                                         flow.view(for: flow.component, data: data)
                                             .allowsHitTesting(true)
                                             .background(.clear)
@@ -29,13 +29,13 @@ public struct RENDERTable<T: Identifiable>: View {
                                             .background(.clear)
                                             .accessibility(label: Text(""))
                                     }
-                                    else if let flow = flow as? ShopWorkFlow {
-                                        flow.view(for: flow.component, data: data)
+                                   else if let flow = flow as? ShopWorkFlow {
+                                       flow.view(for: flow.component, data: data)
                                     }
                                 }
                             })
                         .listRowSeparator(sectionSeperator)
-                        .listRowBackground(backgroundColor)
+                        .listRowBackground(Config().background.opacity(0.2))
                     }
        
                     .listStyle(myStyle.style)

@@ -1,7 +1,7 @@
 import SwiftUI
 
 @available(iOS 16, *)
-public struct RENDERKit {
+public struct RenderKit {
     public init( ) {
     }
     // let table = Table(Components: [Workflow]
@@ -14,7 +14,7 @@ public struct RENDERKit {
                 ScrollView(.vertical) {
                     ViewThatFits {
                         NavigationStack {
-                            RENDERTable( myStyle: .plain, workflows: flows, data: data, sectionSeperator: .hidden)
+                            RenderTable( myStyle: .plain, workflows: flows, data: data, sectionSeperator: .hidden)
                         }.frame(height: r.size.height)
                     }
                 }

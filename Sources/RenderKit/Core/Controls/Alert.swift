@@ -14,20 +14,20 @@ struct Alert: View, Identifiable {
     
     var id: UUID = UUID()
     var text: String
-    var okBtn:() -> Void
-    var cancelBtn:(()->())?
+    var okBtn:() -> ()
+    var cancelBtn:(() -> ())?
     @State var controls: Int = 0
     
     let minH: CGFloat = 140
     let offset: CGFloat = -20
     
-    init(_ text: String, okBtn: @escaping () -> Void) {
+    init(_ text: String, okBtn: @escaping () -> ()) {
         self.text = text
         self.okBtn = okBtn
     }
     
-    // override for optional closure
-    init(_ text: String, okBtn: @escaping () -> Void , cancelBtn: (()->())?) {
+    // override for optional closure with optional init
+    init?(_ text: String, okBtn: @escaping () -> () , cancelBtn: (() -> ())?) {
         self.text = text
         self.okBtn = okBtn
         self.cancelBtn = cancelBtn
@@ -61,8 +61,8 @@ struct Alert: View, Identifiable {
             GeometryReader { r in
                 HStack {
                      
-                     if let action = cancelBtn as? () -> Void {
-                         RENDERButton(id: UUID(), text: "Cancel", image: nil, action: action).foregroundColor(Color.black)
+                    if let action = cancelBtn {
+                         RenderButton(id: UUID(), text: "Cancel", image: nil, action: action).foregroundColor(Color.black)
                              .frame(width: r.size.width / 2 - 20)
                              .onTapGesture {
                                  presentationMode.wrappedValue.dismiss()
@@ -71,8 +71,8 @@ struct Alert: View, Identifiable {
                              }
                      }
                     
-                    if let okaction = okBtn as? () -> Void {
-                        RENDERButton(id: UUID(), text: "OK", image: nil, action: okaction).foregroundColor(Color.black)
+                    if let okaction = okBtn {
+                        RenderButton(id: UUID(), text: "OK", image: nil, action: okaction).foregroundColor(Color.black)
                             .frame(width: self.controls == 1 ? r.size.width / 2 - 20 : r.size.width)
                         .onTapGesture {
                            
@@ -104,7 +104,7 @@ struct AlertPreview : PreviewProvider {
               }
               // optional add cancel)
               // (()->())?
-             ,cancelBtn: {}
+            ,cancelBtn: {}
         )
     }
 }

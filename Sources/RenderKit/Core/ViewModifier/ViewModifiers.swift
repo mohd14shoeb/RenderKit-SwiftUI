@@ -25,6 +25,20 @@ struct NavigationBack: ViewModifier {
 }
 
 @available(iOS 16.0, *)
+struct StartAnimation: ViewModifier {
+    @State var stateAnimation: Bool
+    func body(content: Content) -> some View {
+        content
+            .onAppear() {
+                stateAnimation = true
+            }
+            .onDisappear() {
+                stateAnimation = false
+            }
+    }
+}
+
+@available(iOS 16.0, *)
 struct NavigationBackRoot: ViewModifier {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
  
@@ -49,5 +63,10 @@ extension View {
     func backButtonRoot() -> some View {
         modifier(NavigationBackRoot())
     }
+    
+    func startAnimation(stateAnimation: Bool) -> some View {
+        modifier(StartAnimation(stateAnimation: stateAnimation))
+    }
 }
+
 
