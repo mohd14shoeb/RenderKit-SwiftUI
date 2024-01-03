@@ -90,11 +90,11 @@ struct CartView: View {
                                 RoundedRectangle(cornerRadius: 14)
                                     .stroke(Color.DarkGray, lineWidth: 2)
                             ).padding(10).shadow(radius: 3)
-                    }.offset(y:-30)
+                    }.offset(y:-50)
                
                 }.frame(height: reader.size.height)
            
-        }.background(Config().background)
+        }.background(Config().background).offset(y:-20)
     }
     
 }
