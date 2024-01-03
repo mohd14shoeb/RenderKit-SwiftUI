@@ -59,7 +59,7 @@ struct RenderToolBar: View {
                     toolbar.view(for: toolbar.selectedRoute)
                         .allowsHitTesting(true)
                         .frame(height: reader.size.height-80,alignment: .top)
-                        .background(Config().background)
+                        //.background(Config().background)
                     HStack {
                         ForEach(Routes.allCases) { route in
                   
@@ -68,7 +68,6 @@ struct RenderToolBar: View {
                                 if isSelected(route: route) {
                                     VStack {
                                         Config().background
-                                            
                                     }
                                     .frame(height:3.0)
                                     //.offset(y:-5)
@@ -98,16 +97,17 @@ struct RenderToolBar: View {
                                         Text(route.rawValue)
                                             .foregroundColor(route == toolbar.selectedRoute ? .black : Config().backgroundColor)
                                     }.animation(Animation.linear(duration: 0.5), value: isSelected(route: route))
+                                     
                                 }
                                 .frame(width:reader.size.width / CGFloat(Routes.allCases.count))
                                 }
                
                             }
                         }
-                    }.frame(width: reader.size.width, height: 80, alignment: .bottom) 
+                    }.frame(width: reader.size.width, height: 90, alignment: .bottom)
                         .foregroundColor(.black)
-                        
-                }  .offset(y:-20)
+                        .background(.white)
+                }  .offset(y:-40)
             }
             .background(.white)
         }

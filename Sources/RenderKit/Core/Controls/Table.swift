@@ -35,7 +35,7 @@ public struct RenderTable<T: Identifiable>: View {
                                 }
                             })
                         .listRowSeparator(sectionSeperator)
-                        .listRowBackground(Config().background.opacity(0.2))
+                    //   .listRowBackground(Config().background.opacity(0.2))
                     }
        
                     .listStyle(myStyle.style)

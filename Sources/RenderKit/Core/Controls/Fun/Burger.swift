@@ -92,9 +92,9 @@ struct CartView: View {
                             ).padding(10).shadow(radius: 3)
                     }.offset(y:-40)
                
-                }.frame(height: reader.size.height )
+                }.frame(height: reader.size.height - 50 )
            
-            }
+        }.background(.blue)
     }
     
 }
