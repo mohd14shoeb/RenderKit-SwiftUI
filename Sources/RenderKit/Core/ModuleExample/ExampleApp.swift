@@ -20,6 +20,7 @@ struct RenderToolBarNav: Identifiable, View {
     
     var body: some View {
         view(for: selectedRoute)
+            
     }
    
     @ViewBuilder
@@ -49,6 +50,8 @@ struct RenderToolBarNav: Identifiable, View {
 @available(iOS 16.0, *)
 struct RenderToolBar: View {
     @State var toolbar: RenderToolBarNav = RenderToolBarNav(selectedRoute: .home)
+    @State var animate: Bool = false
+   
     let iconSize = 55.0
     let iconPadding = 0.0
 
@@ -60,6 +63,12 @@ struct RenderToolBar: View {
                         .allowsHitTesting(true)
                         .frame(height: reader.size.height-80,alignment: .top)
                         //.background(Config().background)
+                        .offset(x: animate ? 0 : -400)
+                        .animation(.easeIn.speed(0.55), value: animate)
+                        .onAppear() {
+                            animate = true
+                        }
+
                     HStack {
                         ForEach(Routes.allCases) { route in
                   
@@ -111,7 +120,7 @@ struct RenderToolBar: View {
             }
             .background(.white)
         }
-    
+   
         .ignoresSafeArea()
       
     }
