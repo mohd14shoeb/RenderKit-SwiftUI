@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 public class MoviePoster: Identifiable, Hashable {
     public static func == (lhs: MoviePoster, rhs: MoviePoster) -> Bool {
@@ -25,6 +26,7 @@ public class MoviePoster: Identifiable, Hashable {
 }
 
 public class SampleData: ObservableObject {
+    @Published var segmentedControlView: any View = EmptyView()
     @Published var name: String = "Darren"
     @Published var loginID: String = ""
     @Published var showItem: Bool = false

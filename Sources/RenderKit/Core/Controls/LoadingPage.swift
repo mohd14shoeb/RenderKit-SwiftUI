@@ -25,10 +25,12 @@ struct LoadingPage : View {
                         .opacity(ready ? 1 : 0)
                         .animation(.easeInOut.delay(2.0).speed(0.7), value: ready)
                         .offset(x:-20, y:60)
+                        .allowsHitTesting(true)
                         .frame(width: r.size.width + 40, height: r.size.height - 40)
                 }
             }
         }
+        
         .padding()
         .ignoresSafeArea()
         .onAppear() {
@@ -95,9 +97,10 @@ extension LoadingPage {
     
     fileprivate func progressInd() -> some View {
         return ZStack {
-            //CircleText()
-            //    .offset(x:-8, y: 21)
-            slinky()
+            CircleText()
+               .offset(x:-8, y: 21)
+    
+            //slinky()
             
             Text("Loading...")
                 .font(.headline)

@@ -28,16 +28,26 @@ struct RenderToolBarNav: Identifiable, View {
         switch selectedRoute {
         case .some(.home):
             let workflow = [
-                Workflow(.headerView),
+                //Workflow(.headerView),
                 Workflow(.welcomeButton),
-                Workflow(.menuItem)
+             
             ]
+            
             RenderTable( myStyle: .plain, workflows: workflow, data: data, sectionSeperator: .hidden)
         case .some(.orders):
             let moduleWorkflow = [
                 ModuleWorkFlow(.header)
             ]
-            RenderTable( myStyle: .plain, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden)
+            
+            SegmentedControl(data: SampleData(), shape: Capsule(), sections: [
+                
+                Sections(id:0, title: "Welcome", view: HeaderView()),
+                Sections(id:1, title: "Movies", view:   RenderTable( myStyle: .plain, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden)
+                    .offset(y:-40)),
+                Sections(id:2, title: "Map", view: MapView(location: Location()))
+            ]).offset(y:80)
+            
+          
         case .some(.burgers):
             CartView().offset(y:30)
         default:
@@ -63,13 +73,13 @@ struct RenderToolBar: View {
                         .allowsHitTesting(true)
                         .frame(height: reader.size.height-80,alignment: .top)
                         //.background(Config().background)
-                        .offset(x: animate ? 0 : -400)
+                       // .offset(x: animate ? 0 : -400)
                         .animation(.easeIn.speed(0.55), value: animate)
                         .onAppear() {
                             animate = true
                         }
 
-                    HStack {
+                    HStack(alignment: .center) {
                         ForEach(Routes.allCases) { route in
                   
                             VStack {

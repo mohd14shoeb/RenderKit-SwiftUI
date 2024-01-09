@@ -41,7 +41,7 @@ struct Toast: View {
                 showToast = showToast ? false : true
             }
             .offset(y:showToast ? -0 : -120)
-            .animation(Animation.easeIn(duration: 0.8))
+            .animation(.easeIn, value: showToast)
         }
     }
 }
@@ -51,7 +51,7 @@ struct ToastPreview : PreviewProvider {
         VStack {
             Toast(priority: 0)
             Toast(priority: 1)
-            //Toast(priority: 2)
+            Toast(priority: 2)
         }
     }
 }

@@ -6,7 +6,8 @@ public enum Components: StringLiteralType {
     case welcome = "Welcome Text"
     case welcomeButton = "Welcome Button"
     case headerView = "Lets get started"
-    case menuItem = "Map "
+    case menuItem = "Segment"
+    case menuView = "SegmentView"
     case empty = "nil"
 }
 
@@ -21,6 +22,15 @@ public struct Workflow : View, Identifiable {
     
     public var id = UUID()
     public var component: Components = .welcome
+   
+    var segmentData: SampleData = SampleData()
+    
+    @State var segmentControl: SegmentedControl = SegmentedControl(data: SampleData(), sections: [
+      
+            Sections(id:0, title: "Left", view: HeaderView()),
+            Sections(id:1, title: "Middle", view: WelcomeText(data: SampleData())),
+            Sections(id:2, title: "Right", view: MapView(location: Location()))
+        ])
     
     public var body: some View {
         VStack {}
@@ -37,8 +47,12 @@ public struct Workflow : View, Identifiable {
          case .some(.headerView):
             HeaderView()
         case .some(.menuItem):
-            // Creating a menu Item.
-            MapView(location: Location()).frame(idealHeight:400)
+            SegmentedControl(data: data, sections: [
+              
+                    Sections(id:0, title: "Left", view: HeaderView()),
+                    Sections(id:1, title: "Middle", view: WelcomeText(data: data)),
+                    Sections(id:2, title: "Right", view: MapView(location: Location()))
+                ])
         default:
           EmptyView()
         }
@@ -54,8 +68,8 @@ public struct Workflow : View, Identifiable {
     @ViewBuilder
     public func componentLanding(view: Components?, data: SampleData) -> some View {
         switch view {
-        case .some(.menuItem):
-            CartView()
+       
+           
         default:
             EmptyView()
         }
@@ -68,7 +82,11 @@ extension Workflow: Equatable {
         return lhs.component == rhs.component
     }
     
-    public init(_ component: Components) {
+    public init(_ component: Components ) {
+         
+             
+         
         self.component = component
+        
     }
 }

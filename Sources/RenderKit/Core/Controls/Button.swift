@@ -9,10 +9,11 @@ struct RenderButton: View, Identifiable {
     var text: String?
     var image: Image?
     var shape: (any Shape)? = Rectangle()
+    var width: CGFloat?
     var action: () -> Void
     @State var animate: Bool = false
     var body: some View {
-            ZStack {
+            VStack {
                 Button(action: action) {
                     if text != nil {
                         Text(text ?? "Back")
@@ -29,6 +30,7 @@ struct RenderButton: View, Identifiable {
                         
                     
                 }
+                .frame(width: width)
                 
                 .background(
                     shape?
@@ -65,9 +67,11 @@ struct RenderButton: View, Identifiable {
 
 
 
+
 @available(iOS 16.0, *)
 struct RenderButtonPreview: PreviewProvider {
     static let back = NSLocalizedString("Back", tableName: nil, bundle: Bundle.module, value: "", comment: "")
+    
     static var previews: some View {
         HStack{
             RenderButton(text: "Rectangle") {}
