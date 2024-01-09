@@ -61,6 +61,7 @@ struct RenderToolBarNav: Identifiable, View {
 struct RenderToolBar: View {
     @State var toolbar: RenderToolBarNav = RenderToolBarNav(selectedRoute: .home)
     @State var animate: Bool = false
+    @State var showToast: Bool = true
    
     let iconSize = 55.0
     let iconPadding = 0.0
@@ -69,6 +70,7 @@ struct RenderToolBar: View {
         VStack {
             GeometryReader { reader in
                 VStack {
+                   
                     toolbar.view(for: toolbar.selectedRoute)
                         .allowsHitTesting(true)
                         .frame(height: reader.size.height-80,alignment: .top)
@@ -78,6 +80,7 @@ struct RenderToolBar: View {
                         .onAppear() {
                             animate = true
                         }
+                    Toast(showToast: true, message: "Did you get a new Chuck Norris joke?", priority: 0).offset(y:showToast ? -650 : -800)
 
                     HStack(alignment: .center) {
                         ForEach(Routes.allCases) { route in
@@ -129,7 +132,11 @@ struct RenderToolBar: View {
                 }  .offset(y:-40)
             }
             .background(.white)
+            
         }
+        
+           
+         
    
         .ignoresSafeArea()
       

@@ -17,14 +17,15 @@ struct GridDisplay: View  {
                 if let image = phase.image {
                     image.resizable().scaledToFit().onTapGesture {
                     } // Displays the loaded image.
-                    .animation(Animation.easeIn(duration: 0.5))
+                   // .animation(Animation.easeIn(duration: 0.5))
                 } else if phase.error != nil {
                     Text("Error in loading url for id: \(data.moviePosters[0].id)")
                 } else {
                     Color.blue // Acts as a placeholder.
                 }
              
-                RenderGrid(data: data, itemPerRow:15)
+                RenderGrid(data: data, itemPerRow:5)
+                    .padding(.bottom, 70)
             }
         }
     }

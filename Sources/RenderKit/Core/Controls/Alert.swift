@@ -56,14 +56,14 @@ struct Alert: View, Identifiable {
                     .offset(y:-20)
             }
             .frame(minHeight: minH)
-            .background(Rectangle().fill(Color.gray))
+           
        
             GeometryReader { r in
                 HStack {
                      
                     if let action = cancelBtn {
                          RenderButton(id: UUID(), text: "Cancel", image: nil, action: action).foregroundColor(Color.black)
-                             .frame(width: r.size.width / 2 - 20)
+                             .frame(width: r.size.width / 2 - 16)
                              .onTapGesture {
                                  presentationMode.wrappedValue.dismiss()
                              }.onAppear(){
@@ -73,22 +73,25 @@ struct Alert: View, Identifiable {
                     
                     if let okaction = okBtn {
                         RenderButton(id: UUID(), text: "OK", image: nil, action: okaction).foregroundColor(Color.black)
-                            .frame(width: self.controls == 1 ? r.size.width / 2 - 20 : r.size.width)
+                            .frame(width: self.controls == 1 ? r.size.width / 2 - 16 : r.size.width)
                         .onTapGesture {
                            
                         }
                     }
                 }
-                .padding(20)
-                .background(Rectangle().stroke(.blue, style: StrokeStyle(lineWidth: 1.0)).background(Color.white).cornerRadius(5.0))
+                .padding(8)
+                //.background(Rectangle().stroke(.gray, style: StrokeStyle(lineWidth: 1.0)).background(Color.white).cornerRadius(5.0))
                 .frame(width: r.size.width)
-                .offset(y:offset)
+                .offset(y:offset-20)
             }
             .frame( height: 30)
         }
-        .ignoresSafeArea()
+        .frame(width: 370)
         .padding(.top, 20)
-        .background(Rectangle().fill(Color.gray))
+        .padding(.bottom, 17)
+        .background(Rectangle().fill(Config().backgroundColor.opacity(0.7)))
+        .background(Rectangle().stroke(Config().backgroundBorder, style: StrokeStyle(lineWidth: 2.0)))
+        .cornerRadius(5.0)
     }
 }
 

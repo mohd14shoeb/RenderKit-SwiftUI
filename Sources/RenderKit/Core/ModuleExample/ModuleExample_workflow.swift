@@ -46,13 +46,7 @@ public struct Workflow : View, Identifiable {
             RenderNavigationLink(ModuleWorkFlow(.header), data: data)
          case .some(.headerView):
             HeaderView()
-        case .some(.menuItem):
-            SegmentedControl(data: data, sections: [
-              
-                    Sections(id:0, title: "Left", view: HeaderView()),
-                    Sections(id:1, title: "Middle", view: WelcomeText(data: data)),
-                    Sections(id:2, title: "Right", view: MapView(location: Location()))
-                ])
+    
         default:
           EmptyView()
         }
