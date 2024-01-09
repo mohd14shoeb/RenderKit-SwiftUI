@@ -42,8 +42,8 @@ struct RenderToolBarNav: Identifiable, View {
             SegmentedControl(data: SampleData(), shape: Capsule(), sections: [
                 
                 Sections(id:0, title: "Welcome", view: HeaderView()),
-                Sections(id:1, title: "Movies", view:   RenderTable( myStyle: .plain, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden)
-                    .offset(y:-40)),
+                Sections(id:1, title: "Movies", view:   RenderTable( myStyle: .plain, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden).offset(y:-40)
+                   ),
                 Sections(id:2, title: "Map", view: MapView(location: Location()))
             ]).offset(y:80)
             

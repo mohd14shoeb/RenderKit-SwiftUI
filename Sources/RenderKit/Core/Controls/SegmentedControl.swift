@@ -36,9 +36,7 @@ struct SegmentedControl: View {
                             self.data.segmentedControlView = self.sections[control.id].view
                         }
                             .frame(width: r.size.width / CGFloat(sections.count))
-                            .onTapGesture {
-                                data.segmentedControlView = self.sections[control.id].view
-                            }
+                            
                         button
                     }
                 }

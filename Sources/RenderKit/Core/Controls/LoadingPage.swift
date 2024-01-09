@@ -24,9 +24,9 @@ struct LoadingPage : View {
                     RenderToolBar()
                         .opacity(ready ? 1 : 0)
                         .animation(.easeInOut.delay(2.0).speed(0.7), value: ready)
-                        .offset(x:-20, y:60)
+                        .offset(x:-20, y:-10)
                         .allowsHitTesting(true)
-                        .frame(width: r.size.width + 40, height: r.size.height - 40)
+                        .frame(width: r.size.width + 40, height: r.size.height)
                 }
             }
         }

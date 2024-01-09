@@ -11,8 +11,8 @@ public struct RenderTable<T: Identifiable>: View {
     var sectionSeperator: Visibility
     
     public var body: some View {
-        GeometryReader { r in
-            ViewThatFits  {
+       
+         
                 NavigationStack {
                     List($workflows.wrappedValue) { flow in
                         Section(
@@ -42,8 +42,7 @@ public struct RenderTable<T: Identifiable>: View {
                     .anyView
                 }
                 .backButton()
-            }
-        }
+        
     }
 }
 
