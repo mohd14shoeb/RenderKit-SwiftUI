@@ -44,7 +44,7 @@ public struct ModuleWorkFlow: Equatable, Hashable, Identifiable {
         case .some(.login):
             RenderForm(data: data).frame(idealHeight:200)
         case .some(.jokes):
-            Jokes()
+            Jokes().frame(idealHeight:300)
         case .some(.alert):
                 Alert("This is just here showing a in table placement :)", okBtn: {
                     

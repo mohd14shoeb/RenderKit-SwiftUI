@@ -40,7 +40,7 @@ struct RenderButton: View, Identifiable {
                 .background(Config().background.opacity(Config().backgroundOpacity))
                 .accessibilityLabel(text ?? "Back")
                 .animation(.easeIn(duration: 1.5).speed(1.5), value: animate)
-                .cornerRadius(Config().borderCornerRadius)
+                
                 .mask(shape?.opacity(Config().backgroundOpacity).anyView)
                 .shadow(radius: 5.0)
                 .onAppear() {
@@ -74,7 +74,8 @@ struct RenderButtonPreview: PreviewProvider {
     
     static var previews: some View {
         HStack{
-            RenderButton(text: "Rectangle") {}
+            RenderButton(text: "Rectangle", shape: RoundedRectangle(cornerRadius: 0)) {}
+            RenderButton(text: "Rectangle", shape: RoundedRectangle(cornerRadius: 10)) {}
             RenderButton(text: "Capsule", shape: Capsule()) {}
             RenderButton(image: Image(systemName:"house"), shape: Circle()) {}
         }

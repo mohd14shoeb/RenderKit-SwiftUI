@@ -37,12 +37,18 @@ struct RenderToolBarNav: Identifiable, View {
         case .some(.orders):
             let moduleWorkflow = [
                 ModuleWorkFlow(.header)
+       
+            ]
+            let moduleWorkflow2 = [
+                ModuleWorkFlow(.jokes)
             ]
             
             SegmentedControl(data: SampleData(), shape: Capsule(), sections: [
                 
-                Sections(id:0, title: "Welcome", view: HeaderView()),
-                Sections(id:1, title: "Movies", view:   RenderTable( myStyle: .plain, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden).offset(y:-40)
+                Sections(id:0, title: "Welcome", view: RenderTable( myStyle: .plain, workflows: moduleWorkflow2, data: data, sectionSeperator: .hidden)
+                 
+                        ),
+                Sections(id:1, title: "Movies", view:   RenderTable( myStyle: .plain, workflows: moduleWorkflow, data: data, sectionSeperator: .hidden).navigationBarBackButtonHidden().offset(y:-40)
                    ),
                 Sections(id:2, title: "Map", view: MapView(location: Location()))
             ]).offset(y:80)
@@ -80,7 +86,7 @@ struct RenderToolBar: View {
                         .onAppear() {
                             animate = true
                         }
-                    Toast(showToast: true, message: "Did you get a new Chuck Norris joke?", priority: 0).offset(y:showToast ? -650 : -800)
+                    //Toast(showToast: true, message: "Did you get a new Chuck Norris joke?", priority: 0).offset(y:showToast ? -650 : -800)
 
                     HStack(alignment: .center) {
                         ForEach(Routes.allCases) { route in

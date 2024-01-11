@@ -15,7 +15,12 @@ struct GridDisplay: View  {
         VStack {
             AsyncImage(url: URL(string: data.selectedMovie?.poster ?? data.moviePosters[0].poster )) {  phase in
                 if let image = phase.image {
-                    image.resizable().scaledToFit().onTapGesture {
+                    image.resizable()
+                       // .frame(idealWidth:150)
+                        .scaledToFit()
+                       .mask(RoundedRectangle(cornerRadius: 10.0))
+                      
+                         .onTapGesture {
                     } // Displays the loaded image.
                    // .animation(Animation.easeIn(duration: 0.5))
                 } else if phase.error != nil {
@@ -27,7 +32,8 @@ struct GridDisplay: View  {
                 RenderGrid(data: data, itemPerRow:5)
                     .padding(.bottom, 70)
             }
-        }
+        } .navigationTitle("Amazon Movie Posters")
+        
     }
 }
 

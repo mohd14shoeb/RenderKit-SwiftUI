@@ -46,8 +46,8 @@ struct RenderGrid : View {
                                 } else {
                                     Color.blue // Acts as a placeholder.
                                 }
-                            }.cornerRadius(25.0).opacity(0.7)
-                               
+                            }.mask(RoundedRectangle(cornerRadius: 10.0)).opacity(0.7)
+                            
                         }
                         
                     }

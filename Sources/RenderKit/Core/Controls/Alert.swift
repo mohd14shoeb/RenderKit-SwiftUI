@@ -62,7 +62,9 @@ struct Alert: View, Identifiable {
                 HStack {
                      
                     if let action = cancelBtn {
-                         RenderButton(id: UUID(), text: "Cancel", image: nil, action: action).foregroundColor(Color.black)
+                         RenderButton(id: UUID(), text: "Cancel", image: nil,
+                                      shape: RoundedRectangle(cornerRadius: 10.0), action: action)
+                             .foregroundColor(Color.black)
                              .frame(width: r.size.width / 2 - 16)
                              .onTapGesture {
                                  presentationMode.wrappedValue.dismiss()
@@ -72,7 +74,7 @@ struct Alert: View, Identifiable {
                      }
                     
                     if let okaction = okBtn {
-                        RenderButton(id: UUID(), text: "OK", image: nil, action: okaction).foregroundColor(Color.black)
+                        RenderButton(id: UUID(), text: "OK", image: nil, shape: RoundedRectangle(cornerRadius: 10.0), action: okaction).foregroundColor(Color.black)
                             .frame(width: self.controls == 1 ? r.size.width / 2 - 16 : r.size.width)
                         .onTapGesture {
                            
@@ -80,7 +82,6 @@ struct Alert: View, Identifiable {
                     }
                 }
                 .padding(8)
-                //.background(Rectangle().stroke(.gray, style: StrokeStyle(lineWidth: 1.0)).background(Color.white).cornerRadius(5.0))
                 .frame(width: r.size.width)
                 .offset(y:offset-20)
             }
@@ -89,9 +90,9 @@ struct Alert: View, Identifiable {
         .frame(width: 370)
         .padding(.top, 20)
         .padding(.bottom, 17)
-        .background(Rectangle().fill(Config().backgroundColor.opacity(0.7)))
-        .background(Rectangle().stroke(Config().backgroundBorder, style: StrokeStyle(lineWidth: 2.0)))
-        .cornerRadius(5.0)
+        .background(RoundedRectangle(cornerRadius: 20.0).fill(Config().backgroundColor.opacity(0.7)))
+        .background(RoundedRectangle(cornerRadius: 20.0).stroke(Config().backgroundBorder, style: StrokeStyle(lineWidth: 2.0)))
+       
     }
 }
 

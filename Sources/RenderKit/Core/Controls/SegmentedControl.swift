@@ -75,9 +75,12 @@ struct SegmentedControlTestPreview : PreviewProvider {
     static var previews: some View {
         VStack {
             SegmentedControl(data: SampleData(),sections: sections)
-            SegmentedControl(data: SampleData(),shape: Capsule(), sections: sections)
+                .frame(idealHeight:400)
+            SegmentedControl(data: SampleData(),shape: RoundedRectangle(cornerSize: CGSize(width: 15.0, height: 15.0)), sections: sections)
+                .frame(idealHeight:400)
             // Circle should be invalid
-            //  SegmentedControl(data: SampleData(),shape: Circle())
+             SegmentedControl(data: SampleData(),shape: Capsule(), sections: sections)
+                .frame(idealHeight:400)
         }
     }
 }
