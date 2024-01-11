@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 struct Config {
-    let background = LinearGradient(colors: [.brown.opacity(0.6),.white.opacity(0.5)], startPoint: UnitPoint.top, endPoint: .bottom)
-    let backgroundColor = Color.brown
+    let background = LinearGradient(colors: [.blue.opacity(0.6),.white.opacity(0.5)], startPoint: UnitPoint.top, endPoint: .bottom)
+    let backgroundColor = Color.gray
     let backgroundBorder = Color.black
     let backgroundOpacity = 0.9
    

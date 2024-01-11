@@ -97,7 +97,7 @@ struct SearchBarResults: View {
              }
              
              
-        }.offset(y:-20)
+        }
     }
     
 }
@@ -119,13 +119,13 @@ struct SearchBar: View {
                         TextField("", text: $data.searchText, onCommit: {
                             
                         })
-                        .frame(alignment:.top)
+                       
                         .onTapGesture(perform: {
                             data.searchText = ""
                         })
                         .foregroundColor(Color.white)
                     }
-                    .frame(alignment:.top)
+               
                     .background(RoundedRectangle(cornerRadius: 15)
                         .stroke(Color.black.opacity(0.4), lineWidth: Config().borderWidth)
                         .padding(10)
@@ -137,7 +137,7 @@ struct SearchBar: View {
                    
                   
                 }.padding(10)
-            }
+            } .offset(y:20)
         }
     }
 }
