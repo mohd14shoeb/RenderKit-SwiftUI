@@ -20,7 +20,7 @@ public struct RenderTable<T: Identifiable>: View {
                                 VStack {
                                     if let flow = flow as? Workflow  {
                                         flow.view(for: flow.component, data: data)
-                                            .allowsHitTesting(false)
+                                           
                                           //  .background(.clear)
                                             //.accessibility(label: Text(""))
                                     }

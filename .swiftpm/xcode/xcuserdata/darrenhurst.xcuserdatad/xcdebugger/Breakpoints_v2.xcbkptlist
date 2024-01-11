@@ -30,8 +30,8 @@
             filePath = "Sources/RenderKit/Core/ModuleExample/ModuleExample_workflow2.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "componentLanding(view:data:)"
             landmarkType = "7">
          </BreakpointContent>

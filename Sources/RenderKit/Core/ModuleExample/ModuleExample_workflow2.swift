@@ -15,7 +15,7 @@ public enum ModuleComponents: StringLiteralType, CaseIterable, Identifiable {
     }
     case welcome = "Welcome Text"
     case login = "Login"
-    case header = "Chuck Norris Jokes "
+    case header = "Navigation Link "
     case alert = "Alert"
     case empty = "empty"
     case jokes = "Jokes"
@@ -44,7 +44,9 @@ public struct ModuleWorkFlow: Equatable, Hashable, Identifiable {
         case .some(.login):
             RenderForm(data: data).frame(idealHeight:200)
         case .some(.jokes):
-            Jokes().frame(idealHeight:300)
+            WelcomeText(data: data)
+            //NSFW
+            //Jokes().frame(idealHeight:300)
         case .some(.alert):
                 Alert("This is just here showing a in table placement :)", okBtn: {
                     
@@ -69,7 +71,9 @@ extension ModuleWorkFlow {
         case .some(.login):
             RenderForm(data: data)
         case .some(.header):
-            Jokes()
+            // NSFW Chuck Norris
+            //Jokes()
+            WelcomeText(data: data)
         case .some(.alert):
             let moduleWorkflow = [
                 ModuleWorkFlow(.alert)]
