@@ -27,13 +27,14 @@ struct RenderToolBarNav: Identifiable, View {
     public func view(for selectedRoute: Routes?) -> some View {
         switch selectedRoute {
         case .some(.home):
-            let workflow = [
-                //Workflow(.headerView),
-                Workflow(.welcomeButton),
+            let moduleWorkflow = [ShopWorkFlow(.search)
+                                  ,ShopWorkFlow(.results)
+                                  ]
              
-            ]
+            RenderTable( myStyle: .plain, workflows: moduleWorkflow, data: SampleData(), sectionSeperator: Visibility.hidden).ignoresSafeArea().padding(-24)
+             
             
-            RenderTable( myStyle: .plain, workflows: workflow, data: data, sectionSeperator: .hidden)
+           
         case .some(.orders):
             let moduleWorkflow = [
                 ModuleWorkFlow(.header)
@@ -71,6 +72,10 @@ struct RenderToolBar: View {
    
     let iconSize = 55.0
     let iconPadding = 0.0
+    
+    func house() -> Image {
+        Image(systemName:"house")
+    }
 
     var body: some View {
         VStack {
@@ -107,7 +112,8 @@ struct RenderToolBar: View {
                                     VStack {
                                         switch route {
                                         case .home:
-                                            RenderButton(image:Image(systemName: "house"), shape: Circle(), action: {
+                                            RenderButton(image: house()
+                                                         , shape: Circle(), action: {
                                                 toolbar = RenderToolBarNav(selectedRoute: route)
                                             })
                                            

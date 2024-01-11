@@ -24,6 +24,8 @@ struct RenderButton: View, Identifiable {
                     }
                     image?
                         .foregroundColor(animate ? Config().textColor : Config().textColor.opacity(0.5))
+                        .symbolVariant(.slash)
+                        .symbolRenderingMode(.hierarchical)
                         .animation(.easeIn(duration: 1.0).speed(1.25), value: animate)
                         .padding(Config().padding)
                         

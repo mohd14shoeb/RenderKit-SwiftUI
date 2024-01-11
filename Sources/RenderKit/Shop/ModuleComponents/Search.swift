@@ -78,12 +78,14 @@ struct SearchBarResults: View {
         HStack {
             ForEach(items) { item in
                 if (item.name.contains(data.searchText) || data.searchText == "") {
-                    Image(item.image, bundle: Bundle.module).resizable()
+                    Image(item.image, bundle: Bundle.module)
+                        .resizable()
                         .scaledToFit()
                         .frame(idealWidth:100, idealHeight:100)
                         .opacity(showItem ? 1.0 : 0.0)
                         .offset(y: showItem ? 0.0 : -10)
                         .animation(Animation.easeIn(duration: 1.0), value: showItem)
+                        .mask(RoundedRectangle(cornerRadius: 15))
                        
                 }
             }
@@ -112,7 +114,7 @@ struct SearchBar: View {
                 ZStack {
                     HStack {
                         Image(systemName: "magnifyingglass.circle")
-                            .padding(10)
+                            .padding(20)
                             .foregroundColor(Color.white)
                         TextField("", text: $data.searchText, onCommit: {
                             
@@ -121,23 +123,20 @@ struct SearchBar: View {
                         .onTapGesture(perform: {
                             data.searchText = ""
                         })
-                        
                         .foregroundColor(Color.white)
                     }
                     .frame(alignment:.top)
-                    .background(Rectangle()
-                        .stroke(Color.black, lineWidth: Config().borderWidth)
-                        .cornerRadius(2)
-                        .padding(2)
+                    .background(RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color.black.opacity(0.4), lineWidth: Config().borderWidth)
+                        .padding(10)
                     )
-                    .background(Rectangle()
+                    .background(RoundedRectangle(cornerRadius: 15)
                         .fill(Color.white.opacity(0.1))
-                        .cornerRadius(2)
-                        .padding(2)
+                        .padding(10)
                     ).frame(alignment:.top)
                    
                   
-                }
+                }.padding(10)
             }
         }
     }
