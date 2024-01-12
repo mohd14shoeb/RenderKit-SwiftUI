@@ -27,6 +27,7 @@ public struct ModuleWorkFlow: Equatable, Hashable, Identifiable {
     public var id = UUID()
     public var featureName: String = "ThisFeature"
     public var component: ModuleComponents = .welcome
+    typealias type = Workflow
     
     enum endpoints: StringLiteralType {
         case chuckNorris = "https://api.chucknorris.io/jokes/random"

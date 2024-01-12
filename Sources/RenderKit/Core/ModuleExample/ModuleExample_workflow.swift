@@ -22,7 +22,7 @@ public struct Workflow : View, Identifiable {
     
     public var id = UUID()
     public var component: Components = .welcome
-   
+    typealias type = Workflow
     var segmentData: SampleData = SampleData()
     
     @State var segmentControl: SegmentedControl = SegmentedControl(data: SampleData(), sections: [

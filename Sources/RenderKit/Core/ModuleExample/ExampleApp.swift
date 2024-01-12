@@ -28,10 +28,9 @@ struct RenderToolBarNav: Identifiable, View {
         switch selectedRoute {
         case .some(.home):
             let moduleWorkflow = [ShopWorkFlow(.search)
-                                  ,ShopWorkFlow(.results)
-                                  ]
+                                  ,ShopWorkFlow(.results)]
              
-            RenderTable( myStyle: .plain, workflows: moduleWorkflow, data: SampleData(), sectionSeperator: Visibility.hidden).ignoresSafeArea().padding(-24)
+            RenderTable<ShopWorkFlow>( myStyle: .plain, workflows: moduleWorkflow, data: SampleData(), sectionSeperator: Visibility.hidden).ignoresSafeArea().padding(-24)
              
             
            

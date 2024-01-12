@@ -16,6 +16,7 @@ public struct ShopWorkFlow: Identifiable {
     public var id = UUID()
     public var featureName: String = "SearchFeature"
     public var isEnabled: Bool = true
+    typealias type = Workflow
     
     @State var searchText: String = "What are you looking for?"
     public var component: ShopComponents = .none
