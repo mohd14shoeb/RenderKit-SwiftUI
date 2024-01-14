@@ -93,6 +93,76 @@ struct SearchBarResults: View {
         }
     }
     
+   
+}
+
+@available(iOS 16.0, *)
+struct SearchResults: View {
+    @ObservedObject var data : SampleData
+   
+   @State var showItem: Bool = false
+   @State var isPresenting: Bool = false
+ 
+    
+    var body: some View {
+        VStack(alignment:.leading) {
+            GeometryReader { r in
+                VStack(alignment:.leading) {
+                    let items = data.shopItems
+                    ForEach(items) { item in
+                        if (item.name.contains(data.searchText) || data.searchText == "") {
+                            HStack {
+                                Image(item.image, bundle: Bundle.module)
+                                    .resizable()
+                                    .scaledToFit()
+                                  //  .frame(idealWidth:100, idealHeight:100)
+                                    .opacity(showItem ? 1.0 : 0.0)
+                                    .offset(y: showItem ? 0.0 : -10)
+                                    .animation(Animation.easeIn(duration: 1.0), value: showItem)
+                                    .mask(RoundedRectangle(cornerRadius: 15))
+                                VStack(alignment: .leading) {
+                                    Text("\(item.name)")
+                                    Text("$\(item.price)")
+                                    Text("\(item.description)")
+                                    
+                                }
+                                
+                            }.frame(width:r.size.width, alignment: .leading)
+                                .padding(0)
+                                .onTapGesture {
+                                    isPresenting.toggle()
+                                }
+                        }
+                    }
+                    .frame(width:r.size.width)
+                    .padding(.leading, 10)
+                    .onAppear() {
+                        showItem = true
+                    }
+                    .onDisappear() {
+                        showItem = false
+                    }
+                }.frame(width: r.size.width, height:300, alignment: .top)
+            }.fullScreenCover(isPresented: $isPresenting,
+                                                      onDismiss: {}) {
+                                               VStack {
+                                                 Text("A full-screen modal view.")
+                                                     .font(.title)
+                                                   Text("Tap to Dismiss")
+                                               }
+                                            .onTapGesture {
+                                        isPresenting.toggle()
+                                               }
+                                 //              .foregroundColor(.white)
+                                            .frame(maxWidth: .infinity,
+                                           maxHeight: .infinity)
+                                            .background(Color.blue)
+                                  .ignoresSafeArea(edges: .all)
+                                          }
+        }
+    }
+    
+   
 }
 
 @available(iOS 16.0, *)
@@ -119,11 +189,11 @@ struct SearchBar: View {
                         .foregroundColor(Color.white)
                     }
                
-                    .background(RoundedRectangle(cornerRadius: 15)
+                    .background(Config().buttonShape
                         .stroke(Color.black.opacity(0.4), lineWidth: Config().borderWidth)
                         .padding(10)
                     )
-                    .background(RoundedRectangle(cornerRadius: 15)
+                    .background(Config().buttonShape
                         .fill(Color.white.opacity(0.1))
                         .padding(10)
                     ).frame(alignment:.top)
@@ -137,12 +207,14 @@ struct SearchBar: View {
 
 @available(iOS 16.0, *)
 struct SearchBarPreview: PreviewProvider {
- 
+    static var data: SampleData = SampleData()
     static var previews : some View {
        ViewThatFits {
             GeometryReader { r in
                 VStack {
-                    SearchBar(data: SampleData())
+                    SearchBar(data: data)
+                    //SearchBarResults(data: data)
+                    SearchResults(data: data)
                 .frame(idealWidth:r.size.width)
                 }
    

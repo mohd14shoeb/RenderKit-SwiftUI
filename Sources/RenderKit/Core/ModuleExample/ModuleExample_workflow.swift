@@ -16,22 +16,16 @@ public struct ID<T>: Equatable {
     private let value = UUID()
 }
 
- 
+
+struct GenericEnum<T> {
+    let type = T.self
+}
+
 @available(iOS 16.0, *)
 public struct Workflow : View, Identifiable {
-    
     public var id = UUID()
-    public var component: Components = .welcome
-    typealias type = Workflow
-    var segmentData: SampleData = SampleData()
-    
-    @State var segmentControl: SegmentedControl = SegmentedControl(data: SampleData(), sections: [
-      
-            Sections(id:0, title: "Left", view: HeaderView()),
-            Sections(id:1, title: "Middle", view: WelcomeText(data: SampleData())),
-            Sections(id:2, title: "Right", view: MapView(location: Location()))
-        ])
-    
+    public var component: Components
+ 
     public var body: some View {
         VStack {}
     }

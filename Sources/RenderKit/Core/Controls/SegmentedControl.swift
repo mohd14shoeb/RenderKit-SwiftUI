@@ -21,7 +21,7 @@ struct Sections:  Identifiable {
 @available(iOS 16.0, *)
 struct SegmentedControl: View {
     @ObservedObject var data: SampleData
-    var shape: (any Shape)? = Rectangle()
+    var shape: (any Shape)? = Config().buttonShape
     @State var sections: [Sections]
     
     var body: some View {

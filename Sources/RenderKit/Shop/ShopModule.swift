@@ -34,9 +34,15 @@ public struct ShopWorkFlow: Identifiable {
     public func view(for destination: ShopComponents?, data: SampleData) -> some View {
         switch destination {
         case .some(.search):
-            SearchBar(data: data).frame(idealHeight:350)
-        case .some(.results):
-            SearchBarResults(data: data)
+            VStack {
+                SearchBar(data: data).frame(idealHeight:450)
+               // SearchBarResults(data: data).offset(y:160)
+                SearchResults(data: data).offset(y:160).padding(.leading,20)
+            }.padding(.bottom,300)
+        //case .some(.results):
+          //  SearchBarResults(data: data).frame(idealHeight:350)
+          //  SearchResults(data: data).frame(idealHeight:350)
+          // .offset(y:300)
         default:
             EmptyView()
         }
@@ -62,7 +68,7 @@ struct ShopPreviewComponent: PreviewProvider {
                               ,ShopWorkFlow(.results)
                               ]
         VStack {
-            RenderTable( myStyle: TableListStyle.grouped, workflows: moduleWorkflow, data: SampleData(), sectionSeperator: Visibility.visible).ignoresSafeArea()
+            RenderTable( myStyle: TableListStyle.grouped, workflows: moduleWorkflow, data: SampleData(), sectionSeperator: Visibility.hidden).ignoresSafeArea()
         }
     }
 }

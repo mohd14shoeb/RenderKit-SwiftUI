@@ -43,7 +43,7 @@ struct RenderToolBarNav: Identifiable, View {
                 ModuleWorkFlow(.jokes)
             ]
             
-            SegmentedControl(data: SampleData(), shape: Capsule(), sections: [
+            SegmentedControl(data: SampleData(), shape: Rectangle(), sections: [
                 
                 Sections(id:0, title: "Welcome", view: RenderTable( myStyle: .plain, workflows: moduleWorkflow2, data: data, sectionSeperator: .hidden)
                  
@@ -86,7 +86,7 @@ struct RenderToolBar: View {
                         .frame(height: reader.size.height-80,alignment: .top)
                         //.background(Config().background)
                        // .offset(x: animate ? 0 : -400)
-                        .animation(.easeIn.speed(0.55), value: animate)
+                       // .animation(.easeIn.speed(0.55), value: animate)
                         .onAppear() {
                             animate = true
                         }
@@ -112,17 +112,17 @@ struct RenderToolBar: View {
                                         switch route {
                                         case .home:
                                             RenderButton(image: house()
-                                                         , shape: Circle(), action: {
+                                                         , shape: Config().buttonShape, action: {
                                                 toolbar = RenderToolBarNav(selectedRoute: route)
                                             })
                                            
                                         case .orders:
-                                            RenderButton(image:Image(systemName: "menucard"), shape: Circle(), action: {
+                                            RenderButton(image:Image(systemName: "menucard"), shape: Config().buttonShape, action: {
                                                 toolbar = RenderToolBarNav(selectedRoute: route)
                                             })
                                           
                                         case .burgers:
-                                            RenderButton(image:Image(systemName: "burst"), shape: Circle(), action: {
+                                            RenderButton(image:Image(systemName: "burst"), shape:  Config().buttonShape, action: {
                                                 toolbar = RenderToolBarNav(selectedRoute: route)
                                             })
                                           
@@ -137,7 +137,7 @@ struct RenderToolBar: View {
                
                             }
                         }
-                    }.frame(width: reader.size.width, height: 90, alignment: .bottom)
+                    }.frame(width: reader.size.width, height: 90, alignment: .top)
                         .foregroundColor(.black)
                         .background(.white)
                 }  .offset(y:-40)

@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 struct Config {
-    let background = LinearGradient(colors: [.blue.opacity(0.6),.white.opacity(0.5)], startPoint: UnitPoint.top, endPoint: .bottom)
+    let background = //Color.clear
+    LinearGradient(colors: [.blue.opacity(0.2),.white.opacity(0.4)], startPoint: UnitPoint.top, endPoint: .bottom)
     let backgroundColor = Color.gray
     let backgroundBorder = Color.black
     let backgroundOpacity = 0.9
@@ -20,5 +21,13 @@ struct Config {
     let padding = 15.0
     let textColor = Color.black
     let textColorOff = Color.white
+    
+    // This will effect all the RenderButton and Segment and Search Control
+    // if Circle() segmentControl is forced to Rectangle() by passing Shape
+    let buttonShape =
+    //Rectangle()
+    //Circle() //Todo fix segementControl
+    Capsule()
+    //RoundedRectangle(cornerRadius: 10.0)
   
 }

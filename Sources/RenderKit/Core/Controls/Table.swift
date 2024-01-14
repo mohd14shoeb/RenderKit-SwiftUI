@@ -10,21 +10,7 @@ public struct RenderTable<T: Identifiable>: View {
     @ObservedObject var data: SampleData
     var sectionSeperator: Visibility
     
-   func render(flow: Workflow) -> some View {
-        flow.view(for: flow.component, data: data)
-       /* if let flow = flow as? Workflow  {
-            flow.view(for: flow.component, data: data)
-        }
-        else if let flow = flow as? ModuleWorkFlow {
-            flow.view(for: flow.component, data: data)
-                .background(.clear)
-                .accessibility(label: Text(""))
-        }
-        else if let flow = flow as? ShopWorkFlow {
-            flow.view(for: flow.component, data: data)
-        }*/
-    }
-    
+   
    public var body: some View {
         NavigationStack {
             List($workflows.wrappedValue) { flow in
@@ -57,6 +43,30 @@ public struct RenderTable<T: Identifiable>: View {
         .backButton()
     }
 }
+
+@available(iOS 16.0, *)
+extension RenderTable {
+    func render(flow: Workflow) -> some View {
+        flow.view(for: flow.component, data: data)
+    }
+    func render(flow: ShopWorkFlow) -> some View {
+        flow.view(for: flow.component, data: data)
+    }
+       /* if let flow = flow as? Workflow  {
+            flow.view(for: flow.component, data: data)
+        }
+        else if let flow = flow as? ModuleWorkFlow {
+            flow.view(for: flow.component, data: data)
+                .background(.clear)
+                .accessibility(label: Text(""))
+        }
+        else if let flow = flow as? ShopWorkFlow {
+            flow.view(for: flow.component, data: data)
+        }*/
+    
+    
+}
+
  
 extension View {
     var anyView: AnyView {

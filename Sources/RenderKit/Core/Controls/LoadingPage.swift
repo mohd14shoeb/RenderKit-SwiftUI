@@ -11,6 +11,7 @@ struct LoadingPage : View {
     
     var body: some View {
         VStack {
+           
             GeometryReader { r in
                 ZStack {
                     logo()

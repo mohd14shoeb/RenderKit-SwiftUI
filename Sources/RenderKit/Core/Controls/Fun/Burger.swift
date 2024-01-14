@@ -45,13 +45,11 @@ struct CartView: View {
                 VStack {
                     HStack {
                         ForEach (0..<burgers.count,  id: \.self) { i in
-                            Button(burgers[i].name, action: {
+                            RenderButton(text:burgers[i].name, shape: Config().buttonShape, action: {
                                 self.burger = Burger(burger: burgers[i])
-                            }).padding(10).overlay(RoundedRectangle(cornerRadius: 14)
-                                .stroke(Color.DarkGray, lineWidth: 2)).frame(height:50).offset(y:60).ignoresSafeArea().shadow(radius: 3)
-                                .foregroundColor(.white)
+                            }).padding(10)
                         }
-                    }.zIndex(5).padding(10)
+                    }.zIndex(5).padding(10).offset(y:50)
                     Text("Burger Type: \(burger.name)")
                         .offset(y:60)
                     ZStack {
@@ -86,11 +84,11 @@ struct CartView: View {
                             }   .tint(Config().backgroundColor)
                                 .onTapGesture(perform: { burger.ketchup = burger.ketchup ? false : true}).shadow(radius: 3)
                         }.font(.Large).padding(30)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 14)
-                                    .stroke(Color.DarkGray, lineWidth: 2)
-                            ).padding(10).shadow(radius: 3)
-                    }.offset(y:-50)
+                         //   .overlay(
+                              //  RoundedRectangle(cornerRadius: 14)
+                                 //   .stroke(Color.DarkGray, lineWidth: 2)
+                         //   ).padding(10).shadow(radius: 3)
+                    } 
                
                 }.frame(height: reader.size.height)
            
