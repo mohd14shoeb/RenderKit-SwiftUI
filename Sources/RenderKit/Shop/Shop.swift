@@ -11,8 +11,8 @@ struct SearchProduct: View {
         RenderTable(myStyle: .plain, workflows: workflow, data: SampleData(), sectionSeperator: Visibility.hidden)
             .ignoresSafeArea()
             .padding(-24)
-            .background(Color.blue)
-    }
+            .offset(y:-40)
+            }
 }
 
 @available(iOS 16.0, *)

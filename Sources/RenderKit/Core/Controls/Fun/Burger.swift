@@ -39,13 +39,14 @@ struct CartView: View {
     
     func showBurgerOptions() -> any View {
         @State var scale = 0.9
+        let theme = Config(Basic()).currentTheme()
         return
         GeometryReader { reader in
            
                 VStack {
                     HStack {
                         ForEach (0..<burgers.count,  id: \.self) { i in
-                            RenderButton(text:burgers[i].name, shape: Config().buttonShape, action: {
+                            RenderButton(text:burgers[i].name, shape: theme.buttonShape, action: {
                                 self.burger = Burger(burger: burgers[i])
                             }).padding(10)
                         }
@@ -69,19 +70,19 @@ struct CartView: View {
                     VStack {
                         LazyVStack {
                             Toggle("Tomatoes: ", isOn: $burger.tomatoes)
-                                .tint(Config().backgroundColor)
+                                .tint(theme.backgroundColor)
                                 .onTapGesture(perform: { burger.tomatoes = burger.tomatoes ? false : true})
                                 .shadow(radius: 3).tint(.blue)
                             Toggle("Onions: ", isOn: $burger.onions)
-                                .tint(Config().backgroundColor)
+                                .tint(theme.backgroundColor)
                                 .onTapGesture(perform: { burger.onions = burger.onions ? false : true}).shadow(radius: 3).tint(.blue)
                             Toggle("Lettuce: ", isOn: $burger.lettuce)
-                                .tint(Config().backgroundColor)
+                                .tint(theme.backgroundColor)
                                 .onTapGesture(perform: { burger.lettuce = burger.lettuce ? false : true}).shadow(radius: 3).tint(.blue)
                             Toggle(isOn: $burger.ketchup){
                                 Text("Ketchup")
                                 
-                            }   .tint(Config().backgroundColor)
+                            }   .tint(theme.backgroundColor)
                                 .onTapGesture(perform: { burger.ketchup = burger.ketchup ? false : true}).shadow(radius: 3)
                         }.font(.Large).padding(30)
                          //   .overlay(
@@ -92,7 +93,7 @@ struct CartView: View {
                
                 }.frame(height: reader.size.height)
            
-        }.background(Config().background).offset(y:-20)
+        }.background(theme.background).offset(y:-20)
     }
     
 }

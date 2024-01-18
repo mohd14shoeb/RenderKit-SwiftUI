@@ -38,8 +38,6 @@ struct Animations {
         //animation(.interpolatingSpring(stiffness: 50, damping: 1))
 }
 
-
-// Standard View   VStack, HStack
 struct Standard: ViewModifier {
     func body(content: Content) -> some View {
         content

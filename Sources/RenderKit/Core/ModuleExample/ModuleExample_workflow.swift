@@ -21,15 +21,24 @@ struct GenericEnum<T> {
     let type = T.self
 }
 
+public enum WorkflowComponents {
+    case Components
+}
+
 @available(iOS 16.0, *)
-public struct Workflow : View, Identifiable {
+protocol Flow {
+    var id: UUID { get set }
+    
+}
+
+
+
+
+@available(iOS 16.0, *)
+public struct Workflow : Identifiable {
     public var id = UUID()
     public var component: Components
  
-    public var body: some View {
-        VStack {}
-    }
-  
     //Table View
     @ViewBuilder
     public func view(for destination: Components?, data: SampleData) -> some View {

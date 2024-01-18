@@ -35,9 +35,10 @@ public struct ShopWorkFlow: Identifiable {
         switch destination {
         case .some(.search):
             VStack {
-                SearchBar(data: data).frame(idealHeight:450)
+                SearchBar(data: data).frame(idealHeight:650)
                // SearchBarResults(data: data).offset(y:160)
-                SearchResults(data: data).offset(y:160).padding(.leading,20)
+                SearchResults(data: data).offset(y:30).padding(.leading,20)
+                    .frame(height: .infinity)
             }.padding(.bottom,300)
         //case .some(.results):
           //  SearchBarResults(data: data).frame(idealHeight:350)

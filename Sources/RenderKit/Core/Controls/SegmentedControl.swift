@@ -21,7 +21,8 @@ struct Sections:  Identifiable {
 @available(iOS 16.0, *)
 struct SegmentedControl: View {
     @ObservedObject var data: SampleData
-    var shape: (any Shape)? = Config().buttonShape
+    let theme = Config(Basic()).currentTheme()
+    var shape: (any Shape)? = Config(Basic()).buttonShape
     @State var sections: [Sections]
     
     var body: some View {
@@ -74,7 +75,7 @@ struct SegmentedControlTestPreview : PreviewProvider {
     
     static var previews: some View {
         VStack {
-            SegmentedControl(data: SampleData(),sections: sections)
+            SegmentedControl(data: SampleData(),shape: Rectangle(), sections: sections)
                 .frame(idealHeight:400)
             SegmentedControl(data: SampleData(),shape: RoundedRectangle(cornerSize: CGSize(width: 15.0, height: 15.0)), sections: sections)
                 .frame(idealHeight:400)

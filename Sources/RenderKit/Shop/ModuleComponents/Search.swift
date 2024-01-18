@@ -102,24 +102,87 @@ struct SearchResults: View {
    
    @State var showItem: Bool = false
    @State var isPresenting: Bool = false
- 
+   @State var selectedRow: Item = Item(name: "", description: "nothing", size: "", itemColor: "", price: "", image: "", showItem: false)
+    let transition: AnyTransition = .move(edge: .leading)
+    
+    
+    fileprivate func DetailView() -> some View {
+        VStack {
+            GeometryReader { r in
+                VStack {
+                    ZStack {
+                        Image(selectedRow.image, bundle: Bundle.module)
+                            .resizable()
+                            .scaledToFit()
+                        
+                        HStack {
+                            RenderButton(image:Image(systemName: "house"), shape: Circle(), width: r.size.width) {
+                                isPresenting.toggle()
+                            }
+                            .frame(width: r.size.width)
+                            .offset(x:50, y:-150)
+                            
+                            RenderButton(image:Image(systemName: "cart"), shape: Circle(), width: r.size.width) {
+                            }
+                            .frame(width: r.size.width)
+                            .offset(x:-68, y:-150)
+                        }.frame(height:100)
+                    }
+                    
+                  
+                    VStack {
+                        HStack {
+                            Image(selectedRow.image, bundle: Bundle.module)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height:100)
+                            VStack(alignment: .leading, spacing: 1.0) {
+                                Text(selectedRow.description.uppercased() )
+                                Text("$\(selectedRow.price)")
+                                    .font(.Large)
+                                Text(selectedRow.name ).opacity(0.5)
+                            }
+                        }
+                        
+                        RenderButton(text:"Add To Cart", image: Image(systemName: "cart"), shape: RoundedRectangle(cornerSize: CGSize(width: 15, height: 15)), width: r.size.width - 80) {
+                        }.symbolVariant(.fill)
+                        
+                        RenderButton(text:"Buy Now", shape: RoundedRectangle(cornerSize: CGSize(width: 15, height: 15)), width: r.size.width - 80) {
+                        }
+                    }.offset(x:-8, y:30)
+                }
+                    
+            }
+            .offset(x:-210)
+            .padding(-20)
+            .foregroundColor(.black)
+            .frame(maxWidth: .infinity,
+                   maxHeight: .infinity)
+            .ignoresSafeArea(edges: .all)
+            
+        }
+        
+    }
     
     var body: some View {
         VStack(alignment:.leading) {
             GeometryReader { r in
                 VStack(alignment:.leading) {
                     let items = data.shopItems
+                    
                     ForEach(items) { item in
                         if (item.name.contains(data.searchText) || data.searchText == "") {
                             HStack {
+                                
                                 Image(item.image, bundle: Bundle.module)
                                     .resizable()
+                                    .frame(width:100, height:100)
                                     .scaledToFit()
-                                  //  .frame(idealWidth:100, idealHeight:100)
                                     .opacity(showItem ? 1.0 : 0.0)
                                     .offset(y: showItem ? 0.0 : -10)
                                     .animation(Animation.easeIn(duration: 1.0), value: showItem)
                                     .mask(RoundedRectangle(cornerRadius: 15))
+                                
                                 VStack(alignment: .leading) {
                                     Text("\(item.name)")
                                     Text("$\(item.price)")
@@ -127,15 +190,19 @@ struct SearchResults: View {
                                     
                                 }
                                 
-                            }.frame(width:r.size.width, alignment: .leading)
-                                .padding(0)
-                                .onTapGesture {
-                                    isPresenting.toggle()
-                                }
+                            }
+                            .frame(width:r.size.width, alignment: .leading)
+                            .padding(10)
+                            .padding(.leading, 10)
+                            .background(isPresenting ? .clear : .gray.opacity(0.2))
+                            .onTapGesture {
+                                selectedRow = item
+                                isPresenting.toggle()
+                            }
                         }
                     }
                     .frame(width:r.size.width)
-                    .padding(.leading, 10)
+                   
                     .onAppear() {
                         showItem = true
                     }
@@ -143,23 +210,23 @@ struct SearchResults: View {
                         showItem = false
                     }
                 }.frame(width: r.size.width, height:300, alignment: .top)
-            }.fullScreenCover(isPresented: $isPresenting,
-                                                      onDismiss: {}) {
-                                               VStack {
-                                                 Text("A full-screen modal view.")
-                                                     .font(.title)
-                                                   Text("Tap to Dismiss")
-                                               }
-                                            .onTapGesture {
-                                        isPresenting.toggle()
-                                               }
-                                 //              .foregroundColor(.white)
-                                            .frame(maxWidth: .infinity,
-                                           maxHeight: .infinity)
-                                            .background(Color.blue)
-                                  .ignoresSafeArea(edges: .all)
-                                          }
+                    .onAppear() {
+                        data.searchText = "Hood"
+                    }
+            }
+           
         }
+        .fullScreenCover(isPresented: $isPresenting, onDismiss: {}) {
+            DetailView()
+        }
+   
+        .transaction({ transaction in transaction.disablesAnimations = true })
+
+        .animation(.easeIn(duration: 0.5), value: isPresenting)       .transition(transition)
+
+      //  .transition(transition)
+      //  .background(.clear)
+    
     }
     
    
@@ -168,39 +235,41 @@ struct SearchResults: View {
 @available(iOS 16.0, *)
 struct SearchBar: View {
     @ObservedObject var data : SampleData
+    let theme = Config(Basic()).currentTheme()
     var body: some View {
         VStack {
             GeometryReader { r in
                 ZStack {
                     ImageScroll()
                 }
-                ZStack {
-                    HStack {
-                        Image(systemName: "magnifyingglass.circle")
-                            .padding(20)
-                            .foregroundColor(Color.white)
-                        TextField("", text: $data.searchText, onCommit: {
-                            
-                        })
-                       
-                        .onTapGesture(perform: {
-                            data.searchText = ""
-                        })
-                        .foregroundColor(Color.white)
-                    }
-               
-                    .background(Config().buttonShape
-                        .stroke(Color.black.opacity(0.4), lineWidth: Config().borderWidth)
-                        .padding(10)
-                    )
-                    .background(Config().buttonShape
-                        .fill(Color.white.opacity(0.1))
-                        .padding(10)
-                    ).frame(alignment:.top)
+                ZStack (alignment: .top) {
                    
-                  
-                }.padding(10)
-            } .offset(y:20)
+                        HStack {
+                            Image(systemName: "magnifyingglass.circle")
+                                .padding(20)
+                                .foregroundColor(Color.white)
+                            
+                            TextField("", text: $data.searchText, onCommit: {
+                                
+                            })
+                            
+                            .onTapGesture(perform: {
+                                data.searchText = ""
+                            })
+                            .foregroundColor(Color.white)
+                        }
+                        .background(theme.buttonShape
+                            .stroke(Color.black.opacity(0.4), lineWidth: theme.borderWidth)
+                            .padding(10).anyView
+                        )
+                        .background(theme.buttonShape
+                            .fill(Color.white.opacity(0.1))
+                            .padding(10).anyView
+                        ).frame(alignment:.top)
+                        
+                    
+                }.padding(10).offset(y:5)
+            }
         }
     }
 }
@@ -216,7 +285,7 @@ struct SearchBarPreview: PreviewProvider {
                     //SearchBarResults(data: data)
                     SearchResults(data: data)
                 .frame(idealWidth:r.size.width)
-                }
+                }.padding(-12)
    
             }
         }

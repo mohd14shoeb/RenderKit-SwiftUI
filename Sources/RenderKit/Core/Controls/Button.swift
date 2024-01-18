@@ -12,41 +12,48 @@ struct RenderButton: View, Identifiable {
     var width: CGFloat?
     var action: () -> Void
     @State var animate: Bool = false
+    
+    let theme = Config(Basic()).currentTheme()
     var body: some View {
             VStack {
                 Button(action: action) {
                     if text != nil {
                         Text(text ?? "Back")
-                            .foregroundColor(animate ? Config().textColor : Config().textColor.opacity(0.5))
+                            .foregroundColor(animate ? theme.textColor : theme.textColor.opacity(0.5))
                             .animation(.easeIn(duration: 1.0).speed(1.25), value: animate)
-                            .padding(Config().padding)
+                            .padding(theme.padding)
                              
                     }
                     image?
-                        .foregroundColor(animate ? Config().textColor : Config().textColor.opacity(0.5))
-                        .symbolVariant(.slash)
+                        .foregroundColor(animate ? theme.textColor : theme.textColor.opacity(0.5))
+                    //.symbolVariant(.fill)
+                        .symbolVariant(animate ? .none : .fill)
                         .symbolRenderingMode(.hierarchical)
                         .animation(.easeIn(duration: 1.0).speed(1.25), value: animate)
-                        .padding(Config().padding)
-                        
-                        
+                        .padding(theme.padding)
                     
                 }
                 .frame(width: width)
                 
                 .background(
                     shape?
-                        .stroke(Config().backgroundBorder, style: StrokeStyle(lineWidth: Config().borderWidth))
-                        .opacity(Config().backgroundOpacity)
+                        .stroke(theme.backgroundBorder, style: StrokeStyle(lineWidth: theme.borderWidth))
+                        .opacity(theme.backgroundOpacity)
                         .anyView)
-                .background(Config().background.opacity(Config().backgroundOpacity))
+                .background(theme.background.opacity(theme.backgroundOpacity))
                 .accessibilityLabel(text ?? "Back")
                 .animation(.easeIn(duration: 1.5).speed(1.5), value: animate)
                 
-                .mask(shape?.opacity(Config().backgroundOpacity).anyView)
+                .mask(shape?.opacity(theme.backgroundOpacity).anyView)
                 .shadow(radius: 5.0)
                 .onAppear() {
                      animate = true
+                }
+                .onTapGesture {
+                    animate = false
+                }
+                .onTapGesture {
+                   // animate.toggle()
                 }
                
             }

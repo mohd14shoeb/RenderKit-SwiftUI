@@ -69,6 +69,7 @@ struct RenderToolBar: View {
     @State var animate: Bool = false
     @State var showToast: Bool = true
    
+    let theme = Config(Basic()).currentTheme()
     let iconSize = 55.0
     let iconPadding = 0.0
     
@@ -99,7 +100,7 @@ struct RenderToolBar: View {
                               
                                 if isSelected(route: route) {
                                     VStack {
-                                        Config().background
+                                        theme.background
                                     }
                                     .frame(height:3.0)
                                     //.offset(y:-5)
@@ -112,23 +113,23 @@ struct RenderToolBar: View {
                                         switch route {
                                         case .home:
                                             RenderButton(image: house()
-                                                         , shape: Config().buttonShape, action: {
+                                                         , shape: theme.buttonShape, action: {
                                                 toolbar = RenderToolBarNav(selectedRoute: route)
                                             })
                                            
                                         case .orders:
-                                            RenderButton(image:Image(systemName: "menucard"), shape: Config().buttonShape, action: {
+                                            RenderButton(image:Image(systemName: "menucard"), shape: theme.buttonShape, action: {
                                                 toolbar = RenderToolBarNav(selectedRoute: route)
                                             })
                                           
                                         case .burgers:
-                                            RenderButton(image:Image(systemName: "burst"), shape:  Config().buttonShape, action: {
+                                            RenderButton(image:Image(systemName: "burst"), shape:  theme.buttonShape, action: {
                                                 toolbar = RenderToolBarNav(selectedRoute: route)
                                             })
                                           
                                         }
                                         Text(route.rawValue)
-                                            .foregroundColor(route == toolbar.selectedRoute ? .black : Config().backgroundColor)
+                                            .foregroundColor(route == toolbar.selectedRoute ? .black : theme.backgroundColor)
                                     }.animation(Animation.linear(duration: 0.5), value: isSelected(route: route))
                                      
                                 }
@@ -140,7 +141,7 @@ struct RenderToolBar: View {
                     }.frame(width: reader.size.width, height: 90, alignment: .top)
                         .foregroundColor(.black)
                         .background(.white)
-                }  .offset(y:-40)
+                }  .offset(y:-25)
             }
             .background(.white)
             

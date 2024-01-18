@@ -20,7 +20,7 @@ struct Alert: View, Identifiable {
     
     let minH: CGFloat = 140
     let offset: CGFloat = -20
-    
+    let theme = Config(Basic()).currentTheme()
     init(_ text: String, okBtn: @escaping () -> ()) {
         self.text = text
         self.okBtn = okBtn
@@ -90,8 +90,8 @@ struct Alert: View, Identifiable {
         .frame(width: 370)
         .padding(.top, 20)
         .padding(.bottom, 17)
-        .background(RoundedRectangle(cornerRadius: 20.0).fill(Config().backgroundColor.opacity(0.7)))
-        .background(RoundedRectangle(cornerRadius: 20.0).stroke(Config().backgroundBorder, style: StrokeStyle(lineWidth: 2.0)))
+        .background(RoundedRectangle(cornerRadius: 20.0).fill(Config( Basic()).backgroundColor.opacity(0.7)))
+        .background(RoundedRectangle(cornerRadius: 20.0).stroke(theme.backgroundBorder, style: StrokeStyle(lineWidth: 2.0)))
        
     }
 }
