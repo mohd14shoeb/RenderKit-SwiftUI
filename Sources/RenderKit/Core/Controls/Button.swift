@@ -17,13 +17,7 @@ struct RenderButton: View, Identifiable {
     var body: some View {
             VStack {
                 Button(action: action) {
-                    if text != nil {
-                        Text(text ?? "Back")
-                            .foregroundColor(animate ? theme.textColor : theme.textColor.opacity(0.5))
-                            .animation(.easeIn(duration: 1.0).speed(1.25), value: animate)
-                            .padding(theme.padding)
-                             
-                    }
+                 
                     image?
                         .foregroundColor(animate ? theme.textColor : theme.textColor.opacity(0.5))
                     //.symbolVariant(.fill)
@@ -31,7 +25,13 @@ struct RenderButton: View, Identifiable {
                         .symbolRenderingMode(.hierarchical)
                         .animation(.easeIn(duration: 1.0).speed(1.25), value: animate)
                         .padding(theme.padding)
-                    
+                    if text != nil {
+                        Text(text ?? "Back")
+                            .foregroundColor(animate ? theme.textColor : theme.textColor.opacity(0.5))
+                            .animation(.easeIn(duration: 1.0).speed(1.25), value: animate)
+                            .padding(theme.padding)
+                             
+                    }
                 }
                 .frame(width: width)
                 

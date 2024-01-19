@@ -96,18 +96,53 @@ extension LoadingPage {
         }
     }
     
+    fileprivate func emitter() ->  some View {
+        return ForEach(0..<72) { index in
+            ZStack {
+                Circle()
+                // storke or fill
+                    .fill(.white.opacity(0.4))
+                    .shadow(radius: 1.5)
+                    .foregroundColor(.gray.opacity(0.3))
+                
+                    .frame(width:10, height: 100)
+                // HOW MUCH COIL
+                    .rotationEffect(pathAnimation ? Angle(degrees: Double(-5 * index)) : Angle(degrees: Double(5 * index)), anchor: .topTrailing)
+                    .offset(x: -10,y:60).opacity(0.4)
+                    .animation(.easeIn.speed(0.17).repeatForever(autoreverses: false), value: pathAnimation)
+                Circle()
+                // storke or fill
+                   .stroke(lineWidth: 5)
+                   .fill(.blue.opacity(0.7))
+                   // .shadow(color:.gray, radius: 1.5)
+                    .foregroundColor(.gray.opacity(0.3))
+                
+                    .frame(width:10, height: 100)
+                // HOW MUCH COIL
+                    .rotationEffect(pathAnimation ? Angle(degrees: Double(-5 * index)) : Angle(degrees: Double(5 * index)), anchor: .top)
+                    .offset(x: -10,y:60).opacity(0.4)
+                    .animation(.easeIn.speed(0.17).repeatForever(autoreverses: false), value: pathAnimation)
+            }
+           
+            
+        }
+    }
+    
     fileprivate func progressInd() -> some View {
         return ZStack {
-            CircleText()
-               .offset(x:-8, y: 21)
-    
-            //slinky()
-            
+           // CircleText()
+              // .offset(x:-8, y: 21)
+            ZStack {
+                Circle().fill(.yellow.opacity(0.2))
+                    .frame(width:98, height: 98).offset(x:-10, y:10)
+                emitter()
+                //slinky()
+            }
             Text("Loading...")
                 .font(.headline)
                 .foregroundColor(.brown.opacity(1.0)).offset(y:120)
                 .opacity(pathAnimation ? 0 : 1)
-                .animation(.linear.repeatForever().speed(0.9), value: pathAnimation)
+                .animation(.linear.repeatForever().speed(0.3), value: pathAnimation)
         }
     }
     

@@ -65,8 +65,9 @@ class Item: Identifiable {
 @available(iOS 16.0, *)
 struct SearchBarResults: View {
     @ObservedObject var data : SampleData
-   
-   @State var showItem: Bool = false
+
+    @State var showItem: Bool = false
+
     var body: some View {
         
         HStack {
@@ -89,7 +90,7 @@ struct SearchBarResults: View {
             }
             .onDisappear() {
                 showItem = false
-             }
+            }
         }
     }
     
@@ -99,13 +100,13 @@ struct SearchBarResults: View {
 @available(iOS 16.0, *)
 struct SearchResults: View {
     @ObservedObject var data : SampleData
-   
-   @State var showItem: Bool = false
-   @State var isPresenting: Bool = false
-   @State var selectedRow: Item = Item(name: "", description: "nothing", size: "", itemColor: "", price: "", image: "", showItem: false)
+
+    @State var showItem: Bool = false
+    @State var isPresenting: Bool = false
+    @State var selectedRow: Item = Item(name: "", description: "nothing", size: "", itemColor: "", price: "", image: "", showItem: false)
+    
     let transition: AnyTransition = .move(edge: .leading)
-    
-    
+
     fileprivate func DetailView() -> some View {
         VStack {
             GeometryReader { r in

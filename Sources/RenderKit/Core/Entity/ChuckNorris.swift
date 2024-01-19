@@ -12,6 +12,10 @@ struct ChuckNorrisJoke: Codable {
     let value: String
 }
 
+enum ChuckNorrisError: StringLiteralType, Error {
+    case nojoke = "I'm sorry no joke"
+}
+
 @available(iOS 16.0, *)
 struct Jokes: View {
     @State private var joke: ChuckNorrisJoke? = nil
@@ -31,7 +35,9 @@ struct Jokes: View {
                     showAlert = true
                     Task {
                         do {
-                            let chuckNorrisJoke: ChuckNorrisJoke = try await Network().fetch(from: ModuleWorkFlow.endpoints.chuckNorris.rawValue)
+                            guard let chuckNorrisJoke: ChuckNorrisJoke = try await Network().fetch(from: ModuleWorkFlow.endpoints.chuckNorris.rawValue) else {
+                                throw ChuckNorrisError.nojoke
+                                }
                             joke = chuckNorrisJoke
                             
                         } catch {
