@@ -32,8 +32,6 @@ struct RenderToolBarNav: Identifiable, View {
              
             RenderTable<ShopWorkFlow>( myStyle: .plain, workflows: moduleWorkflow, data: SampleData(), sectionSeperator: Visibility.hidden).ignoresSafeArea().padding(-24)
              
-            
-           
         case .some(.orders):
             let moduleWorkflow = [
                 ModuleWorkFlow(.header)
@@ -44,7 +42,6 @@ struct RenderToolBarNav: Identifiable, View {
             ]
             
             SegmentedControl(data: SampleData(), shape: Rectangle(), sections: [
-                
                 Sections(id:0, title: "Welcome", view: RenderTable( myStyle: .plain, workflows: moduleWorkflow2, data: data, sectionSeperator: .hidden)
                  
                         ),
@@ -62,110 +59,3 @@ struct RenderToolBarNav: Identifiable, View {
     }
     
 }
-
-@available(iOS 16.0, *)
-struct RenderToolBar: View {
-    @State var toolbar: RenderToolBarNav = RenderToolBarNav(selectedRoute: .home)
-    @State var animate: Bool = false
-    @State var showToast: Bool = true
-   
-    let theme = Config(Basic()).currentTheme()
-    let iconSize = 55.0
-    let iconPadding = 0.0
-    
-    func house() -> Image {
-        Image(systemName:"house")
-    }
-
-    var body: some View {
-        VStack {
-            GeometryReader { reader in
-                VStack {
-                   
-                    toolbar.view(for: toolbar.selectedRoute)
-                        .allowsHitTesting(true)
-                        .frame(height: reader.size.height-80,alignment: .top)
-                        //.background(Config().background)
-                       // .offset(x: animate ? 0 : -400)
-                       // .animation(.easeIn.speed(0.55), value: animate)
-                        .onAppear() {
-                            animate = true
-                        }
-                    //Toast(showToast: true, message: "Did you get a new Chuck Norris joke?", priority: 0).offset(y:showToast ? -650 : -800)
-
-                    HStack(alignment: .center) {
-                        ForEach(Routes.allCases) { route in
-                  
-                            VStack {
-                              
-                                if isSelected(route: route) {
-                                    VStack {
-                                        theme.background
-                                    }
-                                    .frame(height:3.0)
-                                    //.offset(y:-5)
-                            }
-                            Button(action: {
-                                toolbar = RenderToolBarNav(selectedRoute: route)
-                            }) {
-                                ViewThatFits {
-                                    VStack {
-                                        switch route {
-                                        case .home:
-                                            RenderButton(image: house()
-                                                         , shape: theme.buttonShape, action: {
-                                                toolbar = RenderToolBarNav(selectedRoute: route)
-                                            })
-                                           
-                                        case .orders:
-                                            RenderButton(image:Image(systemName: "menucard"), shape: theme.buttonShape, action: {
-                                                toolbar = RenderToolBarNav(selectedRoute: route)
-                                            })
-                                          
-                                        case .burgers:
-                                            RenderButton(image:Image(systemName: "burst"), shape:  theme.buttonShape, action: {
-                                                toolbar = RenderToolBarNav(selectedRoute: route)
-                                            })
-                                          
-                                        }
-                                        Text(route.rawValue)
-                                            .foregroundColor(route == toolbar.selectedRoute ? .black : theme.backgroundColor)
-                                    }.animation(Animation.linear(duration: 0.5), value: isSelected(route: route))
-                                     
-                                }
-                                .frame(width:reader.size.width / CGFloat(Routes.allCases.count))
-                                }
-               
-                            }
-                        }
-                    }.frame(width: reader.size.width, height: 90, alignment: .top)
-                        .foregroundColor(.black)
-                        .background(.white)
-                }  .offset(y:-25)
-            }
-            .background(.white)
-            
-        }
-        
-           
-         
-   
-        .ignoresSafeArea()
-      
-    }
-    
-    func isSelected(route: Routes) -> Bool {
-        toolbar.selectedRoute == route
-    }
-}
-
-
-
-@available(iOS 16.0, *)
-struct RenderToolBarPreview: PreviewProvider {
-    static var view: RenderToolBarNav = RenderToolBarNav(selectedRoute: .home)
-    static var previews: some View {
-        RenderToolBar(toolbar: view)
-    }
-}
-

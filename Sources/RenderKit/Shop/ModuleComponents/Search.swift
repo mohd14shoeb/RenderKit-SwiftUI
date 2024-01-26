@@ -218,7 +218,7 @@ struct SearchResults: View {
            
         }
         .fullScreenCover(isPresented: $isPresenting, onDismiss: {}) {
-            DetailView()
+            DetailView().offset(x:-20)
         }
    
         .transaction({ transaction in transaction.disablesAnimations = true })

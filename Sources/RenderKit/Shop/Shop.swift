@@ -1,6 +1,8 @@
 import Foundation
 import SwiftUI
 
+
+
 @available(iOS 16.0, *)
 struct SearchProduct: View {
     var body: some View {
@@ -8,7 +10,7 @@ struct SearchProduct: View {
             ShopWorkFlow(.search),
             ShopWorkFlow(.results)
         ]
-        RenderTable(myStyle: .plain, workflows: workflow, data: SampleData(), sectionSeperator: Visibility.hidden)
+        RenderTable<ShopWorkFlow>(myStyle: .plain, workflows: workflow, data: SampleData(), sectionSeperator: Visibility.hidden)
             .ignoresSafeArea()
             .padding(-24)
             .offset(y:-40)

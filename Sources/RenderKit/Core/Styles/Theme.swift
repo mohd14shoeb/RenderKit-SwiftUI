@@ -91,6 +91,7 @@ struct Unicorn: ThemeProtocol {
     var textColor: Color = Color.black
     var textColorOff: Color =  Color.white
     var buttonShape: any Shape = RoundedRectangle(cornerRadius: 10.0)
+   // var buttonShape: any Shape = RoundedRectangle(cornerRadius: 10.0)
     
     //add unicorn only Themes
 }

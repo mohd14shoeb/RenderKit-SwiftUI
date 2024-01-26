@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 @available(iOS 16.0, *)
-public enum ShopComponents: StringLiteralType, CaseIterable, Identifiable {
+public enum ShopComponents: StringLiteralType {
     public var id: Self {
         return self
     }
@@ -13,18 +13,14 @@ public enum ShopComponents: StringLiteralType, CaseIterable, Identifiable {
 
 @available(iOS 16, *)
 public struct ShopWorkFlow: Identifiable {
-    public var id = UUID()
-    public var featureName: String = "SearchFeature"
-    public var isEnabled: Bool = true
-    typealias type = Workflow
+    public var id: UUID = UUID()
     
     @State var searchText: String = "What are you looking for?"
+
+    public var featureName: String = "SearchFeature"
+    public var isEnabled: Bool = true
     public var component: ShopComponents = .none
     public var data: SampleData = SampleData()
-    
-    //enum endpoints: StringLiteralType {
-        //case chuckNorris = "https://api.chucknorris.io/jokes/random"
-    //}
     
     init(_ component: ShopComponents) {
         self.component = component

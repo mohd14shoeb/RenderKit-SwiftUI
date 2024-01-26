@@ -17,19 +17,26 @@ public struct RenderTable<T: Identifiable>: View {
                 Section(
                     content: {
                         VStack {
-                            if let flow = flow as? Workflow  {
+                            
+                        
+                            if let flow = flow as? Workflow {
                                 render(flow: flow)
-                             
                              }
+                            
+                            if let flow = flow as? ShopWorkFlow {
+                                render(flow: flow)
+                            }
                           
-                            else if let flow = flow as? ModuleWorkFlow {
+                            if let flow = flow as? ModuleWorkFlow {
                                 flow.view(for: flow.component, data: data)
                                     .background(.clear)
                                     .accessibility(label: Text(""))
                             }
+                        /*
                             else if let flow = flow as? ShopWorkFlow {
                                 flow.view(for: flow.component, data: data)
                             }
+                        */
                         
                         
                         }
@@ -49,7 +56,8 @@ extension RenderTable {
     func render(flow: Workflow) -> some View {
         flow.view(for: flow.component, data: data)
     }
-    func render(flow: ShopWorkFlow) -> some View {
+    
+    func  render(flow: ShopWorkFlow) -> some View {
         flow.view(for: flow.component, data: data)
     }
        /* if let flow = flow as? Workflow  {

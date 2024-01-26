@@ -2,7 +2,13 @@ import Foundation
 import SwiftUI
 
 @available(iOS 16.0, *)
-public enum Components: StringLiteralType {
+public enum Components: StringLiteralType, ProtoType {
+    func clone() -> Components {
+       self
+    }
+    
+    typealias CloneType = Components
+    
     case welcome = "Welcome Text"
     case welcomeButton = "Welcome Button"
     case headerView = "Lets get started"
@@ -15,27 +21,18 @@ public enum Components: StringLiteralType {
 public struct ID<T>: Equatable {
     private let value = UUID()
 }
-
-
-struct GenericEnum<T> {
-    let type = T.self
-}
-
-public enum WorkflowComponents {
-    case Components
-}
+ 
 
 @available(iOS 16.0, *)
-protocol Flow {
-    var id: UUID { get set }
-    
+protocol ProtoType {
+    associatedtype CloneType
+    func clone() -> CloneType
 }
-
-
 
 
 @available(iOS 16.0, *)
 public struct Workflow : Identifiable {
+   
     public var id = UUID()
     public var component: Components
  
